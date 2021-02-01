@@ -4,6 +4,7 @@
       <div class="col-6">
         <button class="btn btn-info m-2" @click="test">เพิ่ม</button>
         <input type="file" id="input" />
+        <button class="btn btn-info m-2" @click="upload">อัปโหลด</button>
       </div>
     </div>
     <div class="row">

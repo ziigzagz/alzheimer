@@ -20,8 +20,12 @@
                         aria-label="Default select example"
                         id="select"
                       >
-                        <option v-for="i in homeworkTemplate" :key="i" :value=i>
-                        {{i}}
+                        <option
+                          v-for="i in homeworkTemplate"
+                          :key="i"
+                          :value="i"
+                        >
+                          {{ i }}
                         </option>
                       </select>
                     </v-col>
@@ -45,7 +49,7 @@
         <table class="table table-striped text-center">
           <thead>
             <tr>
-              <th scope="col">วันที่</th>
+              <th scope="col">ครั้งที่</th>
               <th scope="col">หัวข้อ</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
@@ -54,9 +58,9 @@
           <tbody>
             <tr v-for="(item, index) in homework" :key="index">
               <th scope="row">{{ index + 1 }}</th>
-              <th>{{ item }}</th>
-              <th>{{ item }}</th>
-              <th>{{ item }}</th>
+              <th>{{ item.Homework_name }}</th>
+              <th>{{ item.date }}</th>
+              <th><span class="badge bg-danger">ยังไม่สำเร็จ</span></th>
             </tr>
           </tbody>
         </table>
@@ -89,11 +93,11 @@ export default {
     docRef = db.collection("Homework");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
-         console.log(element.data());
-        this.homework.push(element.data().Homework_name);
+        console.log(element.data());
+        this.homework.push(element.data());
       });
     });
-     console.log(this.homework,99);
+    console.log(this.homework, 99);
   },
   methods: {
     close() {
@@ -107,6 +111,10 @@ export default {
       var hours = d.getHours();
       var minutes = d.getMinutes();
       var db = firebase.firestore();
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      month += 1;
       // console.log(document.getElementById("select").value, 99);
       db.collection("Homework")
         .add({
@@ -115,7 +123,6 @@ export default {
             date +
             "/" +
             month +
-            1 +
             "/" +
             year +
             " " +
@@ -133,6 +140,8 @@ export default {
             title: "บันทึกข้อมูลสำเร็จ",
             showConfirmButton: false,
             timer: 1500,
+          }).then(()=>{
+            location.reload();
           });
         })
         .catch(function (error) {

@@ -104,9 +104,10 @@ export default {
       var year = d.getFullYear();
       var hours = d.getHours();
       var minutes = d.getMinutes();
-      if(minutes < 10){
-        minutes = "0"+minutes;
+       if (minutes < 10) {
+        minutes = "0" + minutes;
       }
+      month += 1;
       var db = firebase.firestore();
       db.collection("Advice")
         .add({

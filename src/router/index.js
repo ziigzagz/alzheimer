@@ -59,7 +59,13 @@ const routes = [
     path: "/ExamList",
     name: "ExamList",
     component: () => import("../views/ExamList.vue"),
-  },{
+  }
+  ,
+  {
+    path: "/Exam",
+    name: "Exam",
+    component: () => import("../views/Exam.vue"),
+  }, {
     path: "/Homework",
     name: "Homework",
     component: () => import("../views/Homework.vue"),
@@ -80,7 +86,7 @@ const routes = [
     name: "CheckHomework",
     component: () => import("../views/CheckHomework.vue"),
   },
-  
+
   {
     path: "/HomeworkList",
     name: "HomeworkList",

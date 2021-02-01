@@ -87,7 +87,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in video" v-bind:key="item">
+            <tr v-for="(item, index) in test" v-bind:key="item">
               <th scope="row">{{ index + 1 }}</th>
               <td>
                 <a href="/Exam"> {{ item.ID }}</a>
@@ -114,6 +114,7 @@ export default {
     tasks: [],
     newTask: null,
     video: [],
+    test: [],
   }),
   components: {
     Advice,
@@ -143,36 +144,11 @@ export default {
       .get()
       .then((doc) => {
         console.log(doc.docs[0].id);
-        // doc.docs.forEach((element) => {
-          // data.push(element.data());
-          // this.video.push(element.data());
-          // video = db.collection("Exam").doc(element.id).collection("video");
-          // video
-          //   .get()
-          //   .then((snapvideo) => {
-          //     snapvideo.forEach((element1) => {
-          //       videolink = db
-          //         .collection("Exam")
-          //         .doc(element.id)
-          //         .collection("video")
-          //         .doc(element1.id);
-          //       videolink
-          //         .get()
-          //         .then((snapvideolink) => {
-          //           videolinkset.push({ link: snapvideolink.data() });
-          //         })
-          //         .catch(function (error) {
-          //           console.log("Error getting document:", error);
-          //         });
-          //     });
-          //     // this.video.push(data);
-          //     console.log(videolinkset);
-          //     videolinkset = [];
-          //   })
-          //   .catch(function (error) {
-          //     console.log("Error getting document:", error);
-          //   });
-        // });
+        var tmp = []; // list data exam
+        doc.docs.forEach((element) => {
+          console.log(element.data());
+          this.test.push(element.data());
+        });
       })
       .catch(function (error) {
         console.log("Error getting document:", error);
@@ -201,6 +177,7 @@ export default {
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
+      month += 1
       db.collection("Exam")
         .add({
           ID: document.getElementById("name").value,
@@ -210,7 +187,7 @@ export default {
             date +
             "/" +
             month +
-            1 +
+            
             "/" +
             year +
             " " +
@@ -229,6 +206,9 @@ export default {
             });
           });
           // location.reload();
+        })
+        .then((res) => {
+          location.reload();
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);

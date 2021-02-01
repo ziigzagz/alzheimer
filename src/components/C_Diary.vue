@@ -17,7 +17,7 @@
                     <v-col>
                       <v-text-field
                         label="ชื่อบันทึก*"
-                        id="name"
+                        id="name1"
                         hint=""
                         persistent-hint
                         required
@@ -58,40 +58,34 @@
           <tbody>
             <tr v-for="(item, index) in diary" :key="index">
               <th scope="row">{{ item.date }}</th>
-              <th >{{ item.diary_name }}</th>
-              <th >
-                <div class="row">
-<div class="col-1 mx-auto">
-                  <v-row justify="center">
-                    <v-dialog v-model="dialog1" persistent max-width="290">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                          ดู
-                        </v-btn>
-                      </template>
-                      <v-card>
-                        <v-card-title class="headline">
-                          รายละเอียด
-                        </v-card-title>
-                        <v-card-text>
-                          {{ diary[0].text }}
-                        </v-card-text>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn
-                            color="green darken-1 "
-                            text
-                            @click="dialog1 = false"
-                          >
-                            ปิด
+              <th>{{ item.diary_name }}</th>
+              <th>
+   <v-dialog v-model="dialog1" persistent max-width="290">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                            ดู
                           </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </v-row>
-                </div>
-                </div>
-                
+                        </template>
+                        <v-card>
+                          <v-card-title class="headline">
+                            รายละเอียด
+                          </v-card-title>
+                          <v-card-text>
+                            {{ diary[0].text }}
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="green darken-1 "
+                              text
+                              @click="dialog1 = false"
+                            >
+                              ปิด
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+      
               </th>
             </tr>
           </tbody>
@@ -135,9 +129,13 @@ export default {
       var hours = d.getHours();
       var minutes = d.getMinutes();
       var db = firebase.firestore();
+       if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      month += 1;
       db.collection("Diary")
         .add({
-          diary_name: document.getElementById("name").value,
+          diary_name: document.getElementById("name1").value,
           status: 0,
           user: "",
           text: document.getElementById("textarea").value,
@@ -145,7 +143,7 @@ export default {
             date +
             "/" +
             month +
-            1 +
+          
             "/" +
             year +
             " " +
