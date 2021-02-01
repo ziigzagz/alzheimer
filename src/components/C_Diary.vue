@@ -60,32 +60,29 @@
               <th scope="row">{{ item.date }}</th>
               <th>{{ item.diary_name }}</th>
               <th>
-   <v-dialog v-model="dialog1" persistent max-width="290">
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                            ดู
-                          </v-btn>
-                        </template>
-                        <v-card>
-                          <v-card-title class="headline">
-                            รายละเอียด
-                          </v-card-title>
-                          <v-card-text>
-                            {{ diary[0].text }}
-                          </v-card-text>
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                              color="green darken-1 "
-                              text
-                              @click="dialog1 = false"
-                            >
-                              ปิด
-                            </v-btn>
-                          </v-card-actions>
-                        </v-card>
-                      </v-dialog>
-      
+                <v-dialog v-model="dialog1" persistent max-width="290">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                      ดู
+                    </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title class="headline"> รายละเอียด </v-card-title>
+                    <v-card-text>
+                      {{ diary[0].text }}
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="green darken-1 "
+                        text
+                        @click="dialog1 = false"
+                      >
+                        ปิด
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
               </th>
             </tr>
           </tbody>
@@ -129,7 +126,7 @@ export default {
       var hours = d.getHours();
       var minutes = d.getMinutes();
       var db = firebase.firestore();
-       if (minutes < 10) {
+      if (minutes < 10) {
         minutes = "0" + minutes;
       }
       month += 1;
@@ -143,7 +140,6 @@ export default {
             date +
             "/" +
             month +
-          
             "/" +
             year +
             " " +
@@ -161,6 +157,8 @@ export default {
             title: "บันทึกข้อมูลสำเร็จ",
             showConfirmButton: false,
             timer: 1500,
+          }).then(() => {
+            location.reload();
           });
         })
         .catch(function (error) {

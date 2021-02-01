@@ -9,7 +9,7 @@
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline">เพิ่มบันทึกประจำวัน</span>
+              <span class="headline">เพิ่มคำแนะนำ</span>
             </v-card-title>
             <v-card-text>
               <v-container>
