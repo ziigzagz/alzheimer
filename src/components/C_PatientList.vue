@@ -77,7 +77,7 @@ export default {
       });
   },
   methods: {
-    async click() {},
+    async upload() {},
     async test() {
       const input = document.getElementById("input");
       await readXlsxFile(input.files[0]).then((rows) => {
