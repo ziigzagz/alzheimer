@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="favcolor">Select your favorite color:</label>
+    <label for="favcolor">Select your favorite color:11</label>
     <br />
     <br /><br />
     <div class="container">
