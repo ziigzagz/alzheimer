@@ -17,7 +17,7 @@
                   <v-col>
                     <v-text-field
                       label="คำแนะนำ *"
-                      id="name"
+                      id="nameAdvice"
                       hint=""
                       persistent-hint
                       required
@@ -111,7 +111,7 @@ export default {
       var db = firebase.firestore();
       db.collection("Advice")
         .add({
-          title: document.getElementById("name").value,
+          title: document.getElementById("nameAdvice").value,
           status: 0,
           user: "",
           text: document.getElementById("textarea").value,

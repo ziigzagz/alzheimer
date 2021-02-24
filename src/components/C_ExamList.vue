@@ -19,7 +19,7 @@
                     <v-col>
                       <v-text-field
                         label="ชื่อแบบฝึกหัด*"
-                        id="name"
+                        id="nameExam"
                         hint=""
                         persistent-hint
                         required
@@ -180,7 +180,7 @@ export default {
       month += 1
       db.collection("Exam")
         .add({
-          ID: document.getElementById("name").value,
+          ID: document.getElementById("nameExam").value,
           status: 0,
           user: "",
           date:

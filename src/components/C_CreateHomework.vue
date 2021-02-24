@@ -28,6 +28,21 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-6 mx-auto">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            @change="myFunction()"
+            id="select"
+          >
+            <option selected>กรุณาเลือกขนาด</option>
+            <option value="1">8x8</option>
+            <option value="2">10x10</option>
+            <option value="3">12x12</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
         <div class="col text-center">
           <button
             type="button"
@@ -45,16 +60,47 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="eight">
         <!-- คำตอบ -->
         <div class="col-6 mx-auto">
+          <div v-for="i in 8" v-bind:key="i" class="mx-auto">
+            <button
+              type="button"
+              :id="'btn8' + i + j"
+              class="btn btn-default"
+              @click="changeColor8(i, j)"
+              v-for="j in 8"
+              v-bind:key="j"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="ten">
+        <!-- คำตอบ -->
+        <div class="col-12 mx-auto">
           <div v-for="i in 10" v-bind:key="i">
             <button
               type="button"
-              :id="'btn' + i + j"
+              :id="'btn10' + i + j"
               class="btn btn-default"
-              @click="changeColor(i, j)"
+              @click="changeColor10(i, j)"
               v-for="j in 10"
+              v-bind:key="j"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="twelve">
+        <!-- คำตอบ -->
+        <div class="col-9 mx-auto offset">
+        
+          <div v-for="i in 14" v-bind:key="i">
+            <button
+              type="button"
+              :id="'btn12' + i + j"
+              class="btn btn-default"
+              @click="changeColor12(i, j)"
+              v-for="j in 14"
               v-bind:key="j"
             ></button>
           </div>
@@ -82,13 +128,13 @@ export default {
       colorlist: [
         "#FFEC1F", //เหลืองเข้ม
         "#F6FF78", //เหลืองอ่อน
-        "#21E83F", //เขียวเข้ม
-        "#148F27", //เขียวอ่อน
+        "#21E83F", //เขียวอ่อน
+        "#148F27", //เขียวเข้ม
         "#1F26FF", //น้ำเงิน
-        "#A12DCF", // ม่วง
+        "#A12DCF", //ม่วง
         "#F00800", //แดง
         "#FF892E", //ส้ม
-        "#F266DD", //ชมพู
+        "#FF007F", //ชมพู
         "#EF9090", //เนื้อ
         "#6EDDFF", //ฟ้า
         "#B0FFF4", //ฟ้าอ่อน
@@ -100,22 +146,52 @@ export default {
     };
   },
   mounted() {
+
+    // ===================== setting ========================
+    // none is disable
+    // ======================================================
+    var x = document.getElementById("eight");
+    x.style.display = "none";
+    x = document.getElementById("ten");
+    x.style.display = "none";
+    x = document.getElementById("twelve");
+    x.style.display = "none";
     // first view page set color
     var i, j, txtid;
-    for (i = 0; i < 16; ++i) {
+    for (i = 0; i < 18; ++i) {
       txtid = "btncolorplt" + (i + 1);
+      // console.log(txtid)
       document.getElementById(txtid).style.backgroundColor = this.colorlist[i];
       // console.log(this.colorlist[i], txtid);
     }
   },
   methods: {
-    // componentToHex(c) {
-    //   var hex = c.toString(16);
-    //   return hex.length == 1 ? "0" + hex : hex;
-    // },
-    // rgbToHex(r, g, b) {
-    //   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-    // },
+    myFunction() {
+      var x = document.getElementById("eight");
+      var x = document.getElementById("select").value;
+      if (x == 1) {
+        x = document.getElementById("eight");
+        x.style.display = "block";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("twelve");
+        x.style.display = "none";
+      } else if (x == 2) {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "block";
+        x = document.getElementById("twelve");
+        x.style.display = "none";
+      } else if (x == 3) {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("twelve");
+        x.style.display = "block";
+      }
+    },
     upload() {
       var r;
       var g;
@@ -141,24 +217,25 @@ export default {
             axios
               .post(path, [resdownload])
               .then((res) => {
+                console.log(res);
                 res.data.forEach((row) => {
                   j = 1;
                   i++;
                   //row
                   row.forEach((col) => {
+                    console.log(col,"---------------------")
                     r = col[2];
                     g = col[1];
                     b = col[0];
                     // console.log(rgbToHex(r, g, b));
-                    console.log(i, j);
-                    var txt = "btn"+i+j;
+                    // console.log(i, j);
+                    var txt = "btn10" + i + j;
                     document.getElementById(
                       txt
                     ).style.backgroundColor = rgbToHex(r, g, b);
                     j++;
-                    
-                    
                   });
+                  console.log("END")
                 });
                 // console.log(res.data);
                 console.log(rgbToHex(r, g, b));
@@ -194,9 +271,23 @@ export default {
           console.error("Error adding document: ", error);
         });
     },
-    changeColor(i, j) {
+    changeColor8(i, j) {
       console.log(i, j);
-      var txtid = "btn" + i + j;
+      var txtid = "btn8" + i + j;
+      document.getElementById(txtid).style.backgroundColor = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
+    },
+     changeColor10(i, j) {
+      console.log(i, j);
+      var txtid = "btn10" + i + j;
+      document.getElementById(txtid).style.backgroundColor = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
+    },
+     changeColor12(i, j) {
+      console.log(i, j);
+      var txtid = "btn12" + i + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];

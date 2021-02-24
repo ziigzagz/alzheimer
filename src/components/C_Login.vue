@@ -40,12 +40,7 @@
         <p>or sign in with:</p>
 
         <a @click="loginWithProvider" class="mx-5" role="button">
-          <img
-            src="../assets/icon/google.png"
-            alt=""
-            width="20"
-            height="20"
-          />
+          <img src="../assets/icon/google.png" alt="" width="20" height="20" />
         </a>
       </form>
     </div>
