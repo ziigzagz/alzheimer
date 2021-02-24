@@ -49,7 +49,7 @@
             :id="'btncolorplt' + j"
             class="btn btn-default mx-auto"
             @click="setStateColor(j)"
-            v-for="j in 16"
+            v-for="j in 17"
             v-bind:key="j"
           ></button>
           <div class="row mt-5">
@@ -60,10 +60,14 @@
           </div>
         </div>
       </div>
-      <div class="row" id="eight">
+      <div class="row justify-content-center" id="eight">
         <!-- คำตอบ -->
-        <div class="col-6 mx-auto">
-          <div v-for="i in 8" v-bind:key="i" class="mx-auto">
+        <div
+          v-for="i in 8"
+          v-bind:key="i"
+          class="col-6 bg-danger offset-4 align-self-center p-0"
+        >
+          <div class="mx-auto bg-danger">
             <button
               type="button"
               :id="'btn8' + i + j"
@@ -93,7 +97,6 @@
       <div class="row" id="twelve">
         <!-- คำตอบ -->
         <div class="col-9 mx-auto offset">
-        
           <div v-for="i in 14" v-bind:key="i">
             <button
               type="button"
@@ -126,6 +129,7 @@ export default {
   data() {
     return {
       colorlist: [
+        "#79661E", //น้ำตาล
         "#FFEC1F", //เหลืองเข้ม
         "#F6FF78", //เหลืองอ่อน
         "#21E83F", //เขียวอ่อน
@@ -146,7 +150,6 @@ export default {
     };
   },
   mounted() {
-
     // ===================== setting ========================
     // none is disable
     // ======================================================
@@ -223,7 +226,7 @@ export default {
                   i++;
                   //row
                   row.forEach((col) => {
-                    console.log(col,"---------------------")
+                    console.log(col, "---------------------");
                     r = col[2];
                     g = col[1];
                     b = col[0];
@@ -235,7 +238,7 @@ export default {
                     ).style.backgroundColor = rgbToHex(r, g, b);
                     j++;
                   });
-                  console.log("END")
+                  console.log("END");
                 });
                 // console.log(res.data);
                 console.log(rgbToHex(r, g, b));
@@ -278,14 +281,14 @@ export default {
         localStorage.getItem("color") - 1
       ];
     },
-     changeColor10(i, j) {
+    changeColor10(i, j) {
       console.log(i, j);
       var txtid = "btn10" + i + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];
     },
-     changeColor12(i, j) {
+    changeColor12(i, j) {
       console.log(i, j);
       var txtid = "btn12" + i + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
