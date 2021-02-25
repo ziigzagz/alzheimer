@@ -199,8 +199,7 @@ export default {
       var r;
       var g;
       var b;
-      var i = 0,
-        j = 0;
+      var i = 0,j = 0;
       var storageRef = firebase.storage().ref("img");
 
       var file = document.getElementById("files").files[0];
