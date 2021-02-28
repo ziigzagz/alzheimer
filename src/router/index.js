@@ -1,26 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
+import firebase from "firebase";
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/dashboard",
     name: "Home",
     component: () => import("../views/Dashboard.vue"),
+    beforeEnter(to, from, next) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          window.location.href = "/login"
+        } else {
+          next();
+        }
+      });
+    }
   },
   {
     path: "/about",
     name: "About",
-    component: () => {
-      import("../views/About.vue");
-    },
+    component: () =>  import("../views/About.vue"),
   },
   {
     path: "/Dashboard",
     name: "Dashboard",
-    component: () => import("../views/Dashboard.vue"),
+    component: () =>  import("../views/Dashboard.vue"),
   },
   {
     path: "/Patient",

@@ -15,7 +15,7 @@
               <th scope="col">HN</th>
               <th scope="col">ชื่อ-สกุล</th>
               <th scope="col">อายุ</th>
-              <th scope="col">ชื่อผู้ดูแล</th>
+              <th scope="col">ชื่อ111111ผู้ดูแล</th>
               <th scope="col">เบอร์โทรติดต่อ</th>
             </tr>
           </thead>
@@ -23,9 +23,9 @@
             <tr v-for="i in datas" v-bind:key="i">
               <th scope="row"><a href=""> {{ i.ID }}</a>
                </th>
-              <td>{{ i.FNAME }} {{ i.LNAME }}</td>
+              <td>{{ i.NAME }}</td>
               <td>{{ i.AGE }}</td>
-              <td>{{ i.คนดูแล }}</td>
+              <td>5656</td>
               <td>{{ i.TEL }}</td>
             </tr>
           </tbody>
@@ -57,15 +57,16 @@ export default {
             .get()
             .then((Info) => {
               // console.log(Info.data().ID);
-              dataset["ID"] = Info.data().ID;
-              dataset["FNAME"] = Info.data().FNAME;
-              dataset["LNAME"] = Info.data().LNAME;
-              dataset["AGE"] = Info.data().AGE;
+               dataset["ID"] = Info.data().ID;
+              dataset["NAME"] = Info.data().NAME;
+              dataset["Birthday"] = Info.data().Birthday;
+              dataset["Email"] = Info.data().Email;
+              dataset["ww"] = Info.data().TEL;
+              dataset["hh"] = Info.data().TEL;
               dataset["คนดูแล"] = Info.data().คนดูแล;
-              dataset["TEL"] = Info.data().TEL;
               console.log(dataset);
               this.datas.push(dataset);
-              dataset = [];
+              dataset = {};
             })
             .catch(function (error) {
               console.log("Error getting document:", error);
@@ -85,8 +86,8 @@ export default {
           var db = firebase.firestore();
           db.collection("InfoPatient")
             .add({
-              ID: element[0],
-              FNAME: element[1],
+              ID: element[2],
+              FNAME: element[3],
               LNAME: element[2],
               AGE: element[3],
               คนดูแล: element[4],

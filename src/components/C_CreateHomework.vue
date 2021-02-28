@@ -38,7 +38,9 @@
             <option selected>กรุณาเลือกขนาด</option>
             <option value="1">8x8</option>
             <option value="2">10x10</option>
-            <option value="3">12x12</option>
+            <option value="3">14x14</option>
+            <option value="4">18x18</option>
+            <option value="5">20x20</option>
           </select>
         </div>
       </div>
@@ -65,12 +67,12 @@
         <div
           v-for="i in 8"
           v-bind:key="i"
-          class="col-6 bg-danger offset-4 align-self-center p-0"
+          class="col-6  offset-4 align-self-center p-0"
         >
-          <div class="mx-auto bg-danger">
+          <div class="mx-auto ">
             <button
               type="button"
-              :id="'btn8' + i + j"
+              :id="'btn8' + i +'/'+ j"
               class="btn btn-default"
               @click="changeColor8(i, j)"
               v-for="j in 8"
@@ -81,13 +83,13 @@
       </div>
       <div class="row" id="ten">
         <!-- คำตอบ -->
-        <div class="col-12 mx-auto">
+        <div class="col-9 mx-auto offset-2">
           <div v-for="i in 10" v-bind:key="i">
             <button
               type="button"
-              :id="'btn10' + i + j"
+              :id="'btn10' + i +'/'+ j"
               class="btn btn-default"
-              @click="changeColor10(i, j)"
+              @click="changeColor12(i, j)"
               v-for="j in 10"
               v-bind:key="j"
             ></button>
@@ -96,14 +98,44 @@
       </div>
       <div class="row" id="twelve">
         <!-- คำตอบ -->
-        <div class="col-9 mx-auto offset">
+        <div class="col-9 mx-auto offset-2">
           <div v-for="i in 14" v-bind:key="i">
             <button
               type="button"
-              :id="'btn12' + i + j"
+              :id="'btn14' + i+'/'+ j"
               class="btn btn-default"
-              @click="changeColor12(i, j)"
+              @click="changeColor14(i, j)"
               v-for="j in 14"
+              v-bind:key="j"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="eightteen">
+        <!-- คำตอบ -->
+        <div class="col mx-auto text-center">
+          <div v-for="i in 18" v-bind:key="i">
+            <button
+              type="button"
+              :id="'btn18' + i +'/'+ j"
+              class="btn btn-default"
+              @click="changeColor18(i, j)"
+              v-for="j in 18"
+              v-bind:key="j"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="twenty">
+        <!-- คำตอบ -->
+        <div class="col mx-auto text-center">
+          <div v-for="i in 20" v-bind:key="i">
+            <button
+              type="button"
+              :id="'btn20' + i +'/'+ j"
+              class="btn btn-default"
+              @click="changeColor20(i, j)"
+              v-for="j in 20"
               v-bind:key="j"
             ></button>
           </div>
@@ -179,12 +211,20 @@ export default {
         x.style.display = "none";
         x = document.getElementById("twelve");
         x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
       } else if (x == 2) {
         x = document.getElementById("eight");
         x.style.display = "none";
         x = document.getElementById("ten");
         x.style.display = "block";
         x = document.getElementById("twelve");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
         x.style.display = "none";
       } else if (x == 3) {
         x = document.getElementById("eight");
@@ -193,13 +233,40 @@ export default {
         x.style.display = "none";
         x = document.getElementById("twelve");
         x.style.display = "block";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+      } else if (x == 4) {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("twelve");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "block";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+      } else if (x == 5) {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("twelve");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "block";
       }
     },
     upload() {
       var r;
       var g;
       var b;
-      var i = 0,j = 0;
+      var i = 0,
+        j = 0;
       var storageRef = firebase.storage().ref("img");
 
       var file = document.getElementById("files").files[0];
@@ -225,13 +292,13 @@ export default {
                   i++;
                   //row
                   row.forEach((col) => {
-                    console.log(col, "---------------------");
+                    console.log(col, i, j, "---------------------");
                     r = col[2];
                     g = col[1];
                     b = col[0];
                     // console.log(rgbToHex(r, g, b));
                     // console.log(i, j);
-                    var txt = "btn10" + i + j;
+                    var txt = "btn18" + i + "/" + j;
                     document.getElementById(
                       txt
                     ).style.backgroundColor = rgbToHex(r, g, b);
@@ -275,21 +342,35 @@ export default {
     },
     changeColor8(i, j) {
       console.log(i, j);
-      var txtid = "btn8" + i + j;
+      var txtid = "btn8" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];
     },
     changeColor10(i, j) {
       console.log(i, j);
-      var txtid = "btn10" + i + j;
+      var txtid = "btn10" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];
     },
     changeColor12(i, j) {
       console.log(i, j);
-      var txtid = "btn12" + i + j;
+      var txtid = "btn14" + i + "/" + j;
+      document.getElementById(txtid).style.backgroundColor = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
+    },
+    changeColor18(i, j) {
+      console.log(i, j);
+      var txtid = "btn18" + i + "/" + j;
+      document.getElementById(txtid).style.backgroundColor = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
+    },
+    changeColor20(i, j) {
+      console.log(i, j);
+      var txtid = "btn20" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];

@@ -11,7 +11,9 @@
             class="text-white"
           >
             <v-card-title>คนไข้ในระบบ</v-card-title>
-            <div class="col text-end" style="font-size: 70px">{{numrow}}  คน</div>
+            <div class="col text-end" style="font-size: 70px">
+              {{ numrow }} คน
+            </div>
             <!-- <div class="col text-end">คน</div> -->
           </v-card>
         </div>
@@ -31,32 +33,30 @@ import Navdraw from "@/components/Navdraw.vue";
 import Chart from "@/components/Chartcomponent.vue";
 
 export default {
-  data(){
+  data() {
     return {
-      numrow:0
-    }
+      numrow: 0,
+    };
   },
   components: {
     Navdraw,
     Chart,
   },
   async mounted() {
-    await firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        console.log(user.displayName);
-        this.users = user.displayName;
-      } else {
-        // No user is signed in.
-      }
-    });
+    await  firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          // this.$router.replace("/login");
+        } else {
+          
+        }
+      });
     var db = firebase.firestore();
     var docRef = db.collection("InfoPatient");
     docRef
       .get()
       .then((doc) => {
-         this.numrow = doc.size;
-        console.log(doc.size)
+        this.numrow = doc.size;
+        console.log(doc.size);
       })
       .catch(function (error) {
         console.log("Error getting document:", error);

@@ -19,13 +19,13 @@
             </tr>
           </thead>
           <tbody>
-          <tr v-for="i in datas" v-bind:key="i">
-              <th scope="row"><a href="/Patient"> {{ i.ID }}</a>
+          <tr v-for="(item, index) in datas" :key="index">
+              <th scope="row"><a href="/Patient"> {{ item.ID }}</a>
                </th>
-              <td>{{ i.FNAME }} {{ i.LNAME }}</td>
-              <td>{{ i.AGE }}</td>
-              <td>{{ i.คนดูแล }}</td>
-              <td>{{ i.TEL }}</td>
+              <td>{{ item.Name }}</td>
+              <td>{{  }}</td>
+              <td>{{  }}111</td>
+              <td>{{  }}</td>
             </tr>
           </tbody>
         </table>
@@ -55,16 +55,17 @@ export default {
           row
             .get()
             .then((Info) => {
-              // console.log(Info.data().ID);
+              console.log(Info.data().Name);
               dataset["ID"] = Info.data().ID;
-              dataset["FNAME"] = Info.data().FNAME;
-              dataset["LNAME"] = Info.data().LNAME;
-              dataset["AGE"] = Info.data().AGE;
+              dataset["Name"] = Info.data().Name;
+              dataset["Birthday"] = Info.data().Birthday;
+              dataset["Email"] = Info.data().Email;
+              dataset["ww"] = Info.data().TEL;
+              dataset["hh"] = Info.data().TEL;
               dataset["คนดูแล"] = Info.data().คนดูแล;
-              dataset["TEL"] = Info.data().TEL;
               console.log(dataset);
               this.datas.push(dataset);
-              dataset = [];
+              dataset = {};
             })
             .catch(function (error) {
               console.log("Error getting document:", error);
@@ -84,12 +85,13 @@ export default {
           var db = firebase.firestore();
           db.collection("InfoPatient")
             .add({
-              ID: element[0],
-              FNAME: element[1],
-              LNAME: element[2],
-              AGE: element[3],
-              คนดูแล: element[4],
-              TEL: element[5],
+              ID: element[1],
+              Email: element[2],
+              Name:element[3],
+              Birthday: element[4],
+              ww:element[5],
+              hh: element[6],
+              คนดูแล:element[7],
             })
             .then(function (docRef) {
               console.log("Document written with ID: ", docRef.id);

@@ -55,6 +55,9 @@ export default {
   data: function () {
     return { email: "", password: "" };
   },
+  mounted() {
+     firebase.auth.OAuthProvider
+  },
   methods: {
     login(e) {
       firebase
@@ -77,7 +80,7 @@ export default {
                 }
               });
             }
-            this.$router.replace("/");
+            this.$router.replace("/dashboard");
           },
           (err) => {
             alert(err.message);
