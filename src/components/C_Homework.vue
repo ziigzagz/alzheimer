@@ -89,11 +89,11 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     var db = firebase.firestore();
 var docRef2 = db.collection("HomeworkTemplate");
     // get data homework Template
-    var docRef = db.collection("HomeworkTemplate");
+    var docRef = await db.collection("HomeworkTemplate");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
         console.log(element.data(), element.id);
@@ -110,7 +110,7 @@ var docRef2 = db.collection("HomeworkTemplate");
       .where("user", "==", localStorage.getItem("uid"));
     docRef.get().then((doc) => {
       //  console.log(doc.docs[0].id)
-      doc.forEach((element) => {
+       doc.forEach((element) => {
         console.log(element.data().homeworkTemplate);
         docRef2 = db.collection("HomeworkTemplate").doc(element.data().homeworkTemplate);
         docRef2.get().then((doc2) => {
