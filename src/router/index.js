@@ -20,6 +20,20 @@ const routes = [
     }
   },
   {
+    path: "/",
+    name: "Home",
+    component: () => import("../views/Dashboard.vue"),
+    beforeEnter(to, from, next) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          window.location.href = "/login"
+        } else {
+          next();
+        }
+      });
+    }
+  },
+  {
     path: "/about",
     name: "About",
     component: () =>  import("../views/About.vue"),

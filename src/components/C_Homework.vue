@@ -53,14 +53,20 @@
               <th scope="col">หัวข้อ</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
+              <th scope="col">#</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, index) in homework" :key="index">
-              <th scope="row">{{ index + 1 }}</th>
-              <th>{{ item.Homework_name }}</th>
-              <th>{{ item.date }}</th>
-              <th><span class="badge bg-danger">ยังไม่สำเร็จ</span></th>
+              <td scope="row">{{ index + 1 }}</td>
+              <td>{{ item.data.Homework_name }}</td>
+              <td>{{ item.data.date }}</td>
+              <td><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
+              <td>
+                <button class="btn btn-info" @click="viewInfo(item.id)">
+                  ดูข้อมูล
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -78,11 +84,14 @@ export default {
       dialog: false,
       homeworkTemplate: [],
       homework: [],
+      homework_id: "",
     };
   },
 
   mounted() {
     var db = firebase.firestore();
+
+    // get data homework Template
     var docRef = db.collection("HomeworkTemplate");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
@@ -90,16 +99,26 @@ export default {
         this.homeworkTemplate.push(element.data().Homework_name);
       });
     });
-    docRef = db.collection("Homework");
-    docRef.get().then((doc) => {
+
+    // get data homework patient
+    var docRef = db
+      .collection("Homework")
+      .where("user", "==", localStorage.getItem("uid"));
+   docRef.get().then((doc) => {
+    //  console.log(doc.docs[0].id)
       doc.forEach((element) => {
-        console.log(element.data());
-        this.homework.push(element.data());
+        console.log(element.id);
+        this.homework.push({id:element.id,data:element.data()});
+        this.homework_id
       });
     });
-    console.log(this.homework, 99);
   },
   methods: {
+    viewInfo(id) {
+      console.log(id);
+      localStorage.setItem("ID_Homework", id);
+      window.location.href = "InfoHomework";
+    },
     close() {
       this.dialog = false;
     },
@@ -119,6 +138,7 @@ export default {
       db.collection("Homework")
         .add({
           Homework_name: document.getElementById("select").value,
+          user: localStorage.getItem("uid"),
           date:
             date +
             "/" +
@@ -140,7 +160,7 @@ export default {
             title: "บันทึกข้อมูลสำเร็จ",
             showConfirmButton: false,
             timer: 1500,
-          }).then(()=>{
+          }).then(() => {
             location.reload();
           });
         })

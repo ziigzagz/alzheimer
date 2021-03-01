@@ -57,12 +57,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="i in advice" :key="i">
-              <td>{{ i.date }}</td>
-              <th>{{ i.title }}</th>
-              <td>{{ i.text }}</td>
+            <tr v-for="(item, index) in advice" :key="index">
+              <td>{{ item.date }}</td>
+              <th>{{ item.title }}</th>
+              <td>{{ item.text }}</td>
 
-              <td v-if="i.status == 1">
+              <td v-if="item.status == 1">
                 <span class="badge bg-success">สำเร็จ</span>
               </td>
               <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>

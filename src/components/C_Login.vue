@@ -34,53 +34,70 @@
         <button class="btn btn-info btn-block my-4" type="submit">
           Sign in
         </button>
-
-        <!-- Register -->
-        <!-- Social login -->
-        <p>or sign in with:</p>
-
-        <a @click="loginWithProvider" class="mx-5" role="button">
-          <img src="../assets/icon/google.png" alt="" width="20" height="20" />
-        </a>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+// numrow = 0 is Admin 1 is not admin
 import firebase from "firebase";
 import Swal from "sweetalert2";
 export default {
   name: "Login",
   data: function () {
-    return { email: "", password: "" };
+    return { email: "", password: "", numrow: 0 };
   },
   mounted() {
-     firebase.auth.OAuthProvider
+    firebase.auth.OAuthProvider;
   },
   methods: {
     login(e) {
+      var db = firebase.firestore();
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           (user) => {
-            var user = firebase.auth().currentUser;
-            console.log(user);
-            if (user != null) {
-              this.$router.replace("/home");
-              user.providerData.forEach((profile) => {
-                console.log(profile);
-                console.log(user.uid);
-                localStorage.setItem("uid", user.uid);
-                localStorage.setItem("User", profile.email);
-                localStorage.setItem("StatusLogin", 1);
-                if (profile.uid == "zigzagzaczax@gmail.com") {
+            // console.log(user.user.email);
+            // var docRef = db
+            //   .collection("InfoPatient")
+            //   .where("Email", "==", user.user.email);
+            // docRef
+            //   .get()
+            //   .then((doc) => {
+            //     doc.forEach((element) => {
+            //       console.log(element.id);
+            //       localStorage.setItem("uid", element.id);
+            //       window.location.href = "/dashboard";
+            //     });
+            //   })
+            //   .catch(function (error) {
+            //     console.log("Error getting document:", error);
+            //   });
+
+            var docRef = db
+              .collection("InfoPatient")
+              .where("Email", "==", user.user.email);
+            docRef
+              .get()
+              .then((doc) => {
+                this.numrow = doc.size;
+                if (this.numrow == 0) {
                   localStorage.setItem("isAdmin", true);
+                } else {
+                  doc.forEach((element) => {
+                    localStorage.setItem("uid", element.id);
+                    localStorage.setItem("isAdmin", false);
+                  });
                 }
+                window.location.href = "/dashboard";
+              })
+              .catch(function (error) {
+                console.log("Error getting document:", error);
               });
-            }
-            this.$router.replace("/dashboard");
+            // localStorage.setItem("isAdmin", true);
+            // window.location.href = "/dashboard";
           },
           (err) => {
             alert(err.message);

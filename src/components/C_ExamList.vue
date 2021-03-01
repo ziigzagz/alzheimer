@@ -84,19 +84,25 @@
               <th scope="col">แบบฝึกหัด</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
+              <th scope="col">ดู</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in test" v-bind:key="item">
+            <tr v-for="(item, index) in test" :key="index">
               <th scope="row">{{ index + 1 }}</th>
               <td>
-                <a href="/Exam"> {{ item.ID }}</a>
+                {{ item.data.ID }}
               </td>
-              <td>{{ item.date }}</td>
-              <td v-if="item.status == 1">
+              <td>{{ item.data.date }}</td>
+              <td v-if="item.data.status == 1">
                 <span class="badge bg-success">สำเร็จ</span>
               </td>
               <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>
+              <td>
+                <button class="btn btn-info" @click="viewInfo(item.ID)" v-if="item.data.status == 0">
+                  ดูข้อมูล
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -133,7 +139,16 @@ export default {
 
   async mounted() {
     var db = firebase.firestore();
-    var docRef = db.collection("Exam");
+    if (!localStorage.getItem("isAdmin")) {
+      var docRef = db
+        .collection("Exam")
+        .where("user", "==", localStorage.getItem("uid"));
+    } else {
+      var docRef = db
+        .collection("Exam")
+        .where("user", "==", localStorage.getItem("uid"));
+    }
+
     var dataset = {};
     var video;
     var videolink;
@@ -143,11 +158,17 @@ export default {
     docRef
       .get()
       .then((doc) => {
-        console.log(doc.docs[0].id);
+        doc.docs.forEach((element) => {
+          // console.log(element.id);
+        });
+        // console.log(doc.docs[0]);
         var tmp = []; // list data exam
         doc.docs.forEach((element) => {
           console.log(element.data());
-          this.test.push(element.data());
+          this.test.push({
+            ID: element.id,
+            data: element.data(),
+          });
         });
       })
       .catch(function (error) {
@@ -156,11 +177,17 @@ export default {
   },
 
   methods: {
+    viewInfo(uid) {
+      console.log(uid)
+      localStorage.setItem("ID_Exam",uid);
+      window.location.href = "/Exam"
+    },
     create() {
       this.tasks.push({
         text: this.newTask,
       });
       this.newTask = null;
+      console.log();
     },
 
     close() {
@@ -177,17 +204,17 @@ export default {
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
-      month += 1
+      month += 1;
       db.collection("Exam")
         .add({
           ID: document.getElementById("nameExam").value,
           status: 0,
-          user: "",
+          user: localStorage.getItem("uid"),
+          v: this.tasks,
           date:
             date +
             "/" +
             month +
-            
             "/" +
             year +
             " " +
@@ -195,17 +222,6 @@ export default {
             ":" +
             minutes +
             "น.",
-        })
-        .then((docRef) => {
-          console.log(this.tasks);
-          console.log("Document written with ID: ", docRef.id);
-          this.tasks.forEach((element) => {
-            console.log(element.text);
-            db.collection("Exam").doc(docRef.id).collection("video").add({
-              link: element.text,
-            });
-          });
-          // location.reload();
         })
         .then((res) => {
           location.reload();

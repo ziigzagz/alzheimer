@@ -47,7 +47,7 @@ export default {
   mounted() {
     var db = firebase.firestore();
     var dataset = {};
-    var docRef = db.collection("InfoPatient");
+    var docRef = db.collection("InfoPatient").where("Status","==",1);
     docRef
       .get()
       .then((doc) => {
@@ -56,8 +56,7 @@ export default {
           row
             .get()
             .then((Info) => {
-              // console.log(Info.data().ID);
-               dataset["ID"] = Info.data().ID;
+              dataset["ID"] = Info.data().ID;
               dataset["NAME"] = Info.data().NAME;
               dataset["Birthday"] = Info.data().Birthday;
               dataset["Email"] = Info.data().Email;

@@ -9,7 +9,7 @@
           <input
             type="text"
             class="form-control"
-            id="exampleFormControlInput1"
+            id="homeworkName"
             placeholder=""
           />
         </div>
@@ -67,12 +67,12 @@
         <div
           v-for="i in 8"
           v-bind:key="i"
-          class="col-6  offset-4 align-self-center p-0"
+          class="col-6 offset-4 align-self-center p-0"
         >
-          <div class="mx-auto ">
+          <div class="mx-auto">
             <button
               type="button"
-              :id="'btn8' + i +'/'+ j"
+              :id="'btn8' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor8(i, j)"
               v-for="j in 8"
@@ -87,7 +87,7 @@
           <div v-for="i in 10" v-bind:key="i">
             <button
               type="button"
-              :id="'btn10' + i +'/'+ j"
+              :id="'btn10' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor12(i, j)"
               v-for="j in 10"
@@ -102,7 +102,7 @@
           <div v-for="i in 14" v-bind:key="i">
             <button
               type="button"
-              :id="'btn14' + i+'/'+ j"
+              :id="'btn14' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor14(i, j)"
               v-for="j in 14"
@@ -117,7 +117,7 @@
           <div v-for="i in 18" v-bind:key="i">
             <button
               type="button"
-              :id="'btn18' + i +'/'+ j"
+              :id="'btn18' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor18(i, j)"
               v-for="j in 18"
@@ -132,7 +132,7 @@
           <div v-for="i in 20" v-bind:key="i">
             <button
               type="button"
-              :id="'btn20' + i +'/'+ j"
+              :id="'btn20' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor20(i, j)"
               v-for="j in 20"
@@ -160,6 +160,368 @@ function rgbToHex(r, g, b) {
 export default {
   data() {
     return {
+      eightteen: [
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+        [
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+          "#000000",
+        ],
+      ],
       colorlist: [
         "#79661E", //น้ำตาล
         "#FFEC1F", //เหลืองเข้ม
@@ -191,18 +553,21 @@ export default {
     x.style.display = "none";
     x = document.getElementById("twelve");
     x.style.display = "none";
+    x = document.getElementById("eightteen");
+    x.style.display = "none";
+    x = document.getElementById("twenty");
+    x.style.display = "none";
     // first view page set color
     var i, j, txtid;
-    for (i = 0; i < 18; ++i) {
+    for (i = 0; i < 17; i++) {
       txtid = "btncolorplt" + (i + 1);
-      // console.log(txtid)
+      console.log(txtid);
       document.getElementById(txtid).style.backgroundColor = this.colorlist[i];
       // console.log(this.colorlist[i], txtid);
     }
   },
   methods: {
     myFunction() {
-      var x = document.getElementById("eight");
       var x = document.getElementById("select").value;
       if (x == 1) {
         x = document.getElementById("eight");
@@ -318,27 +683,52 @@ export default {
     },
     create() {
       var db = firebase.firestore();
-      db.collection("HomeworkTemplate")
-        .add({
-          Homework_name: document.getElementById("exampleFormControlInput1")
-            .value,
-        })
-        .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-          this.dialog = false;
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "บันทึกข้อมูลสำเร็จ",
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(() => {
-            window.location.href = "/HomeworkList";
-          });
-        })
-        .catch(function (error) {
-          console.error("Error adding document: ", error);
+      var homeworkName = document.getElementById("homeworkName").value;
+      if (homeworkName.length == 0) {
+        console.log(homeworkName.length);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "กรุณาใส่ชื่อการบ้าน",
+          timer: 1500,
         });
+      } else {
+        var newdata = {};
+        var str = "";
+        var i = 0,
+          j = 0;
+        this.eightteen.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+        console.log(str);
+        db.collection("HomeworkTemplate")
+          .add({
+            Homework_name: homeworkName,
+            Homework_data: str,
+          })
+          .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            this.dialog = false;
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "บันทึกข้อมูลสำเร็จ",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then(() => {
+              window.location.href = "/HomeworkList";
+            });
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+          });
+      }
+
+      // console.log(homeworkName.length);
+      // console.log(homeworkName);
     },
     changeColor8(i, j) {
       console.log(i, j);
@@ -363,10 +753,14 @@ export default {
     },
     changeColor18(i, j) {
       console.log(i, j);
+      this.eightteen[i - 1][j - 1] = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
       var txtid = "btn18" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];
+      console.log(this.eightteen);
     },
     changeColor20(i, j) {
       console.log(i, j);
@@ -377,6 +771,7 @@ export default {
     },
     setStateColor(i) {
       localStorage.setItem("color", i);
+      console.log(i);
     },
     reset() {
       var i, j, txtid;

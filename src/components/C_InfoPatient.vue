@@ -6,6 +6,7 @@
     <div class="row">
       <div class="col text-center">
         <h1>ข้อมูลส่วนตัว</h1>
+        
       </div>
     </div>
     <div class="row">
@@ -15,7 +16,7 @@
           type="text"
           id="hn"
           class="form-control"
-          value="6030301195"
+          v-model="HN"
           readonly
         />
       </div>
@@ -24,7 +25,7 @@
         <input
           type="text"
           class="form-control"
-          value="นายอิฟฟาน หะยีอิสมาแอ"
+          v-model="Name"
           id="name"
           readonly
         />
@@ -149,7 +150,13 @@
     <div class="row">
       <div class="col">
         <label class="form-label">อาชีพ</label>
-        <input type="text" id="job" class="form-control" value="ข้าราชการ" readonly />
+        <input
+          type="text"
+          id="job"
+          class="form-control"
+          value="ข้าราชการ"
+          readonly
+        />
       </div>
     </div>
     <!-- ข้อมูลสุขภาพ -->
@@ -344,10 +351,29 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
+  data() {
+    return {
+      HN: "",
+      Name:"",
+    };
+  },
   mounted() {
-    var x = document.getElementById("savebtn");
+    var x = document.getElementById("savebtn")
     x.style.display = "none";
+    var db = firebase.firestore();
+    var dataset = {};
+    var docRef = db.collection("InfoPatient").doc(localStorage.getItem("uid"));
+     docRef.get().then((snapshot) => {
+      this.HN = snapshot.data().ID;
+      this.Name = snapshot.data().Name;
+      this.Email = snapshot.data().Email;
+      this.Age = snapshot.data().Age;
+      this.Birthday = snapshot.data().Birthday;
+
+      // console.log(snapshot.data())
+    });
   },
   methods: {
     print() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-4">
           <label for="exampleFormControlInput1" class="form-label"
@@ -36,26 +36,26 @@
       </div>
       <div class="row">
         <!-- โจทย์ -->
-        <div class="col-6">
-          <div v-for="i in 10" v-bind:key="i">
+        <div class="col-6 m-0">
+          <div v-for="i in 18" v-bind:key="i">
             <button
               type="button"
-              :id="'btnprop' + i + j"
+              :id="'btnprop' + i + '/' + j"
               class="btn btn-default"
-              v-for="j in 10"
+              v-for="j in 18"
               v-bind:key="j"
             ></button>
           </div>
         </div>
         <!-- คำตอบ -->
-        <div class="col-6">
-          <div v-for="i in 10" v-bind:key="i">
+        <div class="col-6 m-0">
+          <div v-for="i in 18" v-bind:key="i">
             <button
               type="button"
-              :id="'btn' + i + j"
+              :id="'btn' + i + '/' + j"
               class="btn btn-default"
               @click="changeColor(i, j)"
-              v-for="j in 10"
+              v-for="j in 18"
               v-bind:key="j"
             ></button>
           </div>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   data() {
     return {
@@ -87,50 +88,50 @@ export default {
         "#878787", //เทาเข้ม
         "#000000", //ดำ
       ],
+      homeworktemplatelist: [],
     };
   },
   mounted() {
+    var db = firebase.firestore();
     // first view page set color
     var i, j, txtid;
+    var lst = [];
     for (i = 0; i < 16; ++i) {
       txtid = "btncolorplt" + (i + 1);
       document.getElementById(txtid).style.backgroundColor = this.colorlist[i];
-      console.log(this.colorlist[i], txtid);
+      // console.log(this.colorlist[i], txtid);
     }
-    document.getElementById("btnprop13").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop24").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop35").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop26").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop17").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop28").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop39").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop48").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop57").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop66").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop75").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop22").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop13").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop31").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop42").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop53").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop64").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop23").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop27").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop32").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop33").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop34").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop36").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop37").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop38").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop43").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop44").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop45").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop46").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop47").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop54").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop55").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop56").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop65").style.backgroundColor = "#F266DD";
+
+    var docRef = db.collection("HomeworkTemplate");
+    docRef.get().then((doc) => {
+      doc.forEach((element) => {
+        console.log(element.data());
+        var tmp = element.data().Homework_data.split("*");
+        // tmp = tmp.pop()
+        console.log(tmp);
+        i=0;
+        j=0
+        tmp.forEach((element_i) => {
+          var tmp2 = element_i.split("/");
+          tmp2.forEach((element_j) => {
+            lst.push(element_j);
+            txtid = "btnprop" + (i + 1) + "/" + (j + 1);
+            document.getElementById(
+              txtid
+            ).style.backgroundColor = element_j;
+          });
+          lst.pop();
+          this.homeworktemplatelist.push(lst);
+          lst = [];
+        });
+        // this.homeworkTemplate.push(element.data().Homework_name);
+      });
+      console.log(this.homeworktemplatelist[0]);
+    });
+    // document.getElementById("btnprop13").style.backgroundColor = "#F00800";
+    // document.getElementById("btnprop24").style.backgroundColor = "#F00800";
+    // document.getElementById("btnprop35").style.backgroundColor = "#F00800";
+    // document.getElementById("btnprop26").style.backgroundColor = "#F00800";
   },
   methods: {
     check() {
@@ -138,7 +139,7 @@ export default {
     },
     changeColor(i, j) {
       console.log(i, j);
-      var txtid = "btn" + i + j;
+      var txtid = "btn" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
       ];
@@ -148,9 +149,9 @@ export default {
     },
     reset() {
       var i, j, txtid;
-      for (i = 0; i < 10; ++i) {
-        for (j = 0; j < 10; ++j) {
-          txtid = "btn" + (i + 1) + (j + 1);
+      for (i = 0; i < 18; ++i) {
+        for (j = 0; j < 18; ++j) {
+          txtid = "btn" + (i + 1) + "/" + (j + 1);
           document.getElementById(txtid).style.backgroundColor = "#ffffff";
         }
       }
@@ -163,8 +164,8 @@ export default {
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
 
 .btn {
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   margin: 0 0;
   border-color: black;
 }

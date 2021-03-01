@@ -11,8 +11,8 @@
             type="email"
             class="form-control"
             id="exampleFormControlInput1"
-            placeholder="6030301195"
-            disabled
+            v-model="HN"
+            readonly
           />
         </div>
         <div class="col-8">
@@ -23,8 +23,8 @@
             type="email"
             class="form-control"
             id="exampleFormControlInput2"
-            placeholder="นายอิฟฟาน หะยีอิสมาแอ"
-            disabled
+            v-model="Name"
+            readonly
           />
         </div>
       </div>
@@ -145,6 +145,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import Navdraw from "@/components/Navdraw.vue";
 import Homework from "@/components/C_Homework.vue";
 import Advice from "@/components/C_Advice.vue";
@@ -153,6 +154,24 @@ import ExamList from "@/components/C_ExamList.vue";
 import InfoPatient from "@/components/C_InfoPatient.vue";
 
 export default {
+  data(){
+    return {
+      HN:""
+    }
+  },
+  mounted() {
+    var db = firebase.firestore();
+    var dataset = {};
+    var docRef = db.collection("InfoPatient").doc(localStorage.getItem("uid"));
+     docRef.get().then((snapshot) => {
+      this.HN = snapshot.data().ID;
+      this.Name = snapshot.data().Name;
+      this.Email = snapshot.data().Email;
+      this.Age = snapshot.data().Age;
+      this.Birthday = snapshot.data().Birthday;
+      // console.log(snapshot.data())
+    });
+  },
   components: {
     Navdraw,
     Homework,

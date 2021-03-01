@@ -43,13 +43,12 @@ export default {
     Chart,
   },
   async mounted() {
-    await  firebase.auth().onAuthStateChanged((user) => {
-        if (!user) {
-          // this.$router.replace("/login");
-        } else {
-          
-        }
-      });
+    await firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        // this.$router.replace("/login");
+      } else {
+      }
+    });
     var db = firebase.firestore();
     var docRef = db.collection("InfoPatient");
     docRef
