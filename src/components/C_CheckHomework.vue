@@ -35,40 +35,7 @@ export default {
   },
   mounted() {
     // first view page set color
-    document.getElementById("btnprop13").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop24").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop35").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop26").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop17").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop28").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop39").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop48").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop57").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop66").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop75").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop22").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop13").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop31").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop42").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop53").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop64").style.backgroundColor = "#F00800";
-    document.getElementById("btnprop23").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop27").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop32").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop33").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop34").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop36").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop37").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop38").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop43").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop44").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop45").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop46").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop47").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop54").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop55").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop56").style.backgroundColor = "#F266DD";
-    document.getElementById("btnprop65").style.backgroundColor = "#F266DD";
+
   },
   methods: {},
 };

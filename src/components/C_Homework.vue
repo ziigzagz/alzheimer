@@ -23,9 +23,9 @@
                         <option
                           v-for="i in homeworkTemplate"
                           :key="i"
-                          :value="i"
+                          :value="i.id"
                         >
-                          {{ i }}
+                          {{ i.data }}
                         </option>
                       </select>
                     </v-col>
@@ -59,11 +59,12 @@
           <tbody>
             <tr v-for="(item, index) in homework" :key="index">
               <td scope="row">{{ index + 1 }}</td>
-              <td>{{ item.data.Homework_name }}</td>
+              <td>{{ item.Name }}</td>
               <td>{{ item.data.date }}</td>
               <td><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
               <td>
-                <button class="btn btn-info" @click="viewInfo(item.id)">
+                {{ item.data.homeworkTemplate }}
+                <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate)">
                   ดูข้อมูล
                 </button>
               </td>
@@ -90,13 +91,16 @@ export default {
 
   mounted() {
     var db = firebase.firestore();
-
+var docRef2 = db.collection("HomeworkTemplate");
     // get data homework Template
     var docRef = db.collection("HomeworkTemplate");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
-        // console.log(element.data());
-        this.homeworkTemplate.push(element.data().Homework_name);
+        console.log(element.data(), element.id);
+        this.homeworkTemplate.push({
+          id: element.id,
+          data: element.data().Homework_name,
+        });
       });
     });
 
@@ -104,12 +108,16 @@ export default {
     var docRef = db
       .collection("Homework")
       .where("user", "==", localStorage.getItem("uid"));
-   docRef.get().then((doc) => {
-    //  console.log(doc.docs[0].id)
+    docRef.get().then((doc) => {
+      //  console.log(doc.docs[0].id)
       doc.forEach((element) => {
-        console.log(element.id);
-        this.homework.push({id:element.id,data:element.data()});
-        this.homework_id
+        console.log(element.data().homeworkTemplate);
+        docRef2 = db.collection("HomeworkTemplate").doc(element.data().homeworkTemplate);
+        docRef2.get().then((doc2) => {
+          this.homework.push({ id: element.id, data: element.data(),Name:doc2.data().Homework_name });
+          });
+        
+        // this.homework_id;
       });
     });
   },
@@ -117,7 +125,7 @@ export default {
     viewInfo(id) {
       console.log(id);
       localStorage.setItem("ID_Homework", id);
-      window.location.href = "InfoHomework";
+      window.location.href = "/InfoHomework";
     },
     close() {
       this.dialog = false;
@@ -137,8 +145,8 @@ export default {
       // console.log(document.getElementById("select").value, 99);
       db.collection("Homework")
         .add({
-          Homework_name: document.getElementById("select").value,
           user: localStorage.getItem("uid"),
+          homeworkTemplate: document.getElementById("select").value,
           date:
             date +
             "/" +
