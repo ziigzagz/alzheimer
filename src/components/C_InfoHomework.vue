@@ -874,26 +874,26 @@ export default {
   },
   methods: {
     timer() {
-      var s = 1,
-        m = 0,
-        h = 0;
-        var timer;
-      var interval = setInterval(function () {
-        timer = h.toString()+":"+m.toString()+":"+s.toString()
-        localStorage.setItem("timer",timer)
-        console.log(h, m, s);
-        s++
-        if (s % 60 == 0 || s > 59) {
-          s = 0;
-          m++;
-        }
-        if (m % 60 == 0 && m > 59) {
-          s = 0;
-          m = 0;
-          h++;
-        }
+      // var s = 1,
+      //   m = 0,
+      //   h = 0;
+      //   var timer;
+      // var interval = setInterval(function () {
+      //   timer = h.toString()+":"+m.toString()+":"+s.toString()
+      //   localStorage.setItem("timer",timer)
+      //   console.log(h, m, s);
+      //   s++
+      //   if (s % 60 == 0 || s > 59) {
+      //     s = 0;
+      //     m++;
+      //   }
+      //   if (m % 60 == 0 && m > 59) {
+      //     s = 0;
+      //     m = 0;
+      //     h++;
+      //   }
 
-      }, 1000);
+      // }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
@@ -903,19 +903,24 @@ export default {
       var count_error = 0;
       var i = 0;
       var j = 0;
+      var error = []
       // console.log(document.getElementById("btn1/2").style.backgroundColor);
       // console.log(document.getElementById("btnprop1/2").style.backgroundColor);
       this.eightteen.forEach((element_i, i) => {
         element_i.forEach((element_j, j) => {
           if (element_j == this.eightteen_ans[i][j]) {
             count_correct++;
+            
           } else {
             count_error++;
             console.log(i, j);
+            error.push([i,j])
           }
           // console.log(element_j,this.eightteen_ans[i][j])
         });
       });
+      localStorage.setItem("Error",JSON.stringify(error))
+      console.log()
       var str = "";
       localStorage.setItem("count_correct", count_correct);
       localStorage.setItem("count_error", count_error);
@@ -932,12 +937,12 @@ export default {
       window.location.href = "/CheckHomework";
     },
     changeColor(i, j) {
-      console.log(i, j);
+      // console.log(i, j);
       // this.eightteen[i - 1][j - 1] = this.colorlist[
       //   localStorage.getItem("color") - 1
       // ];
-      console.log(this.eightteen);
-      console.log(this.eightteen_ans);
+      // console.log(this.eightteen);
+      // console.log(this.eightteen_ans);
       var txtid = "btn" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1

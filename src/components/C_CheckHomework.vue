@@ -22,7 +22,7 @@
             ความถูกต้อง : {{ Math.floor(100 - (count_error / 324) * 100) }}%
           </h4>
           <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
-          
+          <!-- <h3>x</h3> -->
         </div>
       </div>
     </div>
@@ -403,7 +403,18 @@ export default {
   },
   mounted() {
     // first view page set color
-  document.getElementById("btnprop1/2").innerHTML =  'X<img src="@/assets/icon/check.png" height="15px" alt="" srcset="" />';
+    var Error_arr = JSON.parse(localStorage.getItem("Error"))
+    var pos_i,pos_j;
+    // console.log(JSON.parse(localStorage.getItem("Error"))[0])
+    Error_arr.forEach(element => {
+      console.log(element)
+        pos_i = element[0]
+        pos_j = element[1]
+        txtid = "btnprop" + (pos_i + 1) + "/" + (pos_j + 1);
+        document.getElementById(txtid).innerHTML =  ' <h4>X</h4>';
+    });
+    
+  // document.getElementById("btnprop1/2").innerHTML =  'X<img src="@/assets/icon/check.png" height="15px" alt="" srcset="" />';
     var tmp = localStorage.getItem("timer").split(":");
     var h,m,s;
     this.timer_h = parseInt(tmp[0])
