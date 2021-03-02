@@ -823,7 +823,9 @@ export default {
   },
   mounted() {
     var db = firebase.firestore();
+    var timer = 0;
     // first view page set color
+    this.timer();
     var i, j, txtid;
     var lst = [];
     for (i = 0; i < 17; i++) {
@@ -871,6 +873,29 @@ export default {
     // document.getElementById("btnprop26").style.backgroundColor = "#F00800";
   },
   methods: {
+    timer() {
+      var s = 1,
+        m = 0,
+        h = 0;
+        var timer;
+      var interval = setInterval(function () {
+        
+        timer = h.toString()+":"+m.toString()+":"+s.toString()
+        localStorage.setItem("timer",timer)
+        console.log(h, m, s);
+        s++
+        if (s % 60 == 0 || s > 59) {
+          s = 0;
+          m++;
+        }
+        if (m % 60 == 0 && m > 59) {
+          s = 0;
+          m = 0;
+          h++;
+        }
+
+      }, 1000);
+    },
     testColor(i, j) {
       console.log(i, j);
     },
@@ -878,24 +903,36 @@ export default {
     check() {
       var count_correct = 0;
       var count_error = 0;
-      // window.location.href = "/CheckHomework";
-      console.log(document.getElementById("btn1/2").style.backgroundColor);
-      console.log(document.getElementById("btnprop1/2").style.backgroundColor);
+      var i = 0;
+      var j = 0;
+      // console.log(document.getElementById("btn1/2").style.backgroundColor);
+      // console.log(document.getElementById("btnprop1/2").style.backgroundColor);
       this.eightteen.forEach((element_i, i) => {
         element_i.forEach((element_j, j) => {
           if (element_j == this.eightteen_ans[i][j]) {
             count_correct++;
-
           } else {
             count_error++;
-            console.log(i,j)
+            console.log(i, j);
           }
           // console.log(element_j,this.eightteen_ans[i][j])
         });
       });
-      localStorage.setItem("count_correct",count_correct)
-      localStorage.setItem("count_error",count_error)
+      var str = "";
+      localStorage.setItem("count_correct", count_correct);
+      localStorage.setItem("count_error", count_error);
+
+      this.eightteen_ans.forEach((element_i) => {
+        element_i.forEach((element_j) => {
+          str += element_j.toString() + "/";
+        });
+        str += "*";
+      });
+
+      localStorage.setItem("ans", str);
+      console.log(str.split("*"));
       // console.log(count_correct, count_error);
+      window.location.href = "/CheckHomework";
     },
     changeColor(i, j) {
       console.log(i, j);
@@ -921,7 +958,7 @@ export default {
       for (i = 0; i < 18; ++i) {
         for (j = 0; j < 18; ++j) {
           txtid = "btn" + (i + 1) + "/" + (j + 1);
-          this.eightteen_ans[i][j] = "#ffffff"
+          this.eightteen_ans[i][j] = "#ffffff";
           document.getElementById(txtid).style.backgroundColor = "#ffffff";
         }
       }
@@ -933,7 +970,7 @@ export default {
 <style>
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
 
-.btn {
+.btn.btn-default {
   width: 45px;
   height: 45px;
   margin: 0 0;
