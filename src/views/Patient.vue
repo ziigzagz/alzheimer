@@ -23,7 +23,7 @@
             type="email"
             class="form-control"
             id="exampleFormControlInput2"
-            v-model="Name"
+            v-model="ชื่อ"
             readonly
           />
         </div>
@@ -157,7 +157,7 @@ export default {
   data(){
     return {
       HN:"",
-      Name:""
+      ชื่อ:""
     }
   },
   mounted() {
@@ -166,10 +166,7 @@ export default {
     var docRef = db.collection("InfoPatient").doc(localStorage.getItem("uid"));
      docRef.get().then((snapshot) => {
       this.HN = snapshot.data().ID;
-      this.Name = snapshot.data().Name;
-      this.Email = snapshot.data().Email;
-      this.Age = snapshot.data().Age;
-      this.Birthday = snapshot.data().Birthday;
+      this.ชื่อ = snapshot.data().ชื่อ;
       // console.log(snapshot.data())
     });
   },

@@ -144,7 +144,7 @@ export default {
         cancelButtonText: "ไม่",
       }).then((result) => {
         if (result.isConfirmed) {
-          const cityRef = db
+          const update = db
             .collection("Advice")
             .doc(id);
           cityRef.update({

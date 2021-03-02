@@ -63,8 +63,8 @@
               <td>{{ item.data.date }}</td>
               <td><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
               <td>
-                {{ item.data.homeworkTemplate }}
-                <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate)">
+                {{ item.id}}
+                <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
                   ดูข้อมูล
                 </button>
               </td>
@@ -112,20 +112,20 @@ var docRef2 = await db.collection("HomeworkTemplate");
     docRef.get().then((doc) => {
       //  console.log(doc.docs[0].id)
        doc.forEach((element) => {
-        console.log(element.data().homeworkTemplate);
+        // console.log(element.data().homeworkTemplate);
         docRef2 =  db.collection("HomeworkTemplate").doc(element.data().homeworkTemplate);
         docRef2.get().then((doc2) => {
           this.homework.push({ id: element.id, data: element.data(),Name:doc2.data().Homework_name });
           });
-        
         // this.homework_id;
       });
     });
   },
   methods: {
-    viewInfo(id) {
-      console.log(id);
-      localStorage.setItem("ID_Homework", id);
+    viewInfo(id_hwTemplate,id_hw) {
+      // console.log(id);
+      localStorage.setItem("id_hwTemplate", id_hwTemplate);
+      localStorage.setItem("id_hw", id_hw);
       window.location.href = "/InfoHomework";
     },
     close() {
@@ -148,6 +148,8 @@ var docRef2 = await db.collection("HomeworkTemplate");
         .add({
           user: localStorage.getItem("uid"),
           homeworkTemplate: document.getElementById("select").value,
+          timer_first:"",
+          timer_release:"",
           date:
             date +
             "/" +

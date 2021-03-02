@@ -49,8 +49,22 @@ export default {
       } else {
       }
     });
+    // get numrow patient
     var db = firebase.firestore();
     var docRef = db.collection("InfoPatient");
+    docRef
+      .get()
+      .then((doc) => {
+        this.numrow = doc.size;
+        console.log(doc.size);
+      })
+      .catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+
+
+    var db = firebase.firestore();
+    var docRef = db.collection("Homework");
     docRef
       .get()
       .then((doc) => {

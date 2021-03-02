@@ -1,18 +1,18 @@
 <template>
   <v-card class="mx-auto" height="100%">
     <Navdraw />
-    <Edit />
+    <Forgotpassword />
   </v-card>
 </template>
 
 <script>
 import Navdraw from "@/components/Navdraw.vue";
-import Edit from "@/components/C_Edit.vue";
+import Forgotpassword from "@/components/C_Forgotpassword.vue";
 
 export default {
   components: {
     Navdraw,
-    Edit
+    Forgotpassword
   },
 };
 </script>

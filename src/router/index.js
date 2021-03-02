@@ -119,9 +119,9 @@ const routes = [
     component: () => import("../views/CreateHomework.vue"),
   },
   {
-    path: "/Edit",
-    name: "Edit",
-    component: () => import("../views/Edit.vue"),
+    path: "/Forgotpassword",
+    name: "Forgotpassword",
+    component: () => import("../views/Forgotpassword.vue"),
   },
 ];
 

@@ -26,7 +26,7 @@
         <div class="d-flex justify-content-around">
           <div>
             <!-- Forgot password -->
-            <a href="/Forgetpass">Forgot password?</a>
+            <a href="/Forgotpassword">Forgot password?</a>
           </div>
         </div>
 

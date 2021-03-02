@@ -22,10 +22,10 @@
           <tbody>
             <tr v-for="(item, index) in datas" :key="index">
               <th scope="row">{{ item.ID }}</th>
-              <td>{{ item.name }}</td>
-              <td>{{ item.Age }}</td>
-              <td>{{ item.UID }}</td>
-              <td>{{ item.Tel }}</td>
+              <td>{{ item.ชื่อ }}</td>
+              <td>{{ item.อายุ }}</td>
+              <td>{{ item.คนดูแล }}</td>
+              <td>{{ item.เบอร์ }}</td>
               <td>
                 <button class="btn btn-info" @click="viewInfo(item.UID)">
                   ดูข้อมูล
@@ -62,16 +62,12 @@ export default {
             .get()
             .then((Info) => {
               // console.log(Info.data().Name);
-              dataset["ID"] = Info.data().ID;
-              dataset["name"] = Info.data().Name;
               dataset["UID"] = element.id;
-              dataset["Birthday"] = Info.data().Birthday;
-              dataset["Age"] = Info.data().Age;
-              dataset["Tel"] = Info.data().Tel;
-              dataset["Email"] = Info.data().Email;
-              dataset["ww"] = Info.data().TEL;
-              dataset["hh"] = Info.data().TEL;
+              dataset["ID"] = Info.data().ID;
+              dataset["ชื่อ"] = Info.data().ชื่อ;
+              dataset["อายุ"] = Info.data().อายุ;
               dataset["คนดูแล"] = Info.data().คนดูแล;
+              dataset["เบอร์"] = Info.data().เบอร์;
               // console.log(dataset);
               this.datas.push(dataset);
               dataset = {};
@@ -127,6 +123,7 @@ export default {
       const input = document.getElementById("input");
       await readXlsxFile(input.files[0]).then((rows) => {
         rows.forEach((element) => {
+          
           const isLargeNumber = (element1) =>
             element1 == element[4].toString().split(" ")[1];
           var month = array1.findIndex(isLargeNumber) + 1;
@@ -140,6 +137,7 @@ export default {
           if (i == 0) {
             i++;
           } else {
+            // console.log(element[29])
             var db = firebase.firestore();
             firebase
               .auth()
@@ -155,17 +153,54 @@ export default {
               });
               db.collection("InfoPatient")
                   .add({
+                    
+                    Status:0,
                     ID: element[1],
-                    Email: element[2],
-                    name: element[3],
-                    Birthday: element[4],
-                    Age: this.calAge(date),
-                    Tel: element[5],
-                    ww: element[6],
-                    hh: element[7],
-                    คนดูแล: element[8],
-                    Status: 0,
-                    uid: uid,
+                    คำนำหน้าชื่อ: element[2],
+                    ชื่อ: element[3],
+                    วันเกิด: element[4],
+                    อายุ:this.calAge(date),
+                    น้ำหนัก: element[5],
+                    ส่วนสูง: element[6],
+                    คนดูแล: element[7],
+                    Email: element[8],
+                    บ้านเลขที่: element[9],
+                    หมู่: element[10],
+                    ตรอกซอย: element[11],
+                    ถนน: element[12],
+                    อำเภอ: element[13],
+                    จังหวัด: element[14],
+                    รหัสไปรษณีย์: element[15],
+                    เบอร์: element[16],
+                    การศึกษา: element[17],
+                    สาขาวิชา: element[18],
+                    อาชีพ: element[19],
+                    ประวัติการเจ็บป่วยในอดีต: element[20],
+                    ประวัติการผ่าตัด: element[21],
+                    โรคประจำตัว: element[22],
+                    ยาที่รับประทานประจำ: element[23],
+                    แพ้ยาอาหาร: element[24],
+                    สูบบุหรี่: element[25],
+                    การดื่มแอลกอฮอล: element[26],
+                    ออกกำลังกาย: element[27],
+                    การนอนหลับ: element[28],
+                    เวลาเข้านอน: element[29].toString(),
+                    เวลาตื่นนอน: element[30].toString(),
+                    การรับประทานอาหาร: element[31],
+                    งานอดิเรก: element[32],
+                    มีปัญหาการมองเห็น: element[33],
+                    มีปัญหาด้านการได้ยิน: element[34],
+                    มีปัญหาด้านการเคลื่อนไหว: element[35],
+                    มีปัญหาด้านความจำ: element[36],
+                    มีปัญหาด้านสมาธิ: element[37],
+                    มีปัญหาด้านการจัดการ: element[38],
+                    หลงทางจำทางไม่ได้: element[39],
+                    มีปัญหาด้านการอ่านเขียน: element[40],
+                    หงุดหงิดโมโหง่าย: element[41],
+                    การสร้างสัมพันธภาพ: element[42],
+                    การรอคอยความอดทน: element[43],
+                    การนึกคำพูดสื่อสาร: element[44],
+                    ความเข้าใจในการสื่อสาร: element[45],
                     Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                   })
                   .then(function (docRef) {

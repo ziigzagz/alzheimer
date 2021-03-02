@@ -837,7 +837,7 @@ export default {
 
     var docRef = db
       .collection("HomeworkTemplate")
-      .doc(localStorage.getItem("ID_Homework").toString());
+      .doc(localStorage.getItem("id_hwTemplate").toString());
     docRef.get().then((doc) => {
       // console.log(doc.data().Homework_data);
       // console.log(element.data());
@@ -874,53 +874,54 @@ export default {
   },
   methods: {
     timer() {
-      // var s = 1,
-      //   m = 0,
-      //   h = 0;
-      //   var timer;
-      // var interval = setInterval(function () {
-      //   timer = h.toString()+":"+m.toString()+":"+s.toString()
-      //   localStorage.setItem("timer",timer)
-      //   console.log(h, m, s);
-      //   s++
-      //   if (s % 60 == 0 || s > 59) {
-      //     s = 0;
-      //     m++;
-      //   }
-      //   if (m % 60 == 0 && m > 59) {
-      //     s = 0;
-      //     m = 0;
-      //     h++;
-      //   }
+      var s = 1,
+        m = 0,
+        h = 0,
+        ms = 0;
 
-      // }, 1000);
+      var timer;
+      var interval = setInterval(function () {
+        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+        localStorage.setItem("timer", timer);
+        localStorage.setItem("timer_ms", ms++);
+        console.log(h, m, s);
+        s++;
+        if (s % 60 == 0 || s > 59) {
+          s = 0;
+          m++;
+        }
+        if (m % 60 == 0 && m > 59) {
+          s = 0;
+          m = 0;
+          h++;
+        }
+      }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
     },
-    check() {
+    async check() {
       var count_correct = 0;
       var count_error = 0;
       var i = 0;
       var j = 0;
-      var error = []
+      var error = [];
       // console.log(document.getElementById("btn1/2").style.backgroundColor);
       // console.log(document.getElementById("btnprop1/2").style.backgroundColor);
       this.eightteen.forEach((element_i, i) => {
         element_i.forEach((element_j, j) => {
           if (element_j == this.eightteen_ans[i][j]) {
             count_correct++;
-            
           } else {
             count_error++;
             console.log(i, j);
-            error.push([i,j])
+            error.push([i, j]);
           }
           // console.log(element_j,this.eightteen_ans[i][j])
         });
       });
-      localStorage.setItem("Error",JSON.stringify(error))
-      console.log()
+      localStorage.setItem("Error", JSON.stringify(error));
+      console.log();
       var str = "";
       localStorage.setItem("count_correct", count_correct);
       localStorage.setItem("count_error", count_error);
@@ -931,18 +932,58 @@ export default {
         str += "*";
       });
 
-      localStorage.setItem("ans", str);
-      console.log(str.split("*"));
-      // console.log(count_correct, count_error);
-      window.location.href = "/CheckHomework";
+      // check firsttime
+      var isFirsttime;
+      var db = firebase.firestore();
+      var docRef = await db
+        .collection("Homework")
+        .doc(localStorage.getItem("id_hw"));
+      docRef
+        .get()
+        .then((data) => {
+          console.log(data.data());
+          if (data.data().timer_first == "") {
+            isFirsttime = 1;
+            console.log(isFirsttime);
+          } else {
+            isFirsttime = 0;
+            console.log(isFirsttime);
+          }
+        })
+        .then(() => {
+          if (isFirsttime == 1) {
+            localStorage.setItem("ans", str);
+            // console.log(str.split("*"));
+            var db = firebase.firestore();
+            const up = db
+              .collection("Homework")
+              .doc(localStorage.getItem("id_hw"));
+            up.update({
+              ans: str.split("*"),
+              timer_first: localStorage.getItem("timer_ms"),
+            }).then(() => {
+              window.location.href = "/CheckHomework";
+            });
+          } else {
+            localStorage.setItem("ans", str);
+            console.log(str.split("*"));
+            var db = firebase.firestore();
+            const up = db
+              .collection("Homework")
+              .doc(localStorage.getItem("id_hw"));
+            up.update({
+              ans: str.split("*"),
+              timer_release: localStorage.getItem("timer_ms"),
+            }).then(() => {
+              window.location.href = "/CheckHomework";
+            });
+          }
+        });
+
+      // Insert hw to firebase
     },
     changeColor(i, j) {
       // console.log(i, j);
-      // this.eightteen[i - 1][j - 1] = this.colorlist[
-      //   localStorage.getItem("color") - 1
-      // ];
-      // console.log(this.eightteen);
-      // console.log(this.eightteen_ans);
       var txtid = "btn" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
