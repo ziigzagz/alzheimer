@@ -33,7 +33,7 @@
         <ul class="nav nav-tabs " id="myTab" role="tablist">
           <li class="nav-item text-danger" role="presentation">
             <a
-              class="nav-link active"
+              class="nav-link "
               id="home-tab"
               data-bs-toggle="tab"
               href="#profile"
@@ -45,7 +45,7 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
-              class="nav-link"
+              class="nav-link active"
               id="profile-tab"
               data-bs-toggle="tab"
               href="#exam"
@@ -95,7 +95,7 @@
         <div class="tab-content" id="myTabContent">
           <!-- ข้อมูลส่วนตัว -->
           <div
-            class="tab-pane fade show active"
+            class="tab-pane fade  show active"
             id="profile"
             role="tabpanel"
             aria-labelledby="home-tab"
@@ -156,7 +156,8 @@ import InfoPatient from "@/components/C_InfoPatient.vue";
 export default {
   data(){
     return {
-      HN:""
+      HN:"",
+      Name:""
     }
   },
   mounted() {

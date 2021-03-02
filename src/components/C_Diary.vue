@@ -1,13 +1,16 @@
 <template>
   <div class="container">
+
     <div class="row">
       <div class="col-1">
-        <v-row justify="center">
+        <v-row justify="center" >
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">เพิ่ม</v-btn>
+              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="!isAdmin">เพิ่ม</v-btn>
+             
             </template>
             <v-card>
+              
               <v-card-title>
                 <span class="headline">เพิ่มบันทึกประจำวัน</span>
               </v-card-title>
@@ -101,17 +104,33 @@ export default {
       dialog: false,
       dialog1: false,
       diary: [],
+      isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
     };
   },
 
   mounted() {
+    //  console.log(this.isAdmin,localStorage.getItem("isAdmin"));
+    //  console.log(this.isAdmin);
     var db = firebase.firestore();
-    var docRef = db.collection("Diary");
+    if (!localStorage.getItem("isAdmin")) {
+      var docRef = db
+        .collection("Diary")
+        .where("user", "==", localStorage.getItem("uid"));
+    } else {
+      var docRef = db
+        .collection("Diary")
+        .where("user", "==", localStorage.getItem("uid"));
+    }
+    // var docRef = db.collection("Diary");
     docRef.get().then((doc) => {
-      doc.forEach((element) => {
-        // console.log(element.data());
+      doc.docs.forEach(element => {
         this.diary.push(element.data());
+        // console.log(element.data())
       });
+      // doc.forEach((element) => {
+      //   // console.log(element.data());
+      //   this.diary.push(element.data());
+      // });
     });
   },
   methods: {
@@ -134,7 +153,7 @@ export default {
         .add({
           diary_name: document.getElementById("name1").value,
           status: 0,
-          user: "",
+          user: localStorage.getItem("uid"),
           text: document.getElementById("textarea").value,
           date:
             date +

@@ -22,7 +22,7 @@
           <tbody>
             <tr v-for="(item, index) in datas" :key="index">
               <th scope="row">{{ item.ID }}</th>
-              <td>{{ item.Name }}</td>
+              <td>{{ item.name }}</td>
               <td>{{ item.Age }}</td>
               <td>{{ item.UID }}</td>
               <td>{{ item.Tel }}</td>
@@ -63,7 +63,7 @@ export default {
             .then((Info) => {
               // console.log(Info.data().Name);
               dataset["ID"] = Info.data().ID;
-              dataset["Name"] = Info.data().Name;
+              dataset["name"] = Info.data().Name;
               dataset["UID"] = element.id;
               dataset["Birthday"] = Info.data().Birthday;
               dataset["Age"] = Info.data().Age;
@@ -157,7 +157,7 @@ export default {
                   .add({
                     ID: element[1],
                     Email: element[2],
-                    Name: element[3],
+                    name: element[3],
                     Birthday: element[4],
                     Age: this.calAge(date),
                     Tel: element[5],

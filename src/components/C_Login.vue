@@ -84,11 +84,11 @@ export default {
               .then((doc) => {
                 this.numrow = doc.size;
                 if (this.numrow == 0) {
-                  localStorage.setItem("isAdmin", true);
+                  localStorage.setItem("isAdmin", 1);
                 } else {
                   doc.forEach((element) => {
                     localStorage.setItem("uid", element.id);
-                    localStorage.setItem("isAdmin", false);
+                    localStorage.setItem("isAdmin", 0);
                   });
                 }
                 window.location.href = "/dashboard";
@@ -126,7 +126,7 @@ export default {
                 // console.log("  Email: " + profile.email);
                 // console.log("  Photo URL: " + profile.photoURL);
                 if (profile.email == "zigzagzaczax@gmail.com") {
-                  localStorage.setItem("isAdmin", true);
+                  localStorage.setItem("isAdmin", 1);
                 }
                 Swal.fire({
                   position: "center",

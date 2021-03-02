@@ -536,7 +536,7 @@ export default {
         "#EF9090", //เนื้อ
         "#6EDDFF", //ฟ้า
         "#B0FFF4", //ฟ้าอ่อน
-        "#ffffff", //ขาว
+        "#FFFFFF", //ขาว
         "#C2C2C2", //เทาอ่อน
         "#878787", //เทาเข้ม
         "#000000", //ดำ
@@ -778,7 +778,7 @@ export default {
       for (i = 0; i < 10; ++i) {
         for (j = 0; j < 10; ++j) {
           txtid = "btn" + (i + 1) + (j + 1);
-          document.getElementById(txtid).style.backgroundColor = "#ffffff";
+          document.getElementById(txtid).style.backgroundColor = "#FFFFFF";
         }
       }
     },

@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- โจทย์ -->
-        <div class="col-6 offset-2 bg-danger mt-5">
+        <div class="col-6 offset-2 mt-5">
           <div v-for="i in 18" v-bind:key="i">
             <button
               type="button"
@@ -18,8 +18,11 @@
         <div class="col-3 text-center">
           <h3>ผลการตรวจ</h3>
           <!-- <h4>ความถูกต้องของช่อง : 100%</h4> -->
-          <h4>ความถูกต้องของสี : {{Math.floor(100-count_error/324*100)}}%</h4>
-          <h4>เวลาที่ใช้ : {{timer_m}}:{{timer_s}} {{unit}}</h4>
+          <h4>
+            ความถูกต้อง : {{ Math.floor(100 - (count_error / 324) * 100) }}%
+          </h4>
+          <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
+          
         </div>
       </div>
     </div>
@@ -400,17 +403,17 @@ export default {
   },
   mounted() {
     // first view page set color
-  
+  document.getElementById("btnprop1/2").innerHTML =  'X<img src="@/assets/icon/check.png" height="15px" alt="" srcset="" />';
     var tmp = localStorage.getItem("timer").split(":");
     var h,m,s;
     this.timer_h = parseInt(tmp[0])
     this.timer_m = parseInt(tmp[1])
     this.timer_s = parseInt(tmp[2])
-    // if(this.timer_m > 0){
-    //   this.unit = "นาที"
-    // }
     if(this.timer_s < 10){
       this.timer_s = "0" + this.timer_s
+    }
+    if(this.timer_m < 10){
+      this.timer_m = "0" + this.timer_m
     }
 
     // console.log(h,m,s)

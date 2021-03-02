@@ -5,7 +5,7 @@
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">เพิ่ม</v-btn>
+              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="isAdmin">เพิ่ม</v-btn>
             </template>
             <v-card>
               <v-card-title>
@@ -21,11 +21,11 @@
                         id="select"
                       >
                         <option
-                          v-for="i in homeworkTemplate"
-                          :key="i"
-                          :value="i.id"
+                          v-for="(item, index) in homeworkTemplate"
+                          :key="index"
+                          :value="item.id"
                         >
-                          {{ i.data }}
+                          {{ item.data }}
                         </option>
                       </select>
                     </v-col>
@@ -86,17 +86,18 @@ export default {
       homeworkTemplate: [],
       homework: [],
       homework_id: "",
+      isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
     };
   },
 
   async mounted() {
     var db = firebase.firestore();
-var docRef2 = db.collection("HomeworkTemplate");
+var docRef2 = await db.collection("HomeworkTemplate");
     // get data homework Template
     var docRef = await db.collection("HomeworkTemplate");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
-        console.log(element.data(), element.id);
+        // console.log(element.data(), element.id);
         this.homeworkTemplate.push({
           id: element.id,
           data: element.data().Homework_name,
@@ -105,14 +106,14 @@ var docRef2 = db.collection("HomeworkTemplate");
     });
 
     // get data homework patient
-    var docRef = db
+    var docRef = await db
       .collection("Homework")
       .where("user", "==", localStorage.getItem("uid"));
     docRef.get().then((doc) => {
       //  console.log(doc.docs[0].id)
        doc.forEach((element) => {
         console.log(element.data().homeworkTemplate);
-        docRef2 = db.collection("HomeworkTemplate").doc(element.data().homeworkTemplate);
+        docRef2 =  db.collection("HomeworkTemplate").doc(element.data().homeworkTemplate);
         docRef2.get().then((doc2) => {
           this.homework.push({ id: element.id, data: element.data(),Name:doc2.data().Homework_name });
           });

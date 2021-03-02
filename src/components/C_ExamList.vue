@@ -5,7 +5,7 @@
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="isAdmin">
                 เพิ่ม
               </v-btn>
             </template>
@@ -121,6 +121,7 @@ export default {
     newTask: null,
     video: [],
     test: [],
+    isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
   }),
   components: {
     Advice,
@@ -164,7 +165,7 @@ export default {
         // console.log(doc.docs[0]);
         var tmp = []; // list data exam
         doc.docs.forEach((element) => {
-          console.log(element.data());
+          // console.log(element.data());
           this.test.push({
             ID: element.id,
             data: element.data(),

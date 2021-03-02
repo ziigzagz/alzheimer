@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button class="btn btn-info" @click="edit">แก้ไข</button>
+    <button class="btn btn-info" @click="edit" v-if="isAdmin">แก้ไข</button>
 
     <!-- ข้อมูลส่วนตัว -->
     <div class="row">
@@ -355,6 +355,7 @@ import firebase from "firebase";
 export default {
   data() {
     return {
+      isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
       HN: "",
       Name:"",
     };

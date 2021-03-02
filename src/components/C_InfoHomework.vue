@@ -812,7 +812,7 @@ export default {
         "#EF9090", //เนื้อ
         "#6EDDFF", //ฟ้า
         "#B0FFF4", //ฟ้าอ่อน
-        "#ffffff", //ขาว
+        "#FFFFFF", //ขาว
         "#C2C2C2", //เทาอ่อน
         "#878787", //เทาเข้ม
         "#000000", //ดำ
@@ -879,7 +879,6 @@ export default {
         h = 0;
         var timer;
       var interval = setInterval(function () {
-        
         timer = h.toString()+":"+m.toString()+":"+s.toString()
         localStorage.setItem("timer",timer)
         console.log(h, m, s);
@@ -899,7 +898,6 @@ export default {
     testColor(i, j) {
       console.log(i, j);
     },
-
     check() {
       var count_correct = 0;
       var count_error = 0;
@@ -921,7 +919,6 @@ export default {
       var str = "";
       localStorage.setItem("count_correct", count_correct);
       localStorage.setItem("count_error", count_error);
-
       this.eightteen_ans.forEach((element_i) => {
         element_i.forEach((element_j) => {
           str += element_j.toString() + "/";
@@ -958,8 +955,8 @@ export default {
       for (i = 0; i < 18; ++i) {
         for (j = 0; j < 18; ++j) {
           txtid = "btn" + (i + 1) + "/" + (j + 1);
-          this.eightteen_ans[i][j] = "#ffffff";
-          document.getElementById(txtid).style.backgroundColor = "#ffffff";
+          this.eightteen_ans[i][j] = "#FFFFFF";
+          document.getElementById(txtid).style.backgroundColor = "#FFFFFF";
         }
       }
     },

@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div v-if="isAdmin">
     <v-app-bar color="indigo darken-2" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title class="tz">Staff</v-toolbar-title>
+      <v-toolbar-title class="tz" v-if="isAdmin">Staff</v-toolbar-title>
+      <v-toolbar-title class="tz" v-else
+        >Patient</v-toolbar-title
+      >
+
     </v-app-bar>
 
     <v-navigation-drawer
@@ -58,7 +62,7 @@
               <a class="text-white ml-5" href="/PatientList"> ผู้ป่วย</a>
             </v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item class="mt-3 m-h">
             <v-list-item-title color="deep-orange darken-2">
               <img
@@ -80,15 +84,22 @@
 <script >
 import firebase from "firebase";
 export default {
-  data: () => ({
-    drawer: false,
+  data(){
+    return {
+       drawer: false,
     group: null,
     users: "",
     imageprofile: "",
-    isAdmin: localStorage.getItem("isAdmin"),
-  }),
+    status: "",
+    isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
+    }
+  },
+  
 
   async mounted() {
+    // if(this.isAdmin){
+  // console.log(this.isAdmin,localStorage.getItem("isAdmin"))
+    // }
     await firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.users = user.displayName;
@@ -99,6 +110,10 @@ export default {
     });
   },
   methods: {
+    checkAdmin(isAdmin){
+      var x = this.isAdmin
+      return !x
+    },
     logout() {
       this.$router.replace("/logout");
     },
@@ -107,7 +122,7 @@ export default {
 </script>
 
 <style scoped>
-.tz{
+.tz {
   font-size: 1.8em;
 }
 a {
@@ -121,5 +136,4 @@ a:hover {
   text-decoration: none;
   font-size: 20px;
 }
-
 </style>
