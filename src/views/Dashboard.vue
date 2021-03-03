@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       numrow: 0,
+      userlist_dohomework: [],
     };
   },
   components: {
@@ -56,24 +57,14 @@ export default {
       .get()
       .then((doc) => {
         this.numrow = doc.size;
-        console.log(doc.size);
+        // console.log(doc.size);
       })
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
 
-
-    var db = firebase.firestore();
-    var docRef = db.collection("Homework");
-    docRef
-      .get()
-      .then((doc) => {
-        this.numrow = doc.size;
-        console.log(doc.size);
-      })
-      .catch(function (error) {
-        console.log("Error getting document:", error);
-      });
+    
+     
   },
 };
 </script>

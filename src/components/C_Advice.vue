@@ -147,7 +147,7 @@ export default {
           const update = db
             .collection("Advice")
             .doc(id);
-          cityRef.update({
+          update.update({
             status: 1,
           });
           Swal.fire({

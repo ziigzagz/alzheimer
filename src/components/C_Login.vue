@@ -91,7 +91,7 @@ export default {
                     localStorage.setItem("isAdmin", 0);
                   });
                 }
-                window.location.href = "/dashboard";
+                window.location.href = "/patient";
               })
               .catch(function (error) {
                 console.log("Error getting document:", error);

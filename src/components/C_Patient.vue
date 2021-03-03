@@ -1,11 +1,15 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-6">
-        <button class="btn btn-info m-2" @click="upload">เพิ่ม</button>
+    <div class="row justify-content-between">
+      <div class="col-4 text-center">
+        <button class="btn btn-info ms-2" @click="upload">เพิ่ม</button>
         <input type="file" id="input" />
       </div>
+      <div class="col-4 text-rigth">
+        <button class="btn btn-danger me-0" @click="clear">ลบข้อมูล</button>
+      </div>
     </div>
+
     <div class="row">
       <div class="col">
         <table class="table table-striped text-center">
@@ -42,11 +46,12 @@
 <script>
 // status 0 = Patient , 1 = Staff
 import firebase from "firebase";
-
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
       datas: [],
+      numrow: 0,
     };
   },
   async mounted() {
@@ -101,6 +106,39 @@ export default {
       // console.log(typeof(age));
       return age;
     },
+    clear() {
+      Swal.fire({
+        title: "ยืนยัน",
+        text: "คุณต้องการยืนยันลบข้อมูลทั้งหมดใช่หรือไม่?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ใช่",
+        cancelButtonText: "ไม่",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const ref = firebase.firestore().collection("InfoPatient");
+          ref.onSnapshot((snapshot) => {
+            snapshot.docs.forEach((doc) => {
+              ref.doc(doc.id).delete();
+            });
+          });
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "ลบข้อมูลสำเร็จ!",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            location.reload();
+          });
+          // Swal.fire("ยืนยันสำเร็จ!", "ทำการอัปเดตเรียบร้อย", "success");
+        }
+      });
+    },
+    // Use it like this:
+
     async upload() {
       var i = 0;
       const array1 = [
@@ -117,13 +155,12 @@ export default {
         "Nov",
         "Dec",
       ];
-      var uid = ""
+      var uid = "";
       var passwordHash = require("password-hash");
       var hashedPassword = passwordHash.generate("123456");
       const input = document.getElementById("input");
       await readXlsxFile(input.files[0]).then((rows) => {
         rows.forEach((element) => {
-          
           const isLargeNumber = (element1) =>
             element1 == element[4].toString().split(" ")[1];
           var month = array1.findIndex(isLargeNumber) + 1;
@@ -141,77 +178,85 @@ export default {
             var db = firebase.firestore();
             firebase
               .auth()
-              .createUserWithEmailAndPassword(element[2], "123456")
+              .createUserWithEmailAndPassword(element[8], "123456")
               .then((userCredential) => {
-                console.log(userCredential.user.uid)
+                console.log(userCredential.user.uid);
                 uid = userCredential.user.uid;
               })
               .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(errorCode,errorMessage)
+                console.log(errorCode, errorMessage);
               });
-              db.collection("InfoPatient")
-                  .add({
-                    
-                    Status:0,
-                    ID: element[1],
-                    คำนำหน้าชื่อ: element[2],
-                    ชื่อ: element[3],
-                    วันเกิด: element[4],
-                    อายุ:this.calAge(date),
-                    น้ำหนัก: element[5],
-                    ส่วนสูง: element[6],
-                    คนดูแล: element[7],
-                    Email: element[8],
-                    บ้านเลขที่: element[9],
-                    หมู่: element[10],
-                    ตรอกซอย: element[11],
-                    ถนน: element[12],
-                    อำเภอ: element[13],
-                    จังหวัด: element[14],
-                    รหัสไปรษณีย์: element[15],
-                    เบอร์: element[16],
-                    การศึกษา: element[17],
-                    สาขาวิชา: element[18],
-                    อาชีพ: element[19],
-                    ประวัติการเจ็บป่วยในอดีต: element[20],
-                    ประวัติการผ่าตัด: element[21],
-                    โรคประจำตัว: element[22],
-                    ยาที่รับประทานประจำ: element[23],
-                    แพ้ยาอาหาร: element[24],
-                    สูบบุหรี่: element[25],
-                    การดื่มแอลกอฮอล: element[26],
-                    ออกกำลังกาย: element[27],
-                    การนอนหลับ: element[28],
-                    เวลาเข้านอน: element[29].toString(),
-                    เวลาตื่นนอน: element[30].toString(),
-                    การรับประทานอาหาร: element[31],
-                    งานอดิเรก: element[32],
-                    มีปัญหาการมองเห็น: element[33],
-                    มีปัญหาด้านการได้ยิน: element[34],
-                    มีปัญหาด้านการเคลื่อนไหว: element[35],
-                    มีปัญหาด้านความจำ: element[36],
-                    มีปัญหาด้านสมาธิ: element[37],
-                    มีปัญหาด้านการจัดการ: element[38],
-                    หลงทางจำทางไม่ได้: element[39],
-                    มีปัญหาด้านการอ่านเขียน: element[40],
-                    หงุดหงิดโมโหง่าย: element[41],
-                    การสร้างสัมพันธภาพ: element[42],
-                    การรอคอยความอดทน: element[43],
-                    การนึกคำพูดสื่อสาร: element[44],
-                    ความเข้าใจในการสื่อสาร: element[45],
-                    Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                  })
-                  .then(function (docRef) {
-                    console.log("Document written with ID: ", docRef.id);
-                    uid = ""
-                  })
-                  .catch(function (error) {
-                    console.error("Error adding document: ", error);
-                  });
+            db.collection("InfoPatient")
+              .add({
+                Status: 0,
+                ID: element[1],
+                คำนำหน้าชื่อ: element[2],
+                ชื่อ: element[3],
+                วันเกิด: element[4],
+                อายุ: this.calAge(date),
+                น้ำหนัก: element[5],
+                ส่วนสูง: element[6],
+                คนดูแล: element[7],
+                Email: element[8],
+                บ้านเลขที่: element[9],
+                หมู่: element[10],
+                ตรอกซอย: element[11],
+                ถนน: element[12],
+                อำเภอ: element[13],
+                จังหวัด: element[14],
+                รหัสไปรษณีย์: element[15],
+                เบอร์: element[16],
+                การศึกษา: element[17],
+                สาขาวิชา: element[18],
+                อาชีพ: element[19],
+                ประวัติการเจ็บป่วยในอดีต: element[20],
+                ประวัติการผ่าตัด: element[21],
+                โรคประจำตัว: element[22],
+                ยาที่รับประทานประจำ: element[23],
+                แพ้ยาอาหาร: element[24],
+                สูบบุหรี่: element[25],
+                การดื่มแอลกอฮอล: element[26],
+                ออกกำลังกาย: element[27],
+                การนอนหลับ: element[28],
+                เวลาเข้านอน: element[29].toString(),
+                เวลาตื่นนอน: element[30].toString(),
+                การรับประทานอาหาร: element[31],
+                งานอดิเรก: element[32],
+                มีปัญหาการมองเห็น: element[33],
+                มีปัญหาด้านการได้ยิน: element[34],
+                มีปัญหาด้านการเคลื่อนไหว: element[35],
+                มีปัญหาด้านความจำ: element[36],
+                มีปัญหาด้านสมาธิ: element[37],
+                มีปัญหาด้านการจัดการ: element[38],
+                หลงทางจำทางไม่ได้: element[39],
+                มีปัญหาด้านการอ่านเขียน: element[40],
+                หงุดหงิดโมโหง่าย: element[41],
+                การสร้างสัมพันธภาพ: element[42],
+                การรอคอยความอดทน: element[43],
+                การนึกคำพูดสื่อสาร: element[44],
+                ความเข้าใจในการสื่อสาร: element[45],
+                Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              })
+              .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                uid = "";
+              })
+              .catch(function (error) {
+                console.error("Error adding document: ", error);
+              });
           }
         });
+      });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "เพิ่มข้อมูลสำเร็จ",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        location.reload();
       });
     },
   },

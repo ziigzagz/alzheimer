@@ -61,9 +61,9 @@
               <td scope="row">{{ index + 1 }}</td>
               <td>{{ item.Name }}</td>
               <td>{{ item.data.date }}</td>
-              <td><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
+              <td v-if="item.data.status != 0"><span class="badge bg-success">สำเร็จ</span></td>
+              <td v-else><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
               <td>
-                {{ item.id}}
                 <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
                   ดูข้อมูล
                 </button>
@@ -148,8 +148,9 @@ var docRef2 = await db.collection("HomeworkTemplate");
         .add({
           user: localStorage.getItem("uid"),
           homeworkTemplate: document.getElementById("select").value,
-          timer_first:"",
-          timer_release:"",
+          timer_first:"0",
+          status:0,
+          timer_release:"0",
           date:
             date +
             "/" +
