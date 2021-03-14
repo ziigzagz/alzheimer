@@ -5,7 +5,14 @@
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="isAdmin">เพิ่ม</v-btn>
+              <v-btn
+                color="primary"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                v-if="isAdmin"
+                >เพิ่ม</v-btn
+              >
             </template>
             <v-card>
               <v-card-title>
@@ -64,11 +71,15 @@
               <td>{{ item.data.text }}</td>
 
               <td v-if="item.data.status == 1">
-                <span class="badge bg-success">สำเร็จ</span>
+                <span class="badge bg-success">ทำตามคำแนะนำแล้ว </span>
               </td>
-              <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>
+              <td v-else><span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span></td>
               <td if>
-                <button class="btn btn-info" @click="update(item.id)" v-if="item.data.status==0 && !isAdmin">
+                <button
+                  class="btn btn-info"
+                  @click="update(item.id)"
+                  v-if="item.data.status == 0 && !isAdmin"
+                >
                   <img
                     src="@/assets/icon/check.png"
                     height="15px"
@@ -135,7 +146,7 @@ export default {
       console.log(id);
       Swal.fire({
         title: "ยืนยัน",
-        text: "คุณต้องการยืนยันการทำตามคำแนะนำใช่หรือไม่?",
+        text: "คุณได้ปฏิบัติตามคำแนะนำใช่หรือไม่?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -144,21 +155,19 @@ export default {
         cancelButtonText: "ไม่",
       }).then((result) => {
         if (result.isConfirmed) {
-          const update = db
-            .collection("Advice")
-            .doc(id);
+          const update = db.collection("Advice").doc(id);
           update.update({
             status: 1,
           });
           Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "ยืนยันสำเร็จ!",
-                  showConfirmButton: false,
-                  timer: 1500,
-                }).then(() => {
-                  location.reload()
-                });
+            position: "center",
+            icon: "success",
+            title: "ยืนยันสำเร็จ!",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            location.reload();
+          });
           // Swal.fire("ยืนยันสำเร็จ!", "ทำการอัปเดตเรียบร้อย", "success");
         }
       });
@@ -188,7 +197,6 @@ export default {
             date +
             "/" +
             month +
-            1 +
             "/" +
             year +
             " " +

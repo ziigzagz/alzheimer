@@ -11,14 +11,14 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">เพิ่มแบบฝึกหัดออกกำลังกาย</span>
+                <span class="headline">เพิ่มการออกกำลังกาย</span>
               </v-card-title>
               <v-card-text>
                 <v-container>
                   <v-row>
                     <v-col>
                       <v-text-field
-                        label="ชื่อแบบฝึกหัด*"
+                        label="ชื่อการออกกำลังกาย*"
                         id="nameExam"
                         hint=""
                         persistent-hint
@@ -30,7 +30,7 @@
                     <v-container style="max-width: 500px">
                       <v-text-field
                         v-model="newTask"
-                        label="กรอกลิ้งแบบฝึกหัด"
+                        label="กรอกลิงค์ออกกำลังกาย (Youtube)"
                         solo
                         @keydown.enter="create"
                       >
@@ -80,8 +80,8 @@
         <table class="table table-striped text-center">
           <thead>
             <tr>
-              <th scope="col">สัปดาห์</th>
-              <th scope="col">แบบฝึกหัด</th>
+              <th scope="col">#</th>
+              <th scope="col">ชื่อออกกำลังกาย</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
               <th scope="col">ดู</th>

@@ -64,26 +64,24 @@
       </div>
       <div class="row justify-content-center" id="eight">
         <!-- คำตอบ -->
-        <div
-          v-for="i in 8"
-          v-bind:key="i"
-          class="col-6 offset-4 align-self-center p-0"
-        >
-          <div class="mx-auto">
-            <button
-              type="button"
-              :id="'btn8' + i + '/' + j"
-              class="btn btn-default"
-              @click="changeColor8(i, j)"
-              v-for="j in 8"
-              v-bind:key="j"
-            ></button>
+        <div class="col-6 offset-4 align-self-center p-0">
+          <div v-for="i in 8" v-bind:key="i">
+            <div class="mx-auto">
+              <button
+                type="button"
+                :id="'btn8' + i + '/' + j"
+                class="btn btn-default"
+                @click="changeColor8(i, j)"
+                v-for="j in 8"
+                v-bind:key="j"
+              ></button>
+            </div>
           </div>
         </div>
       </div>
       <div class="row" id="ten">
         <!-- คำตอบ -->
-        <div class="col-9 mx-auto offset-2">
+        <div class="col-6 mx-auto offset-4">
           <div v-for="i in 10" v-bind:key="i">
             <button
               type="button"
@@ -96,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div class="row" id="twelve">
+      <div class="row" id="fourteen">
         <!-- คำตอบ -->
         <div class="col-9 mx-auto offset-2">
           <div v-for="i in 14" v-bind:key="i">
@@ -160,6 +158,210 @@ function rgbToHex(r, g, b) {
 export default {
   data() {
     return {
+      eight: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      ten: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
       eightteen: [
         [
           "#ffffff",
@@ -531,8 +733,8 @@ export default {
         "#1f26ff", //น้ำเงิน
         "#a12dcf", //ม่วง
         "#f00800", //แดง
-        "#f892e", //ส้ม
-        "#f007f", //ชมพู
+        "#ff892e", //ส้ม
+        "#f007ff", //ชมพู
         "#ef9090", //เนื้อ
         "#6eddff", //ฟ้า
         "#b0ffF4", //ฟ้าอ่อน
@@ -551,7 +753,7 @@ export default {
     x.style.display = "none";
     x = document.getElementById("ten");
     x.style.display = "none";
-    x = document.getElementById("twelve");
+    x = document.getElementById("fourteen");
     x.style.display = "none";
     x = document.getElementById("eightteen");
     x.style.display = "none";
@@ -567,58 +769,64 @@ export default {
     }
   },
   methods: {
+    // onchange select
     myFunction() {
       var x = document.getElementById("select").value;
       if (x == 1) {
+        localStorage.setItem("Hw_size", 8);
         x = document.getElementById("eight");
         x.style.display = "block";
         x = document.getElementById("ten");
         x.style.display = "none";
-        x = document.getElementById("twelve");
+        x = document.getElementById("fourteen");
         x.style.display = "none";
         x = document.getElementById("eightteen");
         x.style.display = "none";
         x = document.getElementById("twenty");
         x.style.display = "none";
       } else if (x == 2) {
+        localStorage.setItem("Hw_size", 10);
         x = document.getElementById("eight");
         x.style.display = "none";
         x = document.getElementById("ten");
         x.style.display = "block";
-        x = document.getElementById("twelve");
+        x = document.getElementById("fourteen");
         x.style.display = "none";
         x = document.getElementById("eightteen");
         x.style.display = "none";
         x = document.getElementById("twenty");
         x.style.display = "none";
       } else if (x == 3) {
+        localStorage.setItem("Hw_size", 14);
         x = document.getElementById("eight");
         x.style.display = "none";
         x = document.getElementById("ten");
         x.style.display = "none";
-        x = document.getElementById("twelve");
+        x = document.getElementById("fourteen");
         x.style.display = "block";
         x = document.getElementById("eightteen");
         x.style.display = "none";
         x = document.getElementById("twenty");
         x.style.display = "none";
       } else if (x == 4) {
+        localStorage.setItem("Hw_size", 18);
         x = document.getElementById("eight");
         x.style.display = "none";
         x = document.getElementById("ten");
         x.style.display = "none";
-        x = document.getElementById("twelve");
+        x = document.getElementById("fourteen");
         x.style.display = "none";
         x = document.getElementById("eightteen");
         x.style.display = "block";
         x = document.getElementById("twenty");
         x.style.display = "none";
       } else if (x == 5) {
+        localStorage.setItem("Hw_size", 20);
         x = document.getElementById("eight");
         x.style.display = "none";
         x = document.getElementById("ten");
         x.style.display = "none";
-        x = document.getElementById("twelve");
+        x = document.getElementById("fourteen");
         x.style.display = "none";
         x = document.getElementById("eightteen");
         x.style.display = "none";
@@ -649,7 +857,7 @@ export default {
             console.log(resdownload);
             const path = "http://127.0.0.1:5000/get";
             axios
-              .post(path, [resdownload])
+              .post(path, [resdownload, localStorage.getItem("Hw_size")])
               .then((res) => {
                 console.log(res);
                 res.data.forEach((row) => {
@@ -663,11 +871,48 @@ export default {
                     b = col[0];
                     // console.log(rgbToHex(r, g, b));
                     // console.log(i, j);
-                    var txt = "btn18" + i + "/" + j;
-                    this.eightteen[i-1][j-1] = rgbToHex(r, g, b);
-                    document.getElementById(
-                      txt
-                    ).style.backgroundColor = rgbToHex(r, g, b);
+                    var hw_size = localStorage.getItem("Hw_size");
+                    if (hw_size == "8") {
+                      var txt = "btn8" + i + "/" + j;
+                      this.eight[i - 1][j - 1] = rgbToHex(r, g, b);
+                      document.getElementById(
+                        txt
+                      ).style.backgroundColor = rgbToHex(r, g, b);
+                    } else {
+                      if (hw_size == "10") {
+                        var txt = "btn10" + i + "/" + j;
+                        this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                        document.getElementById(
+                          txt
+                        ).style.backgroundColor = rgbToHex(r, g, b);
+                      } else {
+                        if (hw_size == "14") {
+                          var txt = "btn14" + i + "/" + j;
+                          this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                          document.getElementById(
+                            txt
+                          ).style.backgroundColor = rgbToHex(r, g, b);
+                        } else {
+                          if (hw_size == "18") {
+                            var txt = "btn18" + i + "/" + j;
+                            this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                            document.getElementById(
+                              txt
+                            ).style.backgroundColor = rgbToHex(r, g, b);
+                          } else {
+                            if (hw_size == "20") {
+                              var txt = "btn20" + i + "/" + j;
+                              this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                              document.getElementById(
+                                txt
+                              ).style.backgroundColor = rgbToHex(r, g, b);
+                            } else {
+                            }
+                          }
+                        }
+                      }
+                    }
+
                     j++;
                   });
                   console.log("END");
@@ -681,7 +926,7 @@ export default {
               });
           });
       });
-       console.log(this.eightteen)
+      console.log(this.eightteen);
     },
     create() {
       var db = firebase.firestore();
@@ -697,19 +942,68 @@ export default {
       } else {
         var newdata = {};
         var str = "";
-        var i = 0,
-          j = 0;
-        this.eightteen.forEach((element_i) => {
-          element_i.forEach((element_j) => {
-            str += element_j.toString() + "/";
+        var i = 0;
+        var j = 0;
+        var hw_size = localStorage.getItem("Hw_size");
+        if (hw_size == "8") {
+          this.eight.forEach((element_i) => {
+            element_i.forEach((element_j) => {
+              str += element_j.toString() + "/";
+            });
+            str += "*";
           });
-          str += "*";
-        });
+        } else {
+          if (hw_size == "8") {
+            this.eight.forEach((element_i) => {
+              element_i.forEach((element_j) => {
+                str += element_j.toString() + "/";
+              });
+              str += "*";
+            });
+          } else {
+            if (hw_size == "10") {
+              this.eight.forEach((element_i) => {
+                element_i.forEach((element_j) => {
+                  str += element_j.toString() + "/";
+                });
+                str += "*";
+              });
+            } else {
+              if (hw_size == "14") {
+                this.eight.forEach((element_i) => {
+                  element_i.forEach((element_j) => {
+                    str += element_j.toString() + "/";
+                  });
+                  str += "*";
+                });
+              } else {
+                if (hw_size == "18") {
+                  this.eight.forEach((element_i) => {
+                    element_i.forEach((element_j) => {
+                      str += element_j.toString() + "/";
+                    });
+                    str += "*";
+                  });
+                } else {
+                  if (hw_size == "20") {
+                    this.eight.forEach((element_i) => {
+                      element_i.forEach((element_j) => {
+                        str += element_j.toString() + "/";
+                      });
+                      str += "*";
+                    });
+                  }
+                }
+              }
+            }
+          }
+        }
         console.log(str);
         db.collection("HomeworkTemplate")
           .add({
             Homework_name: homeworkName,
             Homework_data: str,
+            Homework_size: localStorage.getItem("Hw_size"),
           })
           .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
@@ -721,7 +1015,7 @@ export default {
               showConfirmButton: false,
               timer: 1500,
             }).then(() => {
-              window.location.href = "/HomeworkList";
+              // window.location.href = "/HomeworkList";
             });
           })
           .catch(function (error) {
@@ -734,6 +1028,9 @@ export default {
     },
     changeColor8(i, j) {
       console.log(i, j);
+      this.eight[i - 1][j - 1] = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
       var txtid = "btn8" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
@@ -748,6 +1045,7 @@ export default {
     },
     changeColor14(i, j) {
       console.log(i, j);
+
       var txtid = "btn14" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1

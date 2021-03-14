@@ -33,7 +33,7 @@
         <ul class="nav nav-tabs " id="myTab" role="tablist">
           <li class="nav-item text-danger" role="presentation">
             <a
-              class="nav-link "
+              class="nav-link active"
               id="home-tab"
               data-bs-toggle="tab"
               href="#profile"
@@ -45,14 +45,14 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
-              class="nav-link active"
+              class="nav-link"
               id="profile-tab"
               data-bs-toggle="tab"
               href="#exam"
               role="tab"
               aria-controls="profile"
               aria-selected="false"
-              >แบบฝึกหัด</a
+              >ออกกำลังกาย</a
             >
           </li>
           <li class="nav-item" role="presentation">
