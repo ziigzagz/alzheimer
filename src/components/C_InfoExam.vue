@@ -4,6 +4,8 @@
       <div class="col">
         <div class="text-center">
           <iframe
+            id="player"
+            @click="testvideo"
             width="1280"
             height="720"
             :src="vlist[count]"
@@ -16,6 +18,7 @@
     </div>
     <div class="row">
       <div class="col text-center">
+        <p id="display"></p>
         <button class="btn btn-success" id="btn" @click="next">ถัดไป</button>
       </div>
     </div>
@@ -23,6 +26,44 @@
 </template>
 
 <script>
+var player,
+  timer,
+  timeSpent = [],
+  display = document.getElementById("display");
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    events: { onStateChange: onPlayerStateChange },
+  });
+}
+
+function onPlayerStateChange(event) {
+  if (event.data === 1) {
+    // Started playing
+    if (!timeSpent.length) {
+      for (var i = 0, l = parseInt(player.getDuration()); i < l; i++)
+        timeSpent.push(false);
+    }
+    timer = setInterval(record, 100);
+  } else {
+    clearInterval(timer);
+  }
+}
+
+function record() {
+  timeSpent[parseInt(player.getCurrentTime())] = true;
+  showPercentage();
+}
+
+function showPercentage() {
+  var percent = 0;
+  for (var i = 0, l = timeSpent.length; i < l; i++) {
+    if (timeSpent[i]) percent++;
+  }
+  percent = Math.round((percent / timeSpent.length) * 100);
+  display.innerHTML = percent + "%";
+  console.log(percent);
+}
 import firebase from "firebase";
 export default {
   data() {
@@ -46,6 +87,9 @@ export default {
     });
   },
   methods: {
+    testvideo() {
+      console.log(123);
+    },
     async next() {
       var db = firebase.firestore();
       document.getElementById("btn").innerHTML = "สำเร็จ";

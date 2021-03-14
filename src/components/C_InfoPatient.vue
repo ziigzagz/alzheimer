@@ -184,6 +184,30 @@
         />
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <label class="form-label">ผู้ให้ข้อมูล</label>
+        <input
+          type="text"
+          id="job"
+          class="form-control"
+          v-model="ผู้ให้ข้อมูล"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="form-label">เบอร์ผู้ให้ข้อมูล</label>
+        <input
+          type="text"
+          id="job"
+          class="form-control"
+          v-model="เบอร์ผู้ให้ข้อมูล"
+          readonly
+        />
+      </div>
+    </div>
     <!-- ข้อมูลสุขภาพ -->
     <div class="row">
       <div class="col text-center">
@@ -497,6 +521,8 @@ export default {
       น้ำหนัก: "",
       ส่วนสูง: "",
       คนดูแล: "",
+      ผู้ให้ข้อมูล:"",
+      เบอร์ผู้ให้ข้อมูล:"",
       Email: "",
       บ้านเลขที่: "",
       หมู่: "",
@@ -550,15 +576,17 @@ export default {
       // var date1 = new Date(time);
       // console.log(snapshot.data().วันเกิด.toDate());
       var birthday =
-        snapshot.data().วันเกิด.toDate().toString().split(" ")[2] +
-        " " +
-        snapshot.data().วันเกิด.toDate().toString().split(" ")[1] +
-        " " +
-        snapshot.data().วันเกิด.toDate().toString().split(" ")[3];
+        snapshot.data().วันเกิด.toString().split("/")[1] +
+        "/" +
+        snapshot.data().วันเกิด.toString().split("/")[0] +
+        "/" +
+        snapshot.data().วันเกิด.toString().split("/")[2];
+        // console.log(snapshot.data().วันเกิด.split("/")[2])
       this.ID = snapshot.data().ID;
       this.คำนำหน้าชื่อ = snapshot.data().คำนำหน้าชื่อ;
       this.ชื่อ = snapshot.data().ชื่อ;
       this.วันเกิด = birthday;
+      // this.วันเกิด = 99;
       this.อายุ = snapshot.data().อายุ;
       this.น้ำหนัก = snapshot.data().น้ำหนัก;
       this.ส่วนสูง = snapshot.data().ส่วนสูง;
@@ -575,6 +603,8 @@ export default {
       this.การศึกษา = snapshot.data().การศึกษา;
       this.สาขาวิชา = snapshot.data().สาขาวิชา;
       this.อาชีพ = snapshot.data().อาชีพ;
+      this.ผู้ให้ข้อมูล = snapshot.data().ผู้ให้ข้อมูล;
+      this.เบอร์ผู้ให้ข้อมูล = snapshot.data().เบอร์ผู้ให้ข้อมูล;
       this.ประวัติการเจ็บป่วยในอดีต = snapshot.data().ประวัติการเจ็บป่วยในอดีต;
       this.ประวัติการผ่าตัด = snapshot.data().ประวัติการผ่าตัด;
       this.โรคประจำตัว = snapshot.data().โรคประจำตัว;

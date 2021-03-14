@@ -30,9 +30,10 @@
       </div>
 
       <div class="row">
-        <ul class="nav nav-tabs " id="myTab" role="tablist">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item text-danger" role="presentation">
             <a
+              @click="setMode(1)"
               class="nav-link active"
               id="home-tab"
               data-bs-toggle="tab"
@@ -95,7 +96,7 @@
         <div class="tab-content" id="myTabContent">
           <!-- ข้อมูลส่วนตัว -->
           <div
-            class="tab-pane fade  show active"
+            class="tab-pane fade show active"
             id="profile"
             role="tabpanel"
             aria-labelledby="home-tab"
@@ -154,21 +155,26 @@ import ExamList from "@/components/C_ExamList.vue";
 import InfoPatient from "@/components/C_InfoPatient.vue";
 
 export default {
-  data(){
+  data() {
     return {
-      HN:"",
-      ชื่อ:""
-    }
+      HN: "",
+      ชื่อ: "",
+    };
   },
   mounted() {
     var db = firebase.firestore();
     var dataset = {};
     var docRef = db.collection("InfoPatient").doc(localStorage.getItem("uid"));
-     docRef.get().then((snapshot) => {
+    docRef.get().then((snapshot) => {
       this.HN = snapshot.data().ID;
       this.ชื่อ = snapshot.data().ชื่อ;
       // console.log(snapshot.data())
     });
+  },
+  methods: {
+    setMode(i) {
+      console.log(i)
+    },
   },
   components: {
     Navdraw,
@@ -176,7 +182,7 @@ export default {
     Advice,
     Diary,
     ExamList,
-    InfoPatient
+    InfoPatient,
   },
 };
 </script>

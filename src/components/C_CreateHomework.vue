@@ -1517,14 +1517,14 @@ export default {
                     } else {
                       if (hw_size == "10") {
                         var txt = "btn10" + i + "/" + j;
-                        this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                        this.ten[i - 1][j - 1] = rgbToHex(r, g, b);
                         document.getElementById(
                           txt
                         ).style.backgroundColor = rgbToHex(r, g, b);
                       } else {
                         if (hw_size == "14") {
                           var txt = "btn14" + i + "/" + j;
-                          this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                          this.fourteen[i - 1][j - 1] = rgbToHex(r, g, b);
                           document.getElementById(
                             txt
                           ).style.backgroundColor = rgbToHex(r, g, b);
@@ -1538,7 +1538,7 @@ export default {
                           } else {
                             if (hw_size == "20") {
                               var txt = "btn20" + i + "/" + j;
-                              this.eightteen[i - 1][j - 1] = rgbToHex(r, g, b);
+                              this.twenty[i - 1][j - 1] = rgbToHex(r, g, b);
                               document.getElementById(
                                 txt
                               ).style.backgroundColor = rgbToHex(r, g, b);
@@ -1589,47 +1589,38 @@ export default {
             str += "*";
           });
         } else {
-          if (hw_size == "8") {
-            this.eight.forEach((element_i) => {
+          if (hw_size == "10") {
+            this.ten.forEach((element_i) => {
               element_i.forEach((element_j) => {
                 str += element_j.toString() + "/";
               });
               str += "*";
             });
           } else {
-            if (hw_size == "10") {
-              this.eight.forEach((element_i) => {
+            if (hw_size == "14") {
+              this.fourteen.forEach((element_i) => {
                 element_i.forEach((element_j) => {
                   str += element_j.toString() + "/";
                 });
                 str += "*";
               });
             } else {
-              if (hw_size == "14") {
-                this.eight.forEach((element_i) => {
+              if (hw_size == "18") {
+                this.eightteen.forEach((element_i) => {
                   element_i.forEach((element_j) => {
                     str += element_j.toString() + "/";
                   });
                   str += "*";
                 });
               } else {
-                if (hw_size == "18") {
-                  this.eight.forEach((element_i) => {
+                if (hw_size == "20") {
+                  this.twenty.forEach((element_i) => {
                     element_i.forEach((element_j) => {
                       str += element_j.toString() + "/";
                     });
                     str += "*";
                   });
-                } else {
-                  if (hw_size == "20") {
-                    this.eight.forEach((element_i) => {
-                      element_i.forEach((element_j) => {
-                        str += element_j.toString() + "/";
-                      });
-                      str += "*";
-                    });
-                  }
-                }
+                } 
               }
             }
           }
@@ -1651,7 +1642,7 @@ export default {
               showConfirmButton: false,
               timer: 1500,
             }).then(() => {
-              // window.location.href = "/HomeworkList";
+              window.location.href = "/HomeworkList";
             });
           })
           .catch(function (error) {

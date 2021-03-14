@@ -38,12 +38,54 @@
       </div>
       <div class="row">
         <!-- โจทย์ -->
-        <div class="col-6 m-0">
+        <div class="col-6 m-0" id="eight">
+          <div class="row">
+            <div v-for="i in 8" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btnprop8' + i + '/' + j"
+                class="btn btn-default"
+                v-for="j in 8"
+                @click="testColor(i, j)"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 m-0" id="ten">
+          <div class="row">
+            <div v-for="i in 10" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btnprop10' + i + '/' + j"
+                class="btn btn-default"
+                v-for="j in 10"
+                @click="testColor(i, j)"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 m-0" id="fourteen">
+          <div class="row">
+            <div v-for="i in 14" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btnprop14' + i + '/' + j"
+                class="btn btn-default"
+                v-for="j in 14"
+                @click="testColor(i, j)"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 m-0" id="eightteen">
           <div class="row">
             <div v-for="i in 18" v-bind:key="i" class="text-center">
               <button
                 type="button"
-                :id="'btnprop' + i + '/' + j"
+                :id="'btnprop18' + i + '/' + j"
                 class="btn btn-default"
                 v-for="j in 18"
                 @click="testColor(i, j)"
@@ -52,16 +94,86 @@
             </div>
           </div>
         </div>
+        <div class="col-6 m-0" id="twenty">
+          <div class="row">
+            <div v-for="i in 20" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btnprop20' + i + '/' + j"
+                class="btn btn-default"
+                v-for="j in 20"
+                @click="testColor(i, j)"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
         <!-- คำตอบ -->
-        <div class="col-6 m-0">
+        <div class="col-6 m-0" id="eight_ans">
+          <div class="row">
+            <div v-for="i in 8" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btn8' + i + '/' + j"
+                class="btn btn-default"
+                @click="changeColor(i, j)"
+                v-for="j in 8"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+         <div class="col-6 m-0" id="ten_ans">
+          <div class="row">
+            <div v-for="i in 10" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btn10' + i + '/' + j"
+                class="btn btn-default"
+                @click="changeColor(i, j)"
+                v-for="j in 10"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+         <div class="col-6 m-0" id="fourteen_ans">
+          <div class="row">
+            <div v-for="i in 14" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btn14' + i + '/' + j"
+                class="btn btn-default"
+                @click="changeColor(i, j)"
+                v-for="j in 14"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+         <div class="col-6 m-0" id="eightteen_ans">
           <div class="row">
             <div v-for="i in 18" v-bind:key="i" class="text-center">
               <button
                 type="button"
-                :id="'btn' + i + '/' + j"
+                :id="'btn18' + i + '/' + j"
                 class="btn btn-default"
                 @click="changeColor(i, j)"
                 v-for="j in 18"
+                v-bind:key="j"
+              ></button>
+            </div>
+          </div>
+        </div>
+         <div class="col-6 m-0" id="twenty_ans">
+          <div class="row">
+            <div v-for="i in 20" v-bind:key="i" class="text-center">
+              <button
+                type="button"
+                :id="'btn20' + i + '/' + j"
+                class="btn btn-default"
+                @click="changeColor(i, j)"
+                v-for="j in 20"
                 v-bind:key="j"
               ></button>
             </div>
@@ -78,6 +190,866 @@ import Swal from "sweetalert2";
 export default {
   data() {
     return {
+      eight: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      eight_ans: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      ten: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      ten_ans: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      foueteen: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      foueteen_ans: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
       eightteen: [
         [
           "#ffffff",
@@ -802,6 +1774,890 @@ export default {
           "#ffffff",
         ],
       ],
+      twenty: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
+      twenty_ans: [
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+        [
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+        ],
+      ],
       colorlist: [
         "#79661e", //น้ำตาล
         "#ffec1F", //เหลืองเข้ม
@@ -852,15 +2708,168 @@ export default {
       var txtid;
       i = 0;
       j = 0;
-      for (i = 0; i < 18; i++) {
-        // console.log(tmp[i].split("/"))
-        for (j = 0; j < 18; j++) {
-          // console.log(tmp[i].split("/")[j]);
-          txtid = "btnprop" + (i + 1) + "/" + (j + 1);
-          this.eightteen[i][j] = tmp[i].split("/")[j];
-          document.getElementById(txtid).style.backgroundColor = tmp[i].split(
-            "/"
-          )[j];
+      var x = doc.data().Homework_size;
+      localStorage.setItem("Hw_size", x);
+      console.log(x);
+      if (x == "8") {
+        x = document.getElementById("eight");
+        x.style.display = "block";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        x = document.getElementById("eight_ans");
+        x.style.display = "block";
+        x = document.getElementById("ten_ans");
+        x.style.display = "none";
+        x = document.getElementById("fourteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("eightteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("twenty_ans");
+        x.style.display = "none";
+        for (i = 0; i < 8; i++) {
+          // console.log(tmp[i].split("/"))
+          for (j = 0; j < 8; j++) {
+            // console.log(tmp[i].split("/")[j]);
+            txtid = "btnprop8" + (i + 1) + "/" + (j + 1);
+            this.eight[i][j] = tmp[i].split("/")[j];
+            document.getElementById(txtid).style.backgroundColor = tmp[i].split(
+              "/"
+            )[j];
+          }
+        }
+      } else if (x == "10") {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "block";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        x = document.getElementById("eight_ans");
+        x.style.display = "none";
+        x = document.getElementById("ten_ans");
+        x.style.display = "block";
+        x = document.getElementById("fourteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("eightteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("twenty_ans");
+        x.style.display = "none";
+        for (i = 0; i < 10; i++) {
+          // console.log(tmp[i].split("/"))
+          for (j = 0; j < 10; j++) {
+            // console.log(tmp[i].split("/")[j]);
+            txtid = "btnprop10" + (i + 1) + "/" + (j + 1);
+            this.ten[i][j] = tmp[i].split("/")[j];
+            document.getElementById(txtid).style.backgroundColor = tmp[i].split(
+              "/"
+            )[j];
+          }
+        }
+      } else if (x == "14") {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "block";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        x = document.getElementById("eight_ans");
+        x.style.display = "none";
+        x = document.getElementById("ten_ans");
+        x.style.display = "none";
+        x = document.getElementById("fourteen_ans");
+        x.style.display = "block";
+        x = document.getElementById("eightteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("twenty_ans");
+        x.style.display = "none";
+        for (i = 0; i < 14; i++) {
+          // console.log(tmp[i].split("/"))
+          for (j = 0; j < 14; j++) {
+            // console.log(tmp[i].split("/")[j]);
+            txtid = "btnprop14" + (i + 1) + "/" + (j + 1);
+            this.fourteen[i][j] = tmp[i].split("/")[j];
+            document.getElementById(txtid).style.backgroundColor = tmp[i].split(
+              "/"
+            )[j];
+          }
+        }
+      } else if (x == "18") {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "block";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        x = document.getElementById("eight_ans");
+        x.style.display = "none";
+        x = document.getElementById("ten_ans");
+        x.style.display = "none";
+        x = document.getElementById("fourteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("eightteen_ans");
+        x.style.display = "block";
+        x = document.getElementById("twenty_ans");
+        x.style.display = "none";
+        for (i = 0; i < 18; i++) {
+          // console.log(tmp[i].split("/"))
+          for (j = 0; j < 18; j++) {
+            // console.log(tmp[i].split("/")[j]);
+            txtid = "btnprop18" + (i + 1) + "/" + (j + 1);
+            this.eightteen[i][j] = tmp[i].split("/")[j];
+            document.getElementById(txtid).style.backgroundColor = tmp[i].split(
+              "/"
+            )[j];
+          }
+        }
+      } else if (x == "20") {
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "block";
+        x = document.getElementById("eight_ans");
+        x.style.display = "none";
+        x = document.getElementById("ten_ans");
+        x.style.display = "none";
+        x = document.getElementById("fourteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("eightteen_ans");
+        x.style.display = "none";
+        x = document.getElementById("twenty_ans");
+        x.style.display = "block";
+        for (i = 0; i < 20; i++) {
+          // console.log(tmp[i].split("/"))
+          for (j = 0; j < 20; j++) {
+            // console.log(tmp[i].split("/")[j]);
+            txtid = "btnprop20" + (i + 1) + "/" + (j + 1);
+            this.twenty[i][j] = tmp[i].split("/")[j];
+            document.getElementById(txtid).style.backgroundColor = tmp[i].split(
+              "/"
+            )[j];
+          }
         }
       }
     });
@@ -878,27 +2887,27 @@ export default {
   },
   methods: {
     timer() {
-      var s = 1,
-        m = 0,
-        h = 0,
-        ms = 0;
-      var timer;
-      var interval = setInterval(function () {
-        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
-        localStorage.setItem("timer", timer);
-        localStorage.setItem("timer_ms", ms++);
-        console.log(h, m, s);
-        s++;
-        if (s % 60 == 0 || s > 59) {
-          s = 0;
-          m++;
-        }
-        if (m % 60 == 0 && m > 59) {
-          s = 0;
-          m = 0;
-          h++;
-        }
-      }, 1000);
+      // var s = 1,
+      //   m = 0,
+      //   h = 0,
+      //   ms = 0;
+      // var timer;
+      // var interval = setInterval(function () {
+      //   timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+      //   localStorage.setItem("timer", timer);
+      //   localStorage.setItem("timer_ms", ms++);
+      //   console.log(h, m, s);
+      //   s++;
+      //   if (s % 60 == 0 || s > 59) {
+      //     s = 0;
+      //     m++;
+      //   }
+      //   if (m % 60 == 0 && m > 59) {
+      //     s = 0;
+      //     m = 0;
+      //     h++;
+      //   }
+      // }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
@@ -911,35 +2920,153 @@ export default {
       var error = [];
       // console.log(document.getElementById("btn1/2").style.backgroundColor);
       // console.log(document.getElementById("btnprop1/2").style.backgroundColor);
-      this.eightteen.forEach((element_i, i) => {
-        element_i.forEach((element_j, j) => {
-          if (element_j == this.eightteen_ans[i][j]) {
-            count_correct++;
-          } else {
-            count_error++;
-            // console.log(i, j);
-            error.push([i, j]);
-          }
-          // console.log(element_j,this.eightteen_ans[i][j])
+      var Hw_size = localStorage.getItem("Hw_size");
+      if (Hw_size == "8") {
+        this.eight.forEach((element_i, i) => {
+          element_i.forEach((element_j, j) => {
+            if (element_j == this.eight_ans[i][j]) {
+              count_correct++;
+            } else {
+              count_error++;
+              // console.log(i, j);
+              error.push([i, j]);
+            }
+          });
         });
-      });
-      localStorage.setItem("Error", JSON.stringify(error));
-      // console.log("pass",100-count_error/324*100)
-      // localStorage.setItem("isHomeworkPass","pass")
-      if (100 - (count_error / 324) * 100 > 80) {
-        localStorage.setItem("isHomeworkPass", "pass");
-      } else {
-        localStorage.setItem("isHomeworkPass", "not pass");
+        localStorage.setItem("Error", JSON.stringify(error));
+
+        if (100 - (count_error / 324) * 100 > 80) {
+          localStorage.setItem("isHomeworkPass", "pass");
+        } else {
+          localStorage.setItem("isHomeworkPass", "not pass");
+        }
+        var str = "";
+        localStorage.setItem("count_correct", count_correct);
+        localStorage.setItem("count_error", count_error);
+        this.eight_ans.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
       }
-      var str = "";
-      localStorage.setItem("count_correct", count_correct);
-      localStorage.setItem("count_error", count_error);
-      this.eightteen_ans.forEach((element_i) => {
-        element_i.forEach((element_j) => {
-          str += element_j.toString() + "/";
+      if (Hw_size == "10") {
+        this.ten.forEach((element_i, i) => {
+          element_i.forEach((element_j, j) => {
+            if (element_j == this.ten_ans[i][j]) {
+              count_correct++;
+            } else {
+              count_error++;
+              // console.log(i, j);
+              error.push([i, j]);
+            }
+          });
         });
-        str += "*";
-      });
+        localStorage.setItem("Error", JSON.stringify(error));
+
+        if (100 - (count_error / 324) * 100 > 80) {
+          localStorage.setItem("isHomeworkPass", "pass");
+        } else {
+          localStorage.setItem("isHomeworkPass", "not pass");
+        }
+        var str = "";
+        localStorage.setItem("count_correct", count_correct);
+        localStorage.setItem("count_error", count_error);
+        this.ten_ans.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+      }
+      if (Hw_size == "14") {
+        this.fourteen.forEach((element_i, i) => {
+          element_i.forEach((element_j, j) => {
+            if (element_j == this.fourteen_ans[i][j]) {
+              count_correct++;
+            } else {
+              count_error++;
+              // console.log(i, j);
+              error.push([i, j]);
+            }
+          });
+        });
+        localStorage.setItem("Error", JSON.stringify(error));
+
+        if (100 - (count_error / 324) * 100 > 80) {
+          localStorage.setItem("isHomeworkPass", "pass");
+        } else {
+          localStorage.setItem("isHomeworkPass", "not pass");
+        }
+        var str = "";
+        localStorage.setItem("count_correct", count_correct);
+        localStorage.setItem("count_error", count_error);
+        this.fourteen_ans.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+      }
+      if (Hw_size == "18") {
+        this.eightteen.forEach((element_i, i) => {
+          element_i.forEach((element_j, j) => {
+            if (element_j == this.eightteen_ans[i][j]) {
+              count_correct++;
+            } else {
+              count_error++;
+              // console.log(i, j);
+              error.push([i, j]);
+            }
+          });
+        });
+        localStorage.setItem("Error", JSON.stringify(error));
+
+        if (100 - (count_error / 324) * 100 > 80) {
+          localStorage.setItem("isHomeworkPass", "pass");
+        } else {
+          localStorage.setItem("isHomeworkPass", "not pass");
+        }
+        var str = "";
+        localStorage.setItem("count_correct", count_correct);
+        localStorage.setItem("count_error", count_error);
+        this.eightteen_ans.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+      }
+      if (Hw_size == "20") {
+        this.twenty.forEach((element_i, i) => {
+          element_i.forEach((element_j, j) => {
+            if (element_j == this.twenty_ans[i][j]) {
+              count_correct++;
+            } else {
+              count_error++;
+              // console.log(i, j);
+              error.push([i, j]);
+            }
+          });
+        });
+        localStorage.setItem("Error", JSON.stringify(error));
+
+        if (100 - (count_error / 324) * 100 > 80) {
+          localStorage.setItem("isHomeworkPass", "pass");
+        } else {
+          localStorage.setItem("isHomeworkPass", "not pass");
+        }
+        var str = "";
+        localStorage.setItem("count_correct", count_correct);
+        localStorage.setItem("count_error", count_error);
+        this.twenty_ans.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+      }
+
       // check firsttime
       var isFirsttime;
       var db = firebase.firestore();
@@ -1003,19 +3130,57 @@ export default {
               window.location.href = "/CheckHomework";
             }
           }
-          
         });
       // Insert hw to firebase
     },
     changeColor(i, j) {
       // console.log(i, j);
-      var txtid = "btn" + i + "/" + j;
-      document.getElementById(txtid).style.backgroundColor = this.colorlist[
-        localStorage.getItem("color") - 1
-      ];
-      this.eightteen_ans[i - 1][j - 1] = this.colorlist[
-        localStorage.getItem("color") - 1
-      ];
+      var Hw_size = localStorage.getItem("Hw_size");
+      if (Hw_size == "8") {
+        var txtid = "btn8" + i + "/" + j;
+        document.getElementById(txtid).style.backgroundColor = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+        this.eight_ans[i - 1][j - 1] = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+      }
+      if (Hw_size == "10") {
+        var txtid = "btn10" + i + "/" + j;
+        document.getElementById(txtid).style.backgroundColor = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+        this.ten_ans[i - 1][j - 1] = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+      }
+      if (Hw_size == "14") {
+        var txtid = "btn14" + i + "/" + j;
+        document.getElementById(txtid).style.backgroundColor = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+        this.fourteen_ans[i - 1][j - 1] = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+      }
+      if (Hw_size == "18") {
+        var txtid = "btn18" + i + "/" + j;
+        document.getElementById(txtid).style.backgroundColor = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+        this.eightteen_ans[i - 1][j - 1] = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+      }
+      if (Hw_size == "20") {
+        var txtid = "btn20" + i + "/" + j;
+        document.getElementById(txtid).style.backgroundColor = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+        this.twenty_ans[i - 1][j - 1] = this.colorlist[
+          localStorage.getItem("color") - 1
+        ];
+      }
     },
     setStateColor(i) {
       localStorage.setItem("color", i);

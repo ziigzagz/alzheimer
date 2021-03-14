@@ -57,7 +57,7 @@ export default {
   async mounted() {
     var db = firebase.firestore();
     var dataset = {};
-    var docRef = await db.collection("InfoPatient").where("Status", "!=", 1);
+    var docRef = await db.collection("InfoPatient").orderBy("ID", "asc");
     docRef
       .get()
       .then((doc) => {
@@ -102,7 +102,7 @@ export default {
       //now calculate the age of the user
       var age = Math.abs(year - 1970);
       var finalage;
-      // console.log(age);
+      console.log(age,x);
       // console.log(typeof(age));
       return age;
     },
@@ -161,19 +161,21 @@ export default {
       const input = document.getElementById("input");
       await readXlsxFile(input.files[0]).then((rows) => {
         rows.forEach((element) => {
-          const isLargeNumber = (element1) =>
-            element1 == element[4].toString().split(" ")[1];
-          var month = array1.findIndex(isLargeNumber) + 1;
-          // console.log(month,element[4].toString().split(" ")[2]);
-          var date =
-            month.toString() +
-            "/" +
-            element[4].toString().split(" ")[2] +
-            "/" +
-            parseInt(element[4].toString().split(" ")[3]).toString();
           if (i == 0) {
             i++;
           } else {
+            const isLargeNumber = (element1) =>
+            element1 == element[4].toString().split("/")[0];
+            console.log(element[4].toString().split("/")[0],isLargeNumber,99)
+          var month = array1.findIndex(isLargeNumber) + 1;
+          // console.log(month,element[4].toString().split(" ")[2]);
+          console.log(element[4].toString().split("/"),month)
+          var date =
+            element[4].toString().split("/")[0]+
+            "/" +
+            element[4].toString().split("/")[1] +
+            "/" +
+            element[4].toString().split("/")[2];
             // console.log(element[29])
             var db = firebase.firestore();
             firebase
@@ -196,47 +198,50 @@ export default {
                 ชื่อ: element[3],
                 วันเกิด: element[4],
                 อายุ: this.calAge(date),
+                // อายุ: 20,
                 น้ำหนัก: element[5],
                 ส่วนสูง: element[6],
                 คนดูแล: element[7],
                 Email: element[8],
-                บ้านเลขที่: element[9],
-                หมู่: element[10],
-                ตรอกซอย: element[11],
-                ถนน: element[12],
-                อำเภอ: element[13],
-                จังหวัด: element[14],
-                รหัสไปรษณีย์: element[15],
-                เบอร์: element[16],
-                การศึกษา: element[17],
-                สาขาวิชา: element[18],
-                อาชีพ: element[19],
-                ประวัติการเจ็บป่วยในอดีต: element[20],
-                ประวัติการผ่าตัด: element[21],
-                โรคประจำตัว: element[22],
-                ยาที่รับประทานประจำ: element[23],
-                แพ้ยาอาหาร: element[24],
-                สูบบุหรี่: element[25],
-                การดื่มแอลกอฮอล: element[26],
-                ออกกำลังกาย: element[27],
-                การนอนหลับ: element[28],
-                เวลาเข้านอน: element[29].toString(),
-                เวลาตื่นนอน: element[30].toString(),
-                การรับประทานอาหาร: element[31],
-                งานอดิเรก: element[32],
-                มีปัญหาการมองเห็น: element[33],
-                มีปัญหาด้านการได้ยิน: element[34],
-                มีปัญหาด้านการเคลื่อนไหว: element[35],
-                มีปัญหาด้านความจำ: element[36],
-                มีปัญหาด้านสมาธิ: element[37],
-                มีปัญหาด้านการจัดการ: element[38],
-                หลงทางจำทางไม่ได้: element[39],
-                มีปัญหาด้านการอ่านเขียน: element[40],
-                หงุดหงิดโมโหง่าย: element[41],
-                การสร้างสัมพันธภาพ: element[42],
-                การรอคอยความอดทน: element[43],
-                การนึกคำพูดสื่อสาร: element[44],
-                ความเข้าใจในการสื่อสาร: element[45],
+                ผู้ให้ข้อมูล: element[9],
+                เบอร์ผู้ให้ข้อมูล: element[10],
+                บ้านเลขที่: element[11],
+                หมู่: element[12],
+                ตรอกซอย: element[13],
+                ถนน: element[14],
+                อำเภอ: element[15],
+                จังหวัด: element[16],
+                รหัสไปรษณีย์: element[17],
+                เบอร์: element[18],
+                การศึกษา: element[19],
+                สาขาวิชา: element[20],
+                อาชีพ: element[21],
+                ประวัติการเจ็บป่วยในอดีต: element[22],
+                ประวัติการผ่าตัด: element[23],
+                โรคประจำตัว: element[24],
+                ยาที่รับประทานประจำ: element[25],
+                แพ้ยาอาหาร: element[26],
+                สูบบุหรี่: element[27],
+                การดื่มแอลกอฮอล: element[28],
+                ออกกำลังกาย: element[29],
+                การนอนหลับ: element[30],
+                เวลาเข้านอน: element[31].toString(),
+                เวลาตื่นนอน: element[32].toString(),
+                การรับประทานอาหาร: element[33],
+                งานอดิเรก: element[34],
+                มีปัญหาการมองเห็น: element[35],
+                มีปัญหาด้านการได้ยิน: element[36],
+                มีปัญหาด้านการเคลื่อนไหว: element[37],
+                มีปัญหาด้านความจำ: element[38],
+                มีปัญหาด้านสมาธิ: element[39],
+                มีปัญหาด้านการจัดการ: element[40],
+                หลงทางจำทางไม่ได้: element[41],
+                มีปัญหาด้านการอ่านเขียน: element[42],
+                หงุดหงิดโมโหง่าย: element[43],
+                การสร้างสัมพันธภาพ: element[44],
+                การรอคอยความอดทน: element[45],
+                การนึกคำพูดสื่อสาร: element[46],
+                ความเข้าใจในการสื่อสาร: element[47],
                 Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               })
               .then(function (docRef) {
@@ -256,7 +261,7 @@ export default {
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
-        location.reload();
+        // location.reload();
       });
     },
   },
