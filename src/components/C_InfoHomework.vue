@@ -190,6 +190,7 @@ import Swal from "sweetalert2";
 export default {
   data() {
     return {
+      Hw_size: parseInt(localStorage.getItem("Hw_size")),
       eight: [
         [
           "#ffffff",
@@ -2885,7 +2886,26 @@ export default {
         console.log(isFirsttime);
       }
       if (isFirsttime == 0) {
-        console.log(data.data().ans);
+        for (var i = 0; i < this.Hw_size; ++i) {
+          for (var j = 0; j < this.Hw_size; ++j) {
+            var tmp = data.data().ans[i].split("/");
+            txtid =
+              "btn" + localStorage.getItem("Hw_size") + (i + 1) + "/" + (j + 1);
+            if (this.Hw_size == 8) {
+              this.eight_ans[i][j] = tmp[j];
+            } else if (this.Hw_size == 10) {
+              this.ten_ans[i][j] = tmp[j];
+            } else if (this.Hw_size == 14) {
+              this.fourteen_ans[i][j] = tmp[j];
+            } else if (this.Hw_size == 18) {
+              this.eightteen_ans[i][j] = tmp[j];
+            } else if (this.Hw_size == 20) {
+              this.twenty_ans[i][j] = tmp[j];
+            }
+
+            document.getElementById(txtid).style.backgroundColor = tmp[j];
+          }
+        }
       }
     });
     // const cityRef = db.collection("HomeworkTemplate").doc("Fn0shgkIBuukMLUhxgBa");
@@ -2902,27 +2922,27 @@ export default {
   },
   methods: {
     timer() {
-      // var s = 1,
-      //   m = 0,
-      //   h = 0,
-      //   ms = 0;
-      // var timer;
-      // var interval = setInterval(function () {
-      //   timer = h.toString() + ":" + m.toString() + ":" + s.toString();
-      //   localStorage.setItem("timer", timer);
-      //   localStorage.setItem("timer_ms", ms++);
-      //   console.log(h, m, s);
-      //   s++;
-      //   if (s % 60 == 0 || s > 59) {
-      //     s = 0;
-      //     m++;
-      //   }
-      //   if (m % 60 == 0 && m > 59) {
-      //     s = 0;
-      //     m = 0;
-      //     h++;
-      //   }
-      // }, 1000);
+      var s = 1,
+        m = 0,
+        h = 0,
+        ms = 0;
+      var timer;
+      var interval = setInterval(function () {
+        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+        localStorage.setItem("timer", timer);
+        localStorage.setItem("timer_ms", ms++);
+        console.log(h, m, s);
+        s++;
+        if (s % 60 == 0 || s > 59) {
+          s = 0;
+          m++;
+        }
+        if (m % 60 == 0 && m > 59) {
+          s = 0;
+          m = 0;
+          h++;
+        }
+      }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);

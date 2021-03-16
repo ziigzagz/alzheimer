@@ -5,7 +5,13 @@
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="isAdmin">
+              <v-btn
+                color="primary"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                v-if="isAdmin"
+              >
                 เพิ่ม
               </v-btn>
             </template>
@@ -99,7 +105,7 @@
               </td>
               <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>
               <td>
-                <button class="btn btn-info" @click="viewInfo(item.ID)" v-if="item.data.status == 0">
+                <button class="btn btn-info" @click="viewInfo(item.ID)">
                   ดูข้อมูล
                 </button>
               </td>
@@ -179,9 +185,9 @@ export default {
 
   methods: {
     viewInfo(uid) {
-      console.log(uid)
-      localStorage.setItem("ID_Exam",uid);
-      window.location.href = "/Exam"
+      console.log(uid);
+      localStorage.setItem("ID_Exam", uid);
+      window.location.href = "/Exam";
     },
     create() {
       this.tasks.push({

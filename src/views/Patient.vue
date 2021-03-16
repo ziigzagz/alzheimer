@@ -60,7 +60,7 @@
           <li class="nav-item" role="presentation">
             <a
               @click="setMode(3)"
-              class="nav-link"
+              class="nav-link active"
               id="tab3"
               data-bs-toggle="tab"
               href="#homework"
@@ -100,7 +100,7 @@
         <div class="tab-content" id="myTabContent">
           <!-- ข้อมูลส่วนตัว -->
           <div
-            class="tab-pane fade show active"
+            class="tab-pane fade "
             id="profile"
             role="tabpanel"
             aria-labelledby="home-tab"
@@ -118,7 +118,7 @@
           </div>
           <!-- การบ้าน -->
           <div
-            class="tab-pane fade"
+            class="tab-pane fade show active"
             id="homework"
             role="tabpanel"
             aria-labelledby="contact-tab"
