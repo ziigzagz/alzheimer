@@ -34,8 +34,8 @@
           <li class="nav-item text-danger" role="presentation">
             <a
               @click="setMode(1)"
-              class="nav-link active"
-              id="home-tab"
+              class="nav-link"
+              id="tab1"
               data-bs-toggle="tab"
               href="#profile"
               role="tab"
@@ -46,8 +46,9 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
+              @click="setMode(2)"
               class="nav-link"
-              id="profile-tab"
+              id="tab2"
               data-bs-toggle="tab"
               href="#exam"
               role="tab"
@@ -58,8 +59,9 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
+              @click="setMode(3)"
               class="nav-link"
-              id="contact-tab"
+              id="tab3"
               data-bs-toggle="tab"
               href="#homework"
               role="tab"
@@ -70,8 +72,9 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
+              @click="setMode(4)"
               class="nav-link"
-              id="contact-tab"
+              id="tab4"
               data-bs-toggle="tab"
               href="#diary"
               role="tab"
@@ -82,8 +85,9 @@
           </li>
           <li class="nav-item" role="presentation">
             <a
+              @click="setMode(5)"
               class="nav-link"
-              id="contact-tab"
+              id="tab5"
               data-bs-toggle="tab"
               href="#advice"
               role="tab"
@@ -161,7 +165,105 @@ export default {
       ชื่อ: "",
     };
   },
+
   mounted() {
+    var tmp = localStorage.getItem("Tab_mode");
+    if (tmp == 1) {
+      document.getElementById("tab1").classList.add("active");
+      document.getElementById("tab2").classList.remove("active");
+      document.getElementById("tab3").classList.remove("active");
+      document.getElementById("tab4").classList.remove("active");
+      document.getElementById("tab5").classList.remove("active");
+      // ------------------------------------------------------------
+      document.getElementById("profile").classList.add("show");
+      document.getElementById("profile").classList.add("active");
+      document.getElementById("exam").classList.remove("show");
+      document.getElementById("exam").classList.remove("active");
+      document.getElementById("homework").classList.remove("show");
+      document.getElementById("homework").classList.remove("active");
+      document.getElementById("diary").classList.remove("show");
+      document.getElementById("diary").classList.remove("active");
+      document.getElementById("advice").classList.remove("show");
+      document.getElementById("advice").classList.remove("active");
+    } else {
+      if (tmp == 2) {
+        document.getElementById("tab2").classList.add("active");
+        document.getElementById("tab1").classList.remove("active");
+        document.getElementById("tab3").classList.remove("active");
+        document.getElementById("tab4").classList.remove("active");
+        document.getElementById("tab5").classList.remove("active");
+        // ------------------------------------------------------------
+        document.getElementById("profile").classList.remove("show");
+        document.getElementById("profile").classList.remove("active");
+        document.getElementById("exam").classList.add("show");
+        document.getElementById("exam").classList.add("active");
+        document.getElementById("homework").classList.remove("show");
+        document.getElementById("homework").classList.remove("active");
+        document.getElementById("diary").classList.remove("show");
+        document.getElementById("diary").classList.remove("active");
+        document.getElementById("advice").classList.remove("show");
+        document.getElementById("advice").classList.remove("active");
+      } else {
+        if (tmp == 3) {
+          document.getElementById("tab3").classList.add("active");
+          document.getElementById("tab2").classList.remove("active");
+          document.getElementById("tab1").classList.remove("active");
+          document.getElementById("tab4").classList.remove("active");
+          document.getElementById("tab5").classList.remove("active");
+          // ------------------------------------------------------------
+          document.getElementById("profile").classList.remove("show");
+          document.getElementById("profile").classList.remove("active");
+          document.getElementById("exam").classList.remove("show");
+          document.getElementById("exam").classList.remove("active");
+          document.getElementById("homework").classList.add("show");
+          document.getElementById("homework").classList.add("active");
+          document.getElementById("diary").classList.remove("show");
+          document.getElementById("diary").classList.remove("active");
+          document.getElementById("advice").classList.remove("show");
+          document.getElementById("advice").classList.remove("active");
+        } else {
+          if (tmp == 4) {
+            document.getElementById("tab4").classList.add("active");
+            document.getElementById("tab2").classList.remove("active");
+            document.getElementById("tab3").classList.remove("active");
+            document.getElementById("tab1").classList.remove("active");
+            document.getElementById("tab5").classList.remove("active");
+            // ------------------------------------------------------------
+            document.getElementById("profile").classList.remove("show");
+            document.getElementById("profile").classList.remove("active");
+            document.getElementById("exam").classList.remove("show");
+            document.getElementById("exam").classList.remove("active");
+            document.getElementById("homework").classList.remove("show");
+            document.getElementById("homework").classList.remove("active");
+            document.getElementById("diary").classList.add("show");
+            document.getElementById("diary").classList.add("active");
+            document.getElementById("advice").classList.remove("show");
+            document.getElementById("advice").classList.remove("active");
+          } else {
+            if (tmp == 5) {
+              document.getElementById("tab5").classList.add("active");
+              document.getElementById("tab2").classList.remove("active");
+              document.getElementById("tab3").classList.remove("active");
+              document.getElementById("tab4").classList.remove("active");
+              document.getElementById("tab1").classList.remove("active");
+              // ------------------------------------------------------------
+              document.getElementById("profile").classList.remove("show");
+              document.getElementById("profile").classList.remove("active");
+              document.getElementById("exam").classList.remove("show");
+              document.getElementById("exam").classList.remove("active");
+              document.getElementById("homework").classList.remove("show");
+              document.getElementById("homework").classList.remove("active");
+              document.getElementById("diary").classList.remove("show");
+              document.getElementById("diary").classList.remove("active");
+              document.getElementById("advice").classList.add("show");
+              document.getElementById("advice").classList.add("active");
+            } else {
+            }
+          }
+        }
+      }
+    }
+    // document.getElementById("tab1").classList.add("active");
     var db = firebase.firestore();
     var dataset = {};
     var docRef = db.collection("InfoPatient").doc(localStorage.getItem("uid"));
@@ -173,7 +275,7 @@ export default {
   },
   methods: {
     setMode(i) {
-      console.log(i)
+      localStorage.setItem("Tab_mode", i);
     },
   },
   components: {

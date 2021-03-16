@@ -59,8 +59,8 @@
             <tr>
               <th scope="col">วันที่</th>
               <th scope="col">หัวข้อ</th>
-              <th scope="col">รายละเอียด</th>
               <th scope="col">สถานะ</th>
+              <th scope="col">รายละเอียด</th>
               <th scope="col">#</th>
             </tr>
           </thead>
@@ -68,12 +68,37 @@
             <tr v-for="(item, index) in advice" :key="index">
               <td>{{ item.data.date }}</td>
               <th>{{ item.data.title }}</th>
-              <td>{{ item.data.text }}</td>
-
               <td v-if="item.data.status == 1">
                 <span class="badge bg-success">ทำตามคำแนะนำแล้ว </span>
               </td>
-              <td v-else><span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span></td>
+              <td v-else>
+                <span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span>
+              </td>
+              <td>
+                 <v-dialog v-model="dialog2" persistent max-width="290">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                      ดู
+                    </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title class="headline"> รายละเอียด </v-card-title>
+                    <v-card-text>
+                       {{ item.data.text }}
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="green darken-1 "
+                        text
+                        @click="dialog2 = false"
+                      >
+                        ปิด
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+               </td>
               <td if>
                 <button
                   class="btn btn-info"
@@ -103,6 +128,8 @@ import Swal from "sweetalert2";
 export default {
   data: () => ({
     dialog: false,
+   
+      dialog2: false,
     advice: [],
     isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
   }),

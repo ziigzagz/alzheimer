@@ -68,6 +68,11 @@
           </h4>
           <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
           <!-- <h3>x</h3> -->
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-success" @click="next">ถัดไป</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2746,7 +2751,11 @@ export default {
       }
     }
   },
-  methods: {},
+  methods: {
+    next(){
+      window.location.href = "/Patient"
+    }
+  },
 };
 </script>
 

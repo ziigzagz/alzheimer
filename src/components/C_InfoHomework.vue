@@ -2887,27 +2887,27 @@ export default {
   },
   methods: {
     timer() {
-      // var s = 1,
-      //   m = 0,
-      //   h = 0,
-      //   ms = 0;
-      // var timer;
-      // var interval = setInterval(function () {
-      //   timer = h.toString() + ":" + m.toString() + ":" + s.toString();
-      //   localStorage.setItem("timer", timer);
-      //   localStorage.setItem("timer_ms", ms++);
-      //   console.log(h, m, s);
-      //   s++;
-      //   if (s % 60 == 0 || s > 59) {
-      //     s = 0;
-      //     m++;
-      //   }
-      //   if (m % 60 == 0 && m > 59) {
-      //     s = 0;
-      //     m = 0;
-      //     h++;
-      //   }
-      // }, 1000);
+      var s = 1,
+        m = 0,
+        h = 0,
+        ms = 0;
+      var timer;
+      var interval = setInterval(function () {
+        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+        localStorage.setItem("timer", timer);
+        localStorage.setItem("timer_ms", ms++);
+        console.log(h, m, s);
+        s++;
+        if (s % 60 == 0 || s > 59) {
+          s = 0;
+          m++;
+        }
+        if (m % 60 == 0 && m > 59) {
+          s = 0;
+          m = 0;
+          h++;
+        }
+      }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
