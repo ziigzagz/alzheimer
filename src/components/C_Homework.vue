@@ -147,6 +147,7 @@ var docRef2 = await db.collection("HomeworkTemplate");
       db.collection("Homework")
         .add({
           user: localStorage.getItem("uid"),
+          edit:"",
           homeworkTemplate: document.getElementById("select").value,
           timer_first:"0",
           status:0,

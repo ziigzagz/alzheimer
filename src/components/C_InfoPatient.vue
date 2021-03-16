@@ -578,7 +578,7 @@ export default {
       var yearbd = parseInt(snapshot.data().วันเกิด.toString().split("/")[2]);
       if(yearbd-543 >= 1378 && yearbd-543
        <= 1578){
-        yearbd += 543*2
+        yearbd = yearbd+543
         console.log(yearbd,yearbd+543*2,"IF")
       }
       console.log(yearbd+543,yearbd)
