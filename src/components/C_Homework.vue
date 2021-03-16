@@ -63,10 +63,13 @@
               <td>{{ item.data.date }}</td>
               <td v-if="item.data.status != 0"><span class="badge bg-success">สำเร็จ</span></td>
               <td v-else><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
-              <td>
+              <td v-if="item.data.edit == '0'">
                 <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
-                  ดูข้อมูล
+                  ดู
                 </button>
+              </td>
+              <td v-else>
+                -
               </td>
             </tr>
           </tbody>
@@ -147,7 +150,7 @@ var docRef2 = await db.collection("HomeworkTemplate");
       db.collection("Homework")
         .add({
           user: localStorage.getItem("uid"),
-          edit:"",
+          edit:"0",
           homeworkTemplate: document.getElementById("select").value,
           timer_first:"0",
           status:0,

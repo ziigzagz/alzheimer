@@ -123,7 +123,7 @@
             </div>
           </div>
         </div>
-         <div class="col-6 m-0" id="ten_ans">
+        <div class="col-6 m-0" id="ten_ans">
           <div class="row">
             <div v-for="i in 10" v-bind:key="i" class="text-center">
               <button
@@ -137,7 +137,7 @@
             </div>
           </div>
         </div>
-         <div class="col-6 m-0" id="fourteen_ans">
+        <div class="col-6 m-0" id="fourteen_ans">
           <div class="row">
             <div v-for="i in 14" v-bind:key="i" class="text-center">
               <button
@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-         <div class="col-6 m-0" id="eightteen_ans">
+        <div class="col-6 m-0" id="eightteen_ans">
           <div class="row">
             <div v-for="i in 18" v-bind:key="i" class="text-center">
               <button
@@ -165,7 +165,7 @@
             </div>
           </div>
         </div>
-         <div class="col-6 m-0" id="twenty_ans">
+        <div class="col-6 m-0" id="twenty_ans">
           <div class="row">
             <div v-for="i in 20" v-bind:key="i" class="text-center">
               <button
@@ -2873,6 +2873,21 @@ export default {
         }
       }
     });
+    var isFirsttime;
+    // var db = firebase.firestore();
+    var docRef = db.collection("Homework").doc(localStorage.getItem("id_hw"));
+    docRef.get().then((data) => {
+      if (data.data().timer_first == "0") {
+        isFirsttime = 1;
+        console.log(isFirsttime);
+      } else {
+        isFirsttime = 0;
+        console.log(isFirsttime);
+      }
+      if (isFirsttime == 0) {
+        console.log(data.data().ans);
+      }
+    });
     // const cityRef = db.collection("HomeworkTemplate").doc("Fn0shgkIBuukMLUhxgBa");
     // const doc = cityRef.get().then((val)=>{
     // console.log(val.data())
@@ -2887,27 +2902,27 @@ export default {
   },
   methods: {
     timer() {
-      var s = 1,
-        m = 0,
-        h = 0,
-        ms = 0;
-      var timer;
-      var interval = setInterval(function () {
-        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
-        localStorage.setItem("timer", timer);
-        localStorage.setItem("timer_ms", ms++);
-        console.log(h, m, s);
-        s++;
-        if (s % 60 == 0 || s > 59) {
-          s = 0;
-          m++;
-        }
-        if (m % 60 == 0 && m > 59) {
-          s = 0;
-          m = 0;
-          h++;
-        }
-      }, 1000);
+      // var s = 1,
+      //   m = 0,
+      //   h = 0,
+      //   ms = 0;
+      // var timer;
+      // var interval = setInterval(function () {
+      //   timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+      //   localStorage.setItem("timer", timer);
+      //   localStorage.setItem("timer_ms", ms++);
+      //   console.log(h, m, s);
+      //   s++;
+      //   if (s % 60 == 0 || s > 59) {
+      //     s = 0;
+      //     m++;
+      //   }
+      //   if (m % 60 == 0 && m > 59) {
+      //     s = 0;
+      //     m = 0;
+      //     h++;
+      //   }
+      // }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
@@ -2935,7 +2950,7 @@ export default {
         });
         localStorage.setItem("Error", JSON.stringify(error));
 
-        if (100 - (count_error / 324) * 100 > 80) {
+        if (100 - (count_error / 64) * 100 > 80) {
           localStorage.setItem("isHomeworkPass", "pass");
         } else {
           localStorage.setItem("isHomeworkPass", "not pass");
@@ -2964,7 +2979,7 @@ export default {
         });
         localStorage.setItem("Error", JSON.stringify(error));
 
-        if (100 - (count_error / 324) * 100 > 80) {
+        if (100 - (count_error / 100) * 100 > 80) {
           localStorage.setItem("isHomeworkPass", "pass");
         } else {
           localStorage.setItem("isHomeworkPass", "not pass");
@@ -2993,7 +3008,7 @@ export default {
         });
         localStorage.setItem("Error", JSON.stringify(error));
 
-        if (100 - (count_error / 324) * 100 > 80) {
+        if (100 - (count_error / 196) * 100 > 80) {
           localStorage.setItem("isHomeworkPass", "pass");
         } else {
           localStorage.setItem("isHomeworkPass", "not pass");
@@ -3051,7 +3066,7 @@ export default {
         });
         localStorage.setItem("Error", JSON.stringify(error));
 
-        if (100 - (count_error / 324) * 100 > 80) {
+        if (100 - (count_error / 400) * 100 > 80) {
           localStorage.setItem("isHomeworkPass", "pass");
         } else {
           localStorage.setItem("isHomeworkPass", "not pass");
@@ -3120,6 +3135,7 @@ export default {
               up.update({
                 ans: str.split("*"),
                 timer_release: localStorage.getItem("timer_ms"),
+                edit: "1",
                 status: 1,
               }).then(() => {
                 localStorage.setItem("ans", str);

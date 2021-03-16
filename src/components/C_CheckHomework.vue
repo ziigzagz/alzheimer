@@ -63,7 +63,7 @@
           <h3>ผลการตรวจ</h3>
           <!-- <h4>ความถูกต้องของช่อง : 100%</h4> -->
           <h4>
-            ความถูกต้อง : {{ Math.floor(100 - (count_error / (homework_size*homework_size)) * 100) }}%
+            ความถูกต้อง : {{ this.accuracy }}%
            
           </h4>
           <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
@@ -87,6 +87,7 @@ export default {
       timer_m: 0,
       timer_s: 0,
       homework_size:localStorage.getItem("Hw_size"),
+      accuracy:Math.floor(100 - (localStorage.getItem("count_error") / (localStorage.getItem("Hw_size")*localStorage.getItem("Hw_size"))) * 100),
       unit: "นาที",
       eight: [
         [
