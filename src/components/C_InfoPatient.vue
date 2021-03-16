@@ -575,12 +575,19 @@ export default {
       var month_diff = Date.now() - dob.getTime();
       // var date1 = new Date(time);
       // console.log(snapshot.data().วันเกิด.toDate());
+      var yearbd = parseInt(snapshot.data().วันเกิด.toString().split("/")[2]);
+      if(yearbd-543 >= 1378 && yearbd-543
+       <= 1578){
+        yearbd += 543*2
+        console.log(yearbd,yearbd+543*2,"IF")
+      }
+      console.log(yearbd+543,yearbd)
       var birthday =
         snapshot.data().วันเกิด.toString().split("/")[1] +
         "/" +
         snapshot.data().วันเกิด.toString().split("/")[0] +
         "/" +
-        snapshot.data().วันเกิด.toString().split("/")[2];
+        yearbd;
         // console.log(snapshot.data().วันเกิด.split("/")[2])
       this.ID = snapshot.data().ID;
       this.คำนำหน้าชื่อ = snapshot.data().คำนำหน้าชื่อ;
