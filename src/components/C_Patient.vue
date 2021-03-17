@@ -12,7 +12,7 @@
 
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center">
+        <table class="table table-striped text-center" id="myTable">
           <thead>
             <tr>
               <th scope="col">HN</th>
@@ -54,6 +54,7 @@ export default {
       numrow: 0,
     };
   },
+
   async mounted() {
     var db = firebase.firestore();
     var dataset = {};
@@ -87,8 +88,18 @@ export default {
       });
   },
   methods: {
+    toggleOrder() {
+      this.sortDesc = !this.sortDesc;
+    },
+    nextSort() {
+      let index = this.headers.findIndex((h) => h.value === this.sortBy);
+      index = (index + 1) % this.headers.length;
+      this.sortBy = this.headers[index].value;
+    },
     viewInfo(uid) {
       localStorage.setItem("uid", uid);
+      localStorage.setItem("Tab_mode", 3);
+
       window.location.href = "/Patient";
     },
     calAge(x) {
@@ -102,7 +113,7 @@ export default {
       //now calculate the age of the user
       var age = Math.abs(year - 1970);
       var finalage;
-      console.log(age,x);
+      console.log(age, x);
       // console.log(typeof(age));
       return age;
     },
@@ -165,17 +176,17 @@ export default {
             i++;
           } else {
             const isLargeNumber = (element1) =>
-            element1 == element[4].toString().split("/")[0];
-            console.log(element[4].toString().split("/")[0],isLargeNumber,99)
-          var month = array1.findIndex(isLargeNumber) + 1;
-          // console.log(month,element[4].toString().split(" ")[2]);
-          console.log(element[4].toString().split("/"),month)
-          var date =
-            element[4].toString().split("/")[0]+
-            "/" +
-            element[4].toString().split("/")[1] +
-            "/" +
-            element[4].toString().split("/")[2];
+              element1 == element[4].toString().split("/")[0];
+            console.log(element[4].toString().split("/")[0], isLargeNumber, 99);
+            var month = array1.findIndex(isLargeNumber) + 1;
+            // console.log(month,element[4].toString().split(" ")[2]);
+            console.log(element[4].toString().split("/"), month);
+            var date =
+              element[4].toString().split("/")[0] +
+              "/" +
+              element[4].toString().split("/")[1] +
+              "/" +
+              element[4].toString().split("/")[2];
             // console.log(element[29])
             var db = firebase.firestore();
             firebase
