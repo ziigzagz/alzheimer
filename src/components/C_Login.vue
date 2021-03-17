@@ -85,13 +85,15 @@ export default {
                 this.numrow = doc.size;
                 if (this.numrow == 0) {
                   localStorage.setItem("isAdmin", 1);
+                  window.location.href = "/";
                 } else {
                   doc.forEach((element) => {
                     localStorage.setItem("uid", element.id);
                     localStorage.setItem("isAdmin", 0);
                   });
+                  window.location.href = "/patient";
                 }
-                window.location.href = "/patient";
+                
               })
               .catch(function (error) {
                 console.log("Error getting document:", error);

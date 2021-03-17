@@ -75,6 +75,7 @@
                 <span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span>
               </td>
               <td>
+                {{ item.data.text }}
                  <v-dialog v-model="dialog2" persistent max-width="290">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn color="primary" dark v-bind="attrs" v-on="on">
@@ -168,6 +169,14 @@ export default {
     });
   },
   methods: {
+    delete(id){
+var cityRef = db.collection('cities').doc();
+
+// Remove the 'capital' field from the document
+var removeCapital = cityRef.update({
+    capital: firebase.firestore.FieldValue.delete()
+});
+    },
     async update(id) {
       var db = firebase.firestore();
       console.log(id);

@@ -33,6 +33,7 @@
           </div>
           <div class="row">
             <div class="col text-center">
+               {{ this.users }}
               <button class="btn btn-danger" @click="logout">Logout</button>
             </div>
           </div>

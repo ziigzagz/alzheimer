@@ -21,7 +21,7 @@
           <button
             type="button"
             :id="'btncolorplt' + j"
-            class="btn btn-default mx-auto"
+            class="btnc btn-default mx-auto"
             @click="setStateColor(j)"
             v-for="j in 17"
             v-bind:key="j"
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row rowexam">
         <!-- โจทย์ -->
         <div class="col-6 m-0" id="eight">
           <div class="row">
@@ -86,7 +86,7 @@
               <button
                 type="button"
                 :id="'btnprop18' + i + '/' + j"
-                class="btna"
+                class="btn btn-default"
                 v-for="j in 18"
                 @click="testColor(i, j)"
                 v-bind:key="j"
@@ -157,7 +157,7 @@
               <button
                 type="button"
                 :id="'btn18' + i + '/' + j"
-                class="btna"
+                class="btn btn-default"
                 @click="changeColor(i, j)"
                 v-for="j in 18"
                 v-bind:key="j"
@@ -2923,27 +2923,27 @@ export default {
   },
   methods: {
     timer() {
-      // var s = 1,
-      //   m = 0,
-      //   h = 0,
-      //   ms = 0;
-      // var timer;
-      // var interval = setInterval(function () {
-      //   timer = h.toString() + ":" + m.toString() + ":" + s.toString();
-      //   localStorage.setItem("timer", timer);
-      //   localStorage.setItem("timer_ms", ms++);
-      //   console.log(h, m, s);
-      //   s++;
-      //   if (s % 60 == 0 || s > 59) {
-      //     s = 0;
-      //     m++;
-      //   }
-      //   if (m % 60 == 0 && m > 59) {
-      //     s = 0;
-      //     m = 0;
-      //     h++;
-      //   }
-      // }, 1000);
+      var s = 1,
+        m = 0,
+        h = 0,
+        ms = 0;
+      var timer;
+      var interval = setInterval(function () {
+        timer = h.toString() + ":" + m.toString() + ":" + s.toString();
+        localStorage.setItem("timer", timer);
+        localStorage.setItem("timer_ms", ms++);
+        console.log(h, m, s);
+        s++;
+        if (s % 60 == 0 || s > 59) {
+          s = 0;
+          m++;
+        }
+        if (m % 60 == 0 && m > 59) {
+          s = 0;
+          m = 0;
+          h++;
+        }
+      }, 1000);
     },
     testColor(i, j) {
       console.log(i, j);
@@ -3241,18 +3241,23 @@ export default {
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
 
 .btn.btn-default {
-  width: 40px;
-  height: 40px;
-  max-height: 100%;
-  max-width: 100%;
+  width: 45px;
+  height: 45px;
+  /* /* max-height: 100%; */
+  max-width: 100%; 
+  margin: 0 0 0 0;
   border-color: black;
+
 
 }
 
-.btna {
- width: 40px;
-  height: 40px;
 
+.btna {
+width: 20px;
+  height: 20px;
+  /* /* max-height: 100%; */
+  max-width: 100%; 
+  margin: 0 0;
   border-color: black;
 }
 
@@ -3265,5 +3270,6 @@ export default {
   height: 45px;
   margin: 0 0;
   border-color: black;
+  
 }
 </style>
