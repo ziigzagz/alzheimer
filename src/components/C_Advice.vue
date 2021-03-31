@@ -100,7 +100,7 @@
                   </v-card>
                 </v-dialog>
                </td>
-              <td if>
+              <td>
                 <button
                   class="btn btn-info"
                   @click="update(item.id)"
@@ -143,7 +143,7 @@ export default {
     //     this.advice.push(element.data());
     //   });
     // });
-
+    this.advice.sort()
     var db = firebase.firestore();
     if (!localStorage.getItem("isAdmin")) {
       var docRef = await db

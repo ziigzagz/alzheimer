@@ -80,7 +80,7 @@
               role="tab"
               aria-controls="contact"
               aria-selected="false"
-              >บันทึก</a
+              >บันทึกชีวิตประจำวัน</a
             >
           </li>
           <li class="nav-item" role="presentation">
@@ -93,7 +93,7 @@
               role="tab"
               aria-controls="contact"
               aria-selected="false"
-              >คำแนะนำ</a
+              >คำแนะนำจากเจ้าหน้าที่</a
             >
           </li>
         </ul>

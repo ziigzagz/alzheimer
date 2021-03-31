@@ -362,7 +362,7 @@ export default {
           "#ffffff",
         ],
       ],
-      foueteen: [
+      fourteen: [
         [
           "#ffffff",
           "#ffffff",
@@ -1702,9 +1702,12 @@ export default {
     },
     reset() {
       var i, j, txtid;
-      for (i = 0; i < 10; ++i) {
-        for (j = 0; j < 10; ++j) {
-          txtid = "btn" + (i + 1) + (j + 1);
+      var Hw_size = localStorage.getItem("Hw_size")
+      console.log(Hw_size,typeof(Hw_size))
+      for (i = 0; i < Hw_size; ++i) {
+        for (j = 0; j < Hw_size; ++j) {
+          txtid = "btn"+Hw_size+ (i + 1) +"/"+ (j + 1);
+          console.log(txtid)
           document.getElementById(txtid).style.backgroundColor = "#ffffff";
         }
       }
