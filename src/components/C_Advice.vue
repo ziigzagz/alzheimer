@@ -143,7 +143,7 @@ export default {
     //     this.advice.push(element.data());
     //   });
     // });
-    this.advice.sort()
+    
     var db = firebase.firestore();
     if (!localStorage.getItem("isAdmin")) {
       var docRef = await db
@@ -158,15 +158,16 @@ export default {
     docRef.get().then((doc) => {
       doc.docs.forEach((element) => {
         this.advice.push({ id: element.id, data: element.data() });
-
-        // console.log(element.data())
         console.log(element.id);
-      });
+      })
       // doc.forEach((element) => {
       //   // console.log(element.data());
       //   this.diary.push(element.data());
       // });
-    });
+    }).then(()=>{
+        console.log(this.advice)
+        this.advice.sort()
+      });
   },
   methods: {
     delete(id){
