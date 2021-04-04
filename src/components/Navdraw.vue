@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdmin">
+  <div >
     <v-app-bar color="indigo darken-2" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title class="tz" v-if="isAdmin">Staff</v-toolbar-title>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <hr />
-          <v-list-item class="mt-3 m-h">
+          <v-list-item class="mt-3 m-h" v-if="isAdmin">
             <v-list-item-title color="deep-orange darken-2">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/609/609803.svg"
@@ -51,7 +51,7 @@
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item class="mt-3 m-h">
+          <v-list-item class="mt-3 m-h" v-if="isAdmin">
             <v-list-item-title color="deep-orange darken-2">
               <img
                 src="https://www.flaticon.com/svg/static/icons/svg/2750/2750657.svg"
@@ -64,7 +64,7 @@
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item class="mt-3 m-h">
+          <v-list-item class="mt-3 m-h" v-if="isAdmin">
             <v-list-item-title color="deep-orange darken-2">
               <img
                 src="@/assets/icon/homework.png"

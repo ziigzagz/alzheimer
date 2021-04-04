@@ -1362,7 +1362,7 @@ export default {
       ],
       colorlist: [
         "#79661e", //น้ำตาล
-        "#ffec1F", //เหลืองเข้ม
+        "#ffec1f", //เหลืองเข้ม
         "#f6ff78", //เหลืองอ่อน
         "#21e83f", //เขียวอ่อน
         "#148f27", //เขียวเข้ม
@@ -1373,7 +1373,7 @@ export default {
         "#f007ff", //ชมพู
         "#ef9090", //เนื้อ
         "#6eddff", //ฟ้า
-        "#b0ffF4", //ฟ้าอ่อน
+        "#b0fff4", //ฟ้าอ่อน B0FFF4
         "#ffffff", //ขาว
         "#c2c2c2", //เทาอ่อน
         "#878787", //เทาเข้ม
@@ -1495,18 +1495,16 @@ export default {
             axios
               .post(path, [resdownload, localStorage.getItem("Hw_size")])
               .then((res) => {
-                console.log(res);
+                console.log(res.data);
+                console.log("res");
                 res.data.forEach((row) => {
                   j = 1;
                   i++;
                   //row
                   row.forEach((col) => {
-                    // console.log(col);
                     r = col[2];
                     g = col[1];
                     b = col[0];
-                    // console.log(rgbToHex(r, g, b));
-                    // console.log(i, j);
                     var hw_size = localStorage.getItem("Hw_size");
                     if (hw_size == "8") {
                       var txt = "btn8" + i + "/" + j;
@@ -1714,6 +1712,8 @@ export default {
     },
   },
 };
+
+                 
 </script>
 
 <style>
@@ -1733,4 +1733,6 @@ export default {
   height: 45px;
   margin: 0 0;
 }
+
 </style>
+
