@@ -12,10 +12,17 @@
 
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center" id="myTable">
+        <input
+          type="text"
+          id="myInput"
+          @keyup="myFunction"
+          placeholder="ค้นหาหมายเลขผู้ป่วย...."
+          title="Type in a name"
+        />
+        <!-- <table class="table table-striped text-center" id="myTable1">
           <thead>
             <tr>
-              <th scope="col">HN</th>
+              <th scope="col">HN1</th>
               <th scope="col">ชื่อ-สกุล</th>
               <th scope="col">อายุ</th>
               <th scope="col">ชื่อผู้ดูแล</th>
@@ -34,9 +41,37 @@
                 <button class="btn btn-info" @click="viewInfo(item.UID)">
                   ดูข้อมูล
                 </button>
+                <button @click="somethingWithjQuery()">123</button>
               </td>
             </tr>
           </tbody>
+        </table> -->
+        <table id="myTable" class="table table-striped text-center">
+          <tr>
+            <th scope="col">HN</th>
+            <th scope="col">ชื่อ-สกุล</th>
+            <th scope="col">อายุ</th>
+            <th scope="col">ชื่อผู้ดูแล</th>
+            <th scope="col">เบอร์โทรติดต่อ</th>
+            <th scope="col">แก้ไข/ดู</th>
+          </tr>
+          <tr v-for="(item, index) in datas" :key="index" class="mt-2">
+            <td scope="row">{{ item.ID }}</td>
+            <td>{{ item.ชื่อ }}</td>
+            <td>{{ item.อายุ }}</td>
+            <td>
+              {{ item.คนดูแล }}
+            </td>
+            <td>{{ item.เบอร์ }}</td>
+            <td>
+              <button
+                class="btn btn-info bg-info mt-2"
+                @click="viewInfo(item.UID)"
+              >
+                ดูข้อมูล
+              </button>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -47,6 +82,8 @@
 // status 0 = Patient , 1 = Staff
 import firebase from "firebase";
 import Swal from "sweetalert2";
+import $ from "jquery";
+import { somethingWithjQuery } from "../main";
 export default {
   data() {
     return {
@@ -88,6 +125,24 @@ export default {
       });
   },
   methods: {
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
     toggleOrder() {
       this.sortDesc = !this.sortDesc;
     },
@@ -281,4 +336,14 @@ import readXlsxFile from "read-excel-file";
 </script>
 
 <style>
+#myInput {
+  background-image: url("/css/searchicon.png");
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

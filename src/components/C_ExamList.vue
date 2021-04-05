@@ -83,17 +83,21 @@
 
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
+        <input
+          type="text"
+          id="myInput"
+          @keyup="myFunction"
+          placeholder="ค้นหาหมายเลขผู้ป่วย...."
+          title="Type in a name"
+        />
+        <table class="table table-striped text-center" id="myTable">
+          <tr>
               <th scope="col">#</th>
               <th scope="col">ชื่อออกกำลังกาย</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
               <th scope="col">ดู</th>
             </tr>
-          </thead>
-          <tbody>
             <tr v-for="(item, index) in test" :key="index">
               <th scope="row">{{ index + 1 }}</th>
               <td>
@@ -105,12 +109,11 @@
               </td>
               <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>
               <td>
-                <button class="btn btn-info" @click="viewInfo(item.ID)">
+                <button class="btn btn-info bg-info mt-2" @click="viewInfo(item.ID)">
                   ดูข้อมูล
                 </button>
               </td>
             </tr>
-          </tbody>
         </table>
       </div>
     </div>
@@ -149,11 +152,13 @@ export default {
     if (!localStorage.getItem("isAdmin")) {
       var docRef = db
         .collection("Exam")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "asc");
     } else {
       var docRef = db
         .collection("Exam")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "asc");
     }
 
     var dataset = {};
@@ -184,6 +189,24 @@ export default {
   },
 
   methods: {
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
     viewInfo(uid) {
       console.log(uid);
       localStorage.setItem("ID_Exam", uid);

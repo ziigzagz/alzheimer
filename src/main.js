@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import firebase from 'firebase/app'
-
+import * as $ from 'jquery'
 Vue.config.productionTip = false
 // app.use(VueSweetalert2);
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -19,7 +19,12 @@ const firebaseConfig = {
 };
 // var db = firebase.firestore();
 firebase.initializeApp(firebaseConfig)
-
+export function somethingWithjQuery() {
+  console.log(123123123)
+  $(document).ready(function () {
+    $('#example').DataTable();
+  });
+}
 new Vue({
   router,
   store,

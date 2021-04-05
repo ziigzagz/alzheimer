@@ -8,19 +8,27 @@
     </div>
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">การบ้าน</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in homeworkTemplate" :key="index">
-              <th>{{ index + 1 }}</th>
-              <th>{{ item }}</th>
-            </tr>
-          </tbody>
+        <input
+          type="text"
+          id="myInput"
+          @keyup="myFunction"
+          placeholder="Search for names.."
+          title="Type in a name"
+        />
+        <table class="table table-striped text-center" id="myTable">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">การบ้าน</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr v-for="(item, index) in homeworkTemplate" :key="index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item }}</td>
+            <td>
+        <button class="border btn btn-info bg-info">แก้ไข</button>
+        <button class="border btn btn-danger bg-danger">ลบ</button>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -48,6 +56,24 @@ export default {
     });
   },
   methods: {
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
     CreateHomework() {
       window.location.href = "/CreateHomework";
     },
@@ -56,4 +82,14 @@ export default {
 </script>
 
 <style>
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

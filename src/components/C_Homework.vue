@@ -50,7 +50,7 @@
           <thead>
             <tr>
               <th scope="col">ครั้งที่</th>
-              <th scope="col">หัวข้อ</th>
+              <th scope="col">การบ้าน</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
               <th scope="col">#</th>
@@ -111,7 +111,8 @@ var docRef2 = await db.collection("HomeworkTemplate");
     // get data homework patient
     var docRef = await db
       .collection("Homework")
-      .where("user", "==", localStorage.getItem("uid"));
+      .where("user", "==", localStorage.getItem("uid"))
+      .orderBy("date", "asc");
     docRef.get().then((doc) => {
       //  console.log(doc.docs[0].id)
        doc.forEach((element) => {
