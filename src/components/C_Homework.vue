@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-1">
+    <div class="row mb-3">
+      <div class="col-1 mb-3">
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
@@ -44,19 +44,24 @@
         </v-row>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
+        <input
+          class="mt-5"
+          type="text"
+          id="myInput_hw"
+          @keyup="myFunction"
+          placeholder="ค้นหาการบ้าน...."
+          title="Type in a name"
+        />
+        <table class="table table-striped text-center" id="myTable_hw">
+           <tr>
               <th scope="col">ครั้งที่</th>
               <th scope="col">การบ้าน</th>
               <th scope="col">เวลา</th>
               <th scope="col">สถานะ</th>
               <th scope="col">#</th>
             </tr>
-          </thead>
-          <tbody>
             <tr v-for="(item, index) in homework" :key="index">
               <td scope="row">{{ index + 1 }}</td>
               <td>{{ item.Name }}</td>
@@ -64,7 +69,7 @@
               <td v-if="item.data.status != 0"><span class="badge bg-success">สำเร็จ</span></td>
               <td v-else><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
               <td v-if="item.data.edit == '0'">
-                <button class="btn btn-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
+                <button class="btn btn-info bg-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
                   ดู
                 </button>
               </td>
@@ -72,7 +77,7 @@
                 -
               </td>
             </tr>
-          </tbody>
+        
         </table>
       </div>
     </div>
@@ -95,9 +100,11 @@ export default {
 
   async mounted() {
     var db = firebase.firestore();
-var docRef2 = await db.collection("HomeworkTemplate");
+var docRef2 = await db.collection("HomeworkTemplate")
+.where("statusdel", "==", 0);
     // get data homework Template
-    var docRef = await db.collection("HomeworkTemplate");
+    var docRef = await db.collection("HomeworkTemplate")
+    .where("statusdel", "==", 0);;
     docRef.get().then((doc) => {
       doc.forEach((element) => {
         // console.log(element.data(), element.id);
@@ -112,7 +119,7 @@ var docRef2 = await db.collection("HomeworkTemplate");
     var docRef = await db
       .collection("Homework")
       .where("user", "==", localStorage.getItem("uid"))
-      .orderBy("date", "asc");
+      .orderBy("date", "desc");
     docRef.get().then((doc) => {
       //  console.log(doc.docs[0].id)
        doc.forEach((element) => {
@@ -126,6 +133,27 @@ var docRef2 = await db.collection("HomeworkTemplate");
     });
   },
   methods: {
+    Watch(id) {
+      Swal.fire(id);
+    },
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput_hw");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable_hw");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
     viewInfo(id_hwTemplate,id_hw) {
       // console.log(id);
       localStorage.setItem("id_hwTemplate", id_hwTemplate);
@@ -190,4 +218,13 @@ var docRef2 = await db.collection("HomeworkTemplate");
 </script>
 
 <style>
+#myInput_hw {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

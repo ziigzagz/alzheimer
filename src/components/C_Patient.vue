@@ -337,7 +337,6 @@ import readXlsxFile from "read-excel-file";
 
 <style>
 #myInput {
-  background-image: url("/css/searchicon.png");
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;

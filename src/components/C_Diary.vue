@@ -39,7 +39,7 @@
                           label="วันที่/เดือน/ปี พ.ศ.*"
                           id="date"
                           hint="ตัวอย่าง : 25/3/2564"
-                        persistent-hint
+                          persistent-hint
                           required
                         ></v-text-field>
                       </v-col> </v-row
@@ -67,45 +67,32 @@
     </div>
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th scope="col">วันที่</th>
-              <th scope="col">หัวข้อ</th>
-              <th>รายละเอียด</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in diary" :key="index">
-              <th scope="row">{{ item.date }}</th>
-              <th>{{ item.diary_name }}</th>
-              <th>
-                <v-dialog v-model="dialog1" persistent max-width="290">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                      ดู
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-title class="headline"> รายละเอียด </v-card-title>
-                    <v-card-text>
-                      {{ diary[0].text }}
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        color="green darken-1 "
-                        text
-                        @click="dialog1 = false"
-                      >
-                        ปิด
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </th>
-            </tr>
-          </tbody>
+        <input
+          type="text"
+          id="myInput_Diary"
+          @keyup="myFunction"
+          placeholder="ค้นหาวันที่บันทึก (ตัวอย่าง 1/3/2564)...."
+          title="Type in a name"
+        />
+        <table class="table table-striped text-center" id="myTable_Diary">
+          <tr>
+            <th scope="col">วันที่</th>
+            <th scope="col">หัวข้อ</th>
+            <th>รายละเอียด</th>
+          </tr>
+          <tr v-for="(item, index) in diary" :key="index">
+            <td scope="row">{{ item.date }}</td>
+            <td>{{ item.diary_name }}</td>
+            <td>
+           
+                <button
+                class="btn btn-info bg-info mt-2"
+                @click="Watch(item.text,item.D_date)"
+              >
+                ดู
+              </button>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -132,11 +119,13 @@ export default {
     if (!localStorage.getItem("isAdmin")) {
       var docRef = db
         .collection("Diary")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "desc");
     } else {
       var docRef = db
         .collection("Diary")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "desc");
     }
     // var docRef = db.collection("Diary");
     docRef.get().then((doc) => {
@@ -151,6 +140,27 @@ export default {
     });
   },
   methods: {
+    Watch(id,D_date) {
+      Swal.fire("วันที่"+D_date+" (ผู้ป่วยกรอก)\n\nรายละเอียด : "+id);
+    },
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput_Diary");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable_Diary");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
     close() {
       this.dialog = false;
     },
@@ -170,9 +180,8 @@ export default {
       name = name.replace(" ", "");
       var D_date = document.getElementById("date").value;
       D_date = D_date.replace(" ", "");
-      console.log(name,name.length,D_date,D_date.length)
+      console.log(name, name.length, D_date, D_date.length);
       if (name.length == 0 || D_date.length == 0) {
-      
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -186,7 +195,7 @@ export default {
             status: 0,
             user: localStorage.getItem("uid"),
             text: document.getElementById("textarea").value,
-            D_date:document.getElementById("date").value,
+            D_date: document.getElementById("date").value,
             date:
               date +
               "/" +
@@ -209,7 +218,7 @@ export default {
               showConfirmButton: false,
               timer: 1500,
             }).then(() => {
-              // location.reload();
+               location.reload();
             });
           })
           .catch(function (error) {
@@ -222,4 +231,13 @@ export default {
 </script>
 
 <style>
+#myInput_Diary {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

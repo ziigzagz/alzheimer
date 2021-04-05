@@ -2932,7 +2932,7 @@ export default {
         timer = h.toString() + ":" + m.toString() + ":" + s.toString();
         localStorage.setItem("timer", timer);
         localStorage.setItem("timer_ms", ms++);
-        console.log(h, m, s);
+        // console.log(h, m, s);
         s++;
         if (s % 60 == 0 || s > 59) {
           s = 0;

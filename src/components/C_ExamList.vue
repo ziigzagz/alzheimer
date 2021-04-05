@@ -87,7 +87,7 @@
           type="text"
           id="myInput"
           @keyup="myFunction"
-          placeholder="ค้นหาหมายเลขผู้ป่วย...."
+          placeholder="ค้นหาชื่อแบบฝึกหัด..."
           title="Type in a name"
         />
         <table class="table table-striped text-center" id="myTable">
@@ -266,4 +266,14 @@ export default {
 </script>
 
 <style>
+#myInput {
+  background-image: url("/css/searchicon.png");
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

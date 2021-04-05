@@ -54,68 +54,61 @@
     </div>
     <div class="row">
       <div class="col">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th scope="col">วันที่</th>
-              <th scope="col">หัวข้อ</th>
-              <th scope="col">สถานะ</th>
-              <th scope="col">รายละเอียด</th>
-              <th scope="col">#</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in advice" :key="index">
-              <td>{{ item.data.date }}</td>
-              <th>{{ item.data.title }}</th>
-              <td v-if="item.data.status == 1">
-                <span class="badge bg-success">ทำตามคำแนะนำแล้ว </span>
-              </td>
-              <td v-else>
-                <span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span>
-              </td>
-              <td>
-                {{ item.data.text }}
-                 <v-dialog v-model="dialog2" persistent max-width="290">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                      ดู
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-title class="headline"> รายละเอียด </v-card-title>
-                    <v-card-text>
-                       {{ item.data.text }}
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        color="green darken-1 "
-                        text
-                        @click="dialog2 = false"
-                      >
-                        ปิด
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-               </td>
-              <td>
-                <button
-                  class="btn btn-info"
-                  @click="update(item.id)"
-                  v-if="item.data.status == 0 && !isAdmin"
-                >
-                  <img
-                    src="@/assets/icon/check.png"
-                    height="15px"
-                    alt=""
-                    srcset=""
-                  />
-                </button>
-              </td>
-            </tr>
-          </tbody>
+        <input
+          type="text"
+          id="myInput_Adv"
+          @keyup="myFunction"
+          placeholder="ค้นหาการบ้าน...."
+          title="Type in a name"
+        />
+        <table class="table table-striped text-center" id="myTable_Adv">
+          <tr>
+            <th scope="col">วันที่</th>
+            <th scope="col">หัวข้อ</th>
+            <th scope="col">สถานะ</th>
+            <th scope="col">รายละเอียด</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr v-for="(item, index) in advice" :key="index">
+            <td>{{ item.data.date }}</td>
+            <td>{{ item.data.title }}</td>
+            <td v-if="item.data.status == 1">
+              <span class="badge bg-success mt-2">ทำตามคำแนะนำแล้ว </span>
+            </td>
+            <td v-else>
+              <span class="badge bg-danger">ยังไม่ทำตามคำแนะนำ</span>
+            </td>
+            <td>
+              <button
+                class="btn btn-info bg-info mt-2"
+                @click="Watch(item.data.text)"
+              >
+                ดู
+              </button>
+              
+            </td>
+            <td>
+              <button
+                class="btn btn-info bg-info"
+                @click="update(item.id)"
+                v-if="item.data.status == 0 && !isAdmin"
+              >
+                <img
+                  src="@/assets/icon/check.png"
+                  height="15px"
+                  alt=""
+                  srcset=""
+                />
+              </button>
+              <button
+                class="btn btn-danger bg-danger mt-2 ms-5"
+                @click="Delete(item.id)"
+                v-if="item.data.status == 0 && isAdmin"
+              >
+                ลบ
+              </button>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -129,8 +122,7 @@ import Swal from "sweetalert2";
 export default {
   data: () => ({
     dialog: false,
-   
-      dialog2: false,
+    dialog2: false,
     advice: [],
     isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
   }),
@@ -143,40 +135,91 @@ export default {
     //     this.advice.push(element.data());
     //   });
     // });
-    
+
     var db = firebase.firestore();
     if (!localStorage.getItem("isAdmin")) {
       var docRef = await db
         .collection("Advice")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "desc");
     } else {
       var docRef = await db
         .collection("Advice")
-        .where("user", "==", localStorage.getItem("uid"));
+        .where("user", "==", localStorage.getItem("uid"))
+        .orderBy("date", "desc");
     }
     // var docRef = db.collection("Diary");
-    docRef.get().then((doc) => {
-      doc.docs.forEach((element) => {
-        this.advice.push({ id: element.id, data: element.data() });
-        console.log(element.id);
+    docRef
+      .get()
+      .then((doc) => {
+        doc.docs.forEach((element) => {
+          this.advice.push({ id: element.id, data: element.data() });
+          // console.log(element.id);
+        });
+        // doc.forEach((element) => {
+        //   // console.log(element.data());
+        //   this.diary.push(element.data());
+        // });
       })
-      // doc.forEach((element) => {
-      //   // console.log(element.data());
-      //   this.diary.push(element.data());
-      // });
-    }).then(()=>{
-        console.log(this.advice)
-        this.advice.sort()
+      .then(() => {
+        // console.log(this.advice);
+        this.advice.sort();
       });
   },
   methods: {
-    delete(id){
-var cityRef = db.collection('cities').doc();
-
-// Remove the 'capital' field from the document
-var removeCapital = cityRef.update({
-    capital: firebase.firestore.FieldValue.delete()
-});
+    Watch(id) {
+      Swal.fire(id);
+    },
+    Delete(id) {
+      var db = firebase.firestore();
+      Swal.fire({
+        title: "คุณต้องการลบคำแนะนำใช่หรือไม่",
+        showCancelButton: true,
+        icon: "question",
+        confirmButtonText: `ยืนยัน`,
+        cancelButtonText: "ยกเลิก",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          db.collection("Advice")
+            .doc(id)
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "ลบสำเร็จ!",
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(() => {
+                window.location.reload();
+              });
+            })
+            .catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    },
+    myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput_Adv");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable_Adv");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
     },
     async update(id) {
       var db = firebase.firestore();
@@ -264,4 +307,13 @@ var removeCapital = cityRef.update({
 </script>
 
 <style>
+#myInput_Adv {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col mx-auto">
-          <label for="exampleFormControlInput1" class="form-label"
+          <label for="exampleFormControlInput1" class="form-label" 
             >ชื่อการบ้าน</label
           >
           <input
@@ -11,6 +11,7 @@
             class="form-control"
             id="homeworkName"
             placeholder=""
+            v-model="Hw_name"
           />
         </div>
         <div class="col mx-auto">
@@ -57,7 +58,15 @@
           <div class="row mt-5">
             <div class="col text-center">
               <button class="btn btn-warning mr-3" @click="reset">reset</button>
-              <button class="btn btn-success" @click="create">สร้าง</button>
+              <button class="btn btn-success" id="create" @click="create">
+                สร้าง
+              </button>
+              <button class="btn btn-success" id="update" @click="update">
+                อัพเดต
+              </button>
+              <button class="btn btn-success" id="update" @click="update">
+                อัพเดต
+              </button>
             </div>
           </div>
         </div>
@@ -158,6 +167,7 @@ function rgbToHex(r, g, b) {
 export default {
   data() {
     return {
+      Hw_name: "",
       eight: [
         [
           "#ffffff",
@@ -378,7 +388,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -393,7 +404,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -408,7 +420,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -423,7 +436,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -438,7 +452,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -453,7 +468,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -468,7 +484,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -483,7 +500,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -498,7 +516,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -513,7 +532,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -528,7 +548,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -543,7 +564,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -558,7 +580,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -937,7 +960,7 @@ export default {
           "#ffffff",
         ],
       ],
-      twenty:[
+      twenty: [
         [
           "#ffffff",
           "#ffffff",
@@ -959,7 +982,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -980,7 +1004,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1001,7 +1026,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1022,7 +1048,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1043,7 +1070,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1064,7 +1092,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1085,7 +1114,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1106,7 +1136,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1127,7 +1158,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1148,7 +1180,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1169,7 +1202,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1190,7 +1224,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1211,7 +1246,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1232,7 +1268,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1253,7 +1290,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1274,7 +1312,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1295,7 +1334,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1316,7 +1356,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1337,7 +1378,8 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ],[
+        ],
+        [
           "#ffffff",
           "#ffffff",
           "#ffffff",
@@ -1358,7 +1400,7 @@ export default {
           "#ffffff",
           "#ffffff",
           "#ffffff",
-        ]
+        ],
       ],
       colorlist: [
         "#79661e", //น้ำตาล
@@ -1402,6 +1444,144 @@ export default {
       console.log(txtid);
       document.getElementById(txtid).style.backgroundColor = this.colorlist[i];
       // console.log(this.colorlist[i], txtid);
+    }
+    var have_hw_size = localStorage.getItem("Hw_size");
+
+    if (have_hw_size) {
+      var create = document.getElementById("create");
+      create.style.display = "none";
+
+      var Hw_size = parseInt(have_hw_size);
+      var select = document.getElementById("select");
+      select.style.display = "none";
+      var update = document.getElementById("update");
+      update.style.display = "none";
+      this.Hw_name = localStorage.getItem("Hw_name");
+      var oldhw = localStorage.getItem("EditHomework");
+      oldhw = oldhw.split("*");
+      console.log(oldhw);
+      if (parseInt(have_hw_size) == 8) {
+        var x = document.getElementById("eight");
+        x.style.display = "block";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        for (i = 0; i < Hw_size; i++) {
+          console.log(oldhw[i].split("/"));
+          for (j = 0; j < Hw_size; j++) {
+            this.eight[i][j] = oldhw[i].split("/")[j];
+            txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+            // console.log(oldhw[i].split("/")[j],j)
+            // console.log(txtid)
+            document.getElementById(txtid).style.backgroundColor = oldhw[
+              i
+            ].split("/")[j];
+          }
+        }
+      }
+      if (parseInt(have_hw_size) == 10) {
+        var x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "block";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        for (i = 0; i < Hw_size; i++) {
+          console.log(oldhw[i].split("/"));
+          for (j = 0; j < Hw_size; j++) {
+            this.ten[i][j] = oldhw[i].split("/")[j];
+            txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+            // console.log(oldhw[i].split("/")[j],j)
+            // console.log(txtid)
+            document.getElementById(txtid).style.backgroundColor = oldhw[
+              i
+            ].split("/")[j];
+          }
+        }
+      }
+      if (parseInt(have_hw_size) == 14) {
+        var x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "block";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        for (i = 0; i < Hw_size; i++) {
+          console.log(oldhw[i].split("/"));
+          for (j = 0; j < Hw_size; j++) {
+            this.fourteen[i][j] = oldhw[i].split("/")[j];
+            txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+            // console.log(oldhw[i].split("/")[j],j)
+            // console.log(txtid)
+            document.getElementById(txtid).style.backgroundColor = oldhw[
+              i
+            ].split("/")[j];
+          }
+        }
+      }
+      if (parseInt(have_hw_size) == 18) {
+        var x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "block";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
+        for (i = 0; i < Hw_size; i++) {
+          console.log(oldhw[i].split("/"));
+          for (j = 0; j < Hw_size; j++) {
+            this.eightteen[i][j] = oldhw[i].split("/")[j];
+            txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+            // console.log(oldhw[i].split("/")[j],j)
+            // console.log(txtid)
+            document.getElementById(txtid).style.backgroundColor = oldhw[
+              i
+            ].split("/")[j];
+          }
+        }
+      }
+      if (parseInt(have_hw_size) == 20) {
+        var x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "block";
+        for (i = 0; i < Hw_size; i++) {
+          console.log(oldhw[i].split("/"));
+          for (j = 0; j < Hw_size; j++) {
+            this.twenty[i][j] = oldhw[i].split("/")[j];
+            txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+            // console.log(oldhw[i].split("/")[j],j)
+            // console.log(txtid)
+            document.getElementById(txtid).style.backgroundColor = oldhw[
+              i
+            ].split("/")[j];
+          }
+        }
+      }
+    } else {
+      console.log(789);
     }
   },
   methods: {
@@ -1562,6 +1742,87 @@ export default {
       });
       console.log(this.eightteen);
     },
+    update() {
+      var id = localStorage.getItem("id_hwTemplate");
+      var db = firebase.firestore();
+      var str = "";
+      var i = 0;
+      var j = 0;
+      var hw_size = localStorage.getItem("Hw_size");
+      if (hw_size == "8") {
+        this.eight.forEach((element_i) => {
+          element_i.forEach((element_j) => {
+            str += element_j.toString() + "/";
+          });
+          str += "*";
+        });
+        console.log("8")
+      } else {
+        if (hw_size == "10") {
+          this.ten.forEach((element_i) => {
+            element_i.forEach((element_j) => {
+              str += element_j.toString() + "/";
+            });
+            str += "*";
+          });
+          console.log("10")
+        } else {
+          if (hw_size == "14") {
+            this.fourteen.forEach((element_i) => {
+              element_i.forEach((element_j) => {
+                str += element_j.toString() + "/";
+              });
+              str += "*";
+            });
+            console.log("14")
+          } else {
+            if (hw_size == "18") {
+              this.eightteen.forEach((element_i) => {
+                element_i.forEach((element_j) => {
+                  str += element_j.toString() + "/";
+                });
+                str += "*";
+              });
+              console.log("18")
+            } else {
+              if (hw_size == "20") {
+                this.twenty.forEach((element_i) => {
+                  element_i.forEach((element_j) => {
+                    str += element_j.toString() + "/";
+                  });
+                  str += "*";
+                });
+              }
+              console.log("20")
+            }
+          }
+        }
+      }
+      console.log(str);
+      var id = localStorage.getItem("id_hwTemplate");
+      var Hw_name = document.getElementById("homeworkName").value;
+      const update = db.collection("HomeworkTemplate").doc(id);
+      console.log(Hw_name)
+      update
+        .update({
+          Homework_data: str,
+          Homework_name: Hw_name,
+        })
+        .then((docRef) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "บันทึกข้อมูลสำเร็จ",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            window.location.href = "/HomeworkList";
+          });
+        })
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+    },
     create() {
       var db = firebase.firestore();
       var homeworkName = document.getElementById("homeworkName").value;
@@ -1618,7 +1879,7 @@ export default {
                     });
                     str += "*";
                   });
-                } 
+                }
               }
             }
           }
@@ -1629,6 +1890,7 @@ export default {
             Homework_name: homeworkName,
             Homework_data: str,
             Homework_size: localStorage.getItem("Hw_size"),
+            statusdel: 0,
           })
           .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
@@ -1700,20 +1962,18 @@ export default {
     },
     reset() {
       var i, j, txtid;
-      var Hw_size = localStorage.getItem("Hw_size")
-      console.log(Hw_size,typeof(Hw_size))
+      var Hw_size = localStorage.getItem("Hw_size");
+      console.log(Hw_size, typeof Hw_size);
       for (i = 0; i < Hw_size; ++i) {
         for (j = 0; j < Hw_size; ++j) {
-          txtid = "btn"+Hw_size+ (i + 1) +"/"+ (j + 1);
-          console.log(txtid)
+          txtid = "btn" + Hw_size + (i + 1) + "/" + (j + 1);
+          console.log(txtid);
           document.getElementById(txtid).style.backgroundColor = "#ffffff";
         }
       }
     },
   },
 };
-
-                 
 </script>
 
 <style>
@@ -1733,6 +1993,5 @@ export default {
   height: 45px;
   margin: 0 0;
 }
-
 </style>
 

@@ -23,10 +23,16 @@
           </tr>
           <tr v-for="(item, index) in homeworkTemplate" :key="index">
             <td>{{ index + 1 }}</td>
-            <td>{{ item }}</td>
+            <td>{{ item.data.Homework_name }}</td>
             <td>
-        <button class="border btn btn-info bg-info">แก้ไข</button>
-        <button class="border btn btn-danger bg-danger">ลบ</button>
+              <button class="border btn btn-info bg-info"
+              @click="EditHomework(item.data,item.id)">แก้ไข</button>
+              <button
+                class="border btn btn-danger bg-danger"
+                @click="Delete(item.id,item.data.Homework_name)"
+              >
+                ลบ
+              </button>
             </td>
           </tr>
         </table>
@@ -47,11 +53,14 @@ export default {
   },
   mounted() {
     var db = firebase.firestore();
-    var docRef = db.collection("HomeworkTemplate");
+    var docRef = db.collection("HomeworkTemplate")
+    .where("statusdel", "==", 0);
     docRef.get().then((doc) => {
       doc.forEach((element) => {
-        console.log(element.data());
-        this.homeworkTemplate.push(element.data().Homework_name);
+        // console.log(element.data());
+        // console.log(doc);
+        // console.log(element.id);
+        this.homeworkTemplate.push({ data: element.data(), id: element.id });
       });
     });
   },
@@ -74,16 +83,55 @@ export default {
         }
       }
     },
+    Delete(id,HW_name) {
+      var db = firebase.firestore();
+      Swal.fire({
+        title: "คุณต้องการลบการบ้าน \n \'"+HW_name+"\' ใช่หรือไม่",
+        showCancelButton: true,
+        icon: "question",
+        confirmButtonText: `ยืนยัน`,
+        cancelButtonText: "ยกเลิก",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const update = db.collection("HomeworkTemplate").doc(id);
+          update.update({
+            statusdel: 1,
+          });
+          console.log("Document successfully deleted!");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "ลบสำเร็จ!",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            window.location.reload();
+          });
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    },
     CreateHomework() {
+      localStorage.removeItem('Hw_size');
       window.location.href = "/CreateHomework";
     },
+    EditHomework(item,id){
+      localStorage.setItem("EditHomework",item.Homework_data)
+      localStorage.setItem("Hw_size",item.Homework_size)
+      localStorage.setItem("Hw_name",item.Homework_name)
+      localStorage.setItem("id_hwTemplate",id)
+      // console.log(item.Homework_data)
+      // console.log(id)
+      window.location.href = "/CreateHomework"
+    }
   },
 };
 </script>
 
 <style>
 #myInput {
-  background-image: url('/css/searchicon.png');
+  background-image: url("/css/searchicon.png");
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
