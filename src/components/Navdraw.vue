@@ -1,12 +1,9 @@
 <template>
-  <div >
+  <div>
     <v-app-bar color="indigo darken-2" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title class="tz" v-if="isAdmin">Staff</v-toolbar-title>
-      <v-toolbar-title class="tz" v-else
-        >Patient</v-toolbar-title
-      >
-
+      <v-toolbar-title class="tz" v-else>Patient</v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -28,12 +25,15 @@
           ></v-img>
           <div class="row">
             <div class="col text-white text-center mx-auto">
-              {{ this.users }}
+             
             </div>
           </div>
           <div class="row">
-            <div class="col text-center">
-               {{ this.users }}
+            <div class="col text-center text-white">
+              <h4 class="mx-auto ">
+                {{ this.users }}
+              </h4>
+
               <button class="btn btn-danger" @click="logout">Logout</button>
             </div>
           </div>
@@ -85,25 +85,25 @@
 <script >
 import firebase from "firebase";
 export default {
-  data(){
+  data() {
     return {
-       drawer: false,
-    group: null,
-    users: "",
-    imageprofile: "",
-    status: "",
-    isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
-    }
+      drawer: false,
+      group: null,
+      users: "",
+      imageprofile: "",
+      status: "",
+      isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
+    };
   },
-  
 
   async mounted() {
     // if(this.isAdmin){
-  // console.log(this.isAdmin,localStorage.getItem("isAdmin"))
+    // console.log(this.isAdmin,localStorage.getItem("isAdmin"))
     // }
     await firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.users = user.displayName;
+        console.log("Login", user);
+        this.users = user.email;
         this.imageprofile = user.photoURL;
       } else {
         // No user is signed in.
@@ -111,9 +111,9 @@ export default {
     });
   },
   methods: {
-    checkAdmin(isAdmin){
-      var x = this.isAdmin
-      return !x
+    checkAdmin(isAdmin) {
+      var x = this.isAdmin;
+      return !x;
     },
     logout() {
       this.$router.replace("/logout");

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col mx-auto">
-          <label for="exampleFormControlInput1" class="form-label" 
+          <label for="exampleFormControlInput1" class="form-label"
             >ชื่อการบ้าน</label
           >
           <input
@@ -42,10 +42,20 @@
             <option value="3">14x14</option>
             <option value="4">18x18</option>
             <option value="5">20x20</option>
+            <option value="6">t</option>
           </select>
         </div>
       </div>
       <div class="row">
+        <button class="btn btn-warning m-2" @click="reset" id="reset">
+          รีเซ็ท
+        </button>
+        <button class="btn btn-success m-2" id="create" @click="create">
+          สร้าง
+        </button>
+        <button class="btn btn-success m-2" id="update" @click="update">
+          อัพเดต
+        </button>
         <div class="col text-center">
           <button
             type="button"
@@ -56,18 +66,7 @@
             v-bind:key="j"
           ></button>
           <div class="row mt-5">
-            <div class="col text-center">
-              <button class="btn btn-warning mr-3" @click="reset">reset</button>
-              <button class="btn btn-success" id="create" @click="create">
-                สร้าง
-              </button>
-              <button class="btn btn-success" id="update" @click="update">
-                อัพเดต
-              </button>
-              <button class="btn btn-success" id="update" @click="update">
-                อัพเดต
-              </button>
-            </div>
+            <div class="col text-center"></div>
           </div>
         </div>
       </div>
@@ -1446,16 +1445,15 @@ export default {
       // console.log(this.colorlist[i], txtid);
     }
     var have_hw_size = localStorage.getItem("Hw_size");
-
     if (have_hw_size) {
+      console.log(12312312313);
       var create = document.getElementById("create");
       create.style.display = "none";
-
       var Hw_size = parseInt(have_hw_size);
       var select = document.getElementById("select");
       select.style.display = "none";
       var update = document.getElementById("update");
-      update.style.display = "none";
+      update.style.display = "block";
       this.Hw_name = localStorage.getItem("Hw_name");
       var oldhw = localStorage.getItem("EditHomework");
       oldhw = oldhw.split("*");
@@ -1581,6 +1579,8 @@ export default {
         }
       }
     } else {
+      var update = document.getElementById("update");
+      update.style.display = "none";
       console.log(789);
     }
   },
@@ -1648,6 +1648,18 @@ export default {
         x.style.display = "none";
         x = document.getElementById("twenty");
         x.style.display = "block";
+      } else if (x == 6) {
+        localStorage.setItem("Hw_size", 20);
+        x = document.getElementById("eight");
+        x.style.display = "none";
+        x = document.getElementById("ten");
+        x.style.display = "none";
+        x = document.getElementById("fourteen");
+        x.style.display = "none";
+        x = document.getElementById("eightteen");
+        x.style.display = "none";
+        x = document.getElementById("twenty");
+        x.style.display = "none";
       }
     },
     upload() {
@@ -1756,7 +1768,7 @@ export default {
           });
           str += "*";
         });
-        console.log("8")
+        console.log("8");
       } else {
         if (hw_size == "10") {
           this.ten.forEach((element_i) => {
@@ -1765,7 +1777,7 @@ export default {
             });
             str += "*";
           });
-          console.log("10",str.split("*"))
+          console.log("10", str.split("*"));
         } else {
           if (hw_size == "14") {
             this.fourteen.forEach((element_i) => {
@@ -1774,7 +1786,7 @@ export default {
               });
               str += "*";
             });
-            console.log("14")
+            console.log("14");
           } else {
             if (hw_size == "18") {
               this.eightteen.forEach((element_i) => {
@@ -1783,7 +1795,7 @@ export default {
                 });
                 str += "*";
               });
-              console.log("18")
+              console.log("18");
             } else {
               if (hw_size == "20") {
                 this.twenty.forEach((element_i) => {
@@ -1793,35 +1805,46 @@ export default {
                   str += "*";
                 });
               }
-              console.log("20")
+              console.log("20");
             }
           }
         }
       }
-      console.log(str);
-      var id = localStorage.getItem("id_hwTemplate");
-      var Hw_name = document.getElementById("homeworkName").value;
-      const update = db.collection("HomeworkTemplate").doc(id);
-      console.log(Hw_name)
-      update
-        .update({
-          Homework_data: str,
-          Homework_name: Hw_name,
-        })
-        .then((docRef) => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "บันทึกข้อมูลสำเร็จ",
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(() => {
-            window.location.href = "/HomeworkList";
-          });
-        })
-        .catch(function (error) {
-          console.error("Error adding document: ", error);
+      var homeworkName = document.getElementById("homeworkName").value;
+      if (homeworkName.length == 0) {
+        console.log(homeworkName.length);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "กรุณาใส่ชื่อการบ้าน",
+          timer: 1500,
         });
+      } else {
+        console.log(str);
+        var id = localStorage.getItem("id_hwTemplate");
+        var Hw_name = document.getElementById("homeworkName").value;
+        const update = db.collection("HomeworkTemplate").doc(id);
+        console.log(Hw_name);
+        update
+          .update({
+            Homework_data: str,
+            Homework_name: Hw_name,
+          })
+          .then((docRef) => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "บันทึกข้อมูลสำเร็จ",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then(() => {
+              window.location.href = "/HomeworkList";
+            });
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+          });
+      }
     },
     create() {
       var db = firebase.firestore();
@@ -1935,7 +1958,7 @@ export default {
     },
     changeColor14(i, j) {
       console.log(i, j);
-this.fourteen[i - 1][j - 1] = this.colorlist[
+      this.fourteen[i - 1][j - 1] = this.colorlist[
         localStorage.getItem("color") - 1
       ];
       var txtid = "btn14" + i + "/" + j;

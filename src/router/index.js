@@ -268,6 +268,20 @@ const routes = [
       });
     }
   },
+  {
+    path: "/TM",
+    name: "TM",
+    component: () => import("../views/TM.vue"),
+    beforeEnter(to, from, next) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          window.location.href = "/login"
+        } else {
+          next();
+        }
+      });
+    }
+  },
 ];
 
 const router = new VueRouter({

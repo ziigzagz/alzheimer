@@ -2623,7 +2623,6 @@ export default {
     if (this.timer_m < 10) {
       this.timer_m = "0" + this.timer_m;
     }
-
     // console.log(h,m,s)
     // console.log(tmp)
     var ans = localStorage.getItem("ans").split("*");

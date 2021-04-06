@@ -599,7 +599,7 @@ export default {
           "#ffffff",
         ],
       ],
-      foueteen: [
+      fourteen: [
         [
           "#ffffff",
           "#ffffff",
@@ -825,7 +825,7 @@ export default {
           "#ffffff",
         ],
       ],
-      foueteen_ans: [
+      fourteen_ans: [
         [
           "#ffffff",
           "#ffffff",
@@ -2661,7 +2661,7 @@ export default {
       ],
       colorlist: [
         "#79661e", //น้ำตาล
-        "#ffec1F", //เหลืองเข้ม
+        "#ffec1f", //เหลืองเข้ม
         "#f6ff78", //เหลืองอ่อน
         "#21e83f", //เขียวอ่อน
         "#148f27", //เขียวเข้ม
