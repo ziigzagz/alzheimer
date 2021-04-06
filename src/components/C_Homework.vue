@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div class="row mb-3">
-      <div class="col-1 mb-3">
+    <div class="row">
+      <div class="col-1">
         <v-row justify="center">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on" v-if="isAdmin">เพิ่ม</v-btn>
+              <v-btn color="primary mt-2" dark v-bind="attrs" v-on="on" v-if="isAdmin">เพิ่ม</v-btn>
             </template>
             <v-card>
               <v-card-title>
@@ -44,10 +44,10 @@
         </v-row>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row ">
       <div class="col">
         <input
-          class="mt-5"
+         
           type="text"
           id="myInput_hw"
           @keyup="myFunction"

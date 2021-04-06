@@ -3028,7 +3028,6 @@ export default {
           });
         });
         localStorage.setItem("Error", JSON.stringify(error));
-
         if (100 - (count_error / 196) * 100 > 80) {
           localStorage.setItem("isHomeworkPass", "pass");
         } else {

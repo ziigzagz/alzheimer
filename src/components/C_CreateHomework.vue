@@ -1765,7 +1765,7 @@ export default {
             });
             str += "*";
           });
-          console.log("10")
+          console.log("10",str.split("*"))
         } else {
           if (hw_size == "14") {
             this.fourteen.forEach((element_i) => {
@@ -1925,6 +1925,9 @@ export default {
     },
     changeColor10(i, j) {
       console.log(i, j);
+      this.ten[i - 1][j - 1] = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
       var txtid = "btn10" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
@@ -1932,7 +1935,9 @@ export default {
     },
     changeColor14(i, j) {
       console.log(i, j);
-
+this.fourteen[i - 1][j - 1] = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
       var txtid = "btn14" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1
@@ -1951,6 +1956,9 @@ export default {
     },
     changeColor20(i, j) {
       console.log(i, j);
+      this.twenty[i - 1][j - 1] = this.colorlist[
+        localStorage.getItem("color") - 1
+      ];
       var txtid = "btn20" + i + "/" + j;
       document.getElementById(txtid).style.backgroundColor = this.colorlist[
         localStorage.getItem("color") - 1

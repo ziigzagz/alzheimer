@@ -6,7 +6,7 @@
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="primary"
+                color="primary mt-2"
                 dark
                 v-bind="attrs"
                 v-on="on"
@@ -58,7 +58,7 @@
           type="text"
           id="myInput_Adv"
           @keyup="myFunction"
-          placeholder="ค้นหาการบ้าน...."
+          placeholder="ค้นหาคำแนะนำ...."
           title="Type in a name"
         />
         <table class="table table-striped text-center" id="myTable_Adv">
@@ -210,7 +210,7 @@ export default {
       table = document.getElementById("myTable_Adv");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
+        td = tr[i].getElementsByTagName("td")[1];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
