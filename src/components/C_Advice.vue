@@ -93,12 +93,7 @@
                 @click="update(item.id)"
                 v-if="item.data.status == 0 && !isAdmin"
               >
-                <img
-                  src="@/assets/icon/check.png"
-                  height="15px"
-                  alt=""
-                  srcset=""
-                />
+                ทำแล้ว
               </button>
               <button
                 class="btn btn-danger bg-danger mt-2 ms-5"
