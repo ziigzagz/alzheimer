@@ -15,6 +15,22 @@
             readonly
           />
         </div>
+        <div class="col-8">
+          <label for="exampleFormControlInput1" class="form-label"
+            >เลือกขนาดอุปกรณ์</label
+          >
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            @change="setSize()"
+            id="select1"
+          >
+            <option selected>กรุณาปรับเลือกขนาด สำหรับอุปกรณ์อื่น</option>
+            <option value="1">ipad</option>
+            <option value="2">ipad pro</option>
+            <option value="3">คอมพิวเตอร์</option>
+          </select>
+        </div>
       </div>
       <div class="row">
         <div class="col text-center">
@@ -28,9 +44,7 @@
           ></button>
           <div class="row mt-5">
             <div class="col text-center">
-              <button class="btn btn-warning mr-3" @click="reset">
-                reset
-              </button>
+              <button class="btn btn-warning mr-3" @click="reset">reset</button>
               <button class="btn btn-success" @click="check">ส่ง</button>
             </div>
           </div>
@@ -38,7 +52,7 @@
       </div>
       <div class="row rowexam">
         <!-- โจทย์ -->
-        <div class="col-6 m-0" id="eight">
+        <div class="col-6 m-0 mb-5" id="eight">
           <div class="row">
             <div v-for="i in 8" v-bind:key="i" class="text-center">
               <button
@@ -52,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 m-0" id="ten">
+        <div class="col-6 m-0 mb-5" id="ten">
           <div class="row">
             <div v-for="i in 10" v-bind:key="i" class="text-center">
               <button
@@ -66,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 m-0" id="fourteen">
+        <div class="col-6 m-0 mb-5" id="fourteen">
           <div class="row">
             <div v-for="i in 14" v-bind:key="i" class="text-center">
               <button
@@ -80,7 +94,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 m-0" id="eightteen">
+        <div class="col-6 m-0 mb-5" id="eightteen">
           <div class="row">
             <div v-for="i in 18" v-bind:key="i" class="text-center">
               <button
@@ -94,7 +108,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 m-0" id="twenty">
+        <div class="col-6 m-0 mb-5" id="twenty">
           <div class="row">
             <div v-for="i in 20" v-bind:key="i" class="text-center">
               <button
@@ -151,6 +165,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-6 m-0" id="eightteen_ans">
           <div class="row">
             <div v-for="i in 18" v-bind:key="i" class="text-center">
@@ -2919,7 +2934,7 @@ export default {
     // document.getElementById("btnprop24").style.backgroundColor = "#F00800";
     // document.getElementById("btnprop35").style.backgroundColor = "#F00800";
     // document.getElementById("btnprop26").style.backgroundColor = "#F00800";
-    console.log(window.innerWidth)
+    console.log(window.innerWidth);
   },
   methods: {
     timer() {
@@ -3232,6 +3247,79 @@ export default {
         }
       }
     },
+    setSize() {
+      var x = document.getElementById("select1").value;
+      console.log(x,typeof(x));
+      if (x == "1") {
+        document.getElementById("eight").classList.remove("col-6");
+        document.getElementById("ten").classList.remove("col-6");
+        document.getElementById("fourteen").classList.remove("col-6");
+        document.getElementById("eightteen").classList.remove("col-6");
+        document.getElementById("twenty").classList.remove("col-6");
+        document.getElementById("eight").classList.add("col-12");
+        document.getElementById("ten").classList.add("col-12");
+        document.getElementById("fourteen").classList.add("col-12");
+        document.getElementById("eightteen").classList.add("col-12");
+        document.getElementById("twenty").classList.add("col-12");
+        // ans
+        document.getElementById("eight_ans").classList.remove("col-6");
+        document.getElementById("ten_ans").classList.remove("col-6");
+        document.getElementById("fourteen_ans").classList.remove("col-6");
+        document.getElementById("eightteen_ans").classList.remove("col-6");
+        document.getElementById("twenty_ans").classList.remove("col-6");
+        document.getElementById("eight_ans").classList.remove("col-12");
+        document.getElementById("ten_ans").classList.remove("col-12");
+        document.getElementById("fourteen_ans").classList.remove("col-12");
+        document.getElementById("eightteen_ans").classList.remove("col-12");
+        document.getElementById("twenty_ans").classList.remove("col-12");
+      }
+       if (x == "2") {
+        document.getElementById("eight").classList.remove("col-6");
+        document.getElementById("ten").classList.remove("col-6");
+        document.getElementById("fourteen").classList.remove("col-6");
+        document.getElementById("eightteen").classList.remove("col-6");
+        document.getElementById("twenty").classList.remove("col-6");
+        document.getElementById("eight").classList.add("col-12");
+        document.getElementById("ten").classList.add("col-12");
+        document.getElementById("fourteen").classList.add("col-12");
+        document.getElementById("eightteen").classList.add("col-12");
+        document.getElementById("twenty").classList.add("col-12");
+        // ans
+        document.getElementById("eight_ans").classList.remove("col-6");
+        document.getElementById("ten_ans").classList.remove("col-6");
+        document.getElementById("fourteen_ans").classList.remove("col-6");
+        document.getElementById("eightteen_ans").classList.remove("col-6");
+        document.getElementById("twenty_ans").classList.remove("col-6");
+        document.getElementById("eight_ans").classList.remove("col-12");
+        document.getElementById("ten_ans").classList.remove("col-12");
+        document.getElementById("fourteen_ans").classList.remove("col-12");
+        document.getElementById("eightteen_ans").classList.remove("col-12");
+        document.getElementById("twenty_ans").classList.remove("col-12");
+      }
+       if (x == "3") {
+        document.getElementById("eight").classList.remove("col-12");
+        document.getElementById("ten").classList.remove("col-12");
+        document.getElementById("fourteen").classList.remove("col-12");
+        document.getElementById("eightteen").classList.remove("col-12");
+        document.getElementById("twenty").classList.remove("col-12");
+        document.getElementById("eight").classList.add("col-6");
+        document.getElementById("ten").classList.add("col-6");
+        document.getElementById("fourteen").classList.add("col-6");
+        document.getElementById("eightteen").classList.add("col-6");
+        document.getElementById("twenty").classList.add("col-6");
+        // ans
+        document.getElementById("eight_ans").classList.remove("col-12");
+        document.getElementById("ten_ans").classList.remove("col-12");
+        document.getElementById("fourteen_ans").classList.remove("col-12");
+        document.getElementById("eightteen_ans").classList.remove("col-12");
+        document.getElementById("twenty_ans").classList.remove("col-12");
+        document.getElementById("eight_ans").classList.add("col-6");
+        document.getElementById("ten_ans").classList.add("col-6");
+        document.getElementById("fourteen_ans").classList.add("col-6");
+        document.getElementById("eightteen_ans").classList.add("col-6");
+        document.getElementById("twenty_ans").classList.add("col-6");
+      }
+    },
   },
 };
 </script>
@@ -3243,24 +3331,24 @@ export default {
   width: 45px;
   height: 45px;
   /* /* max-height: 100%; */
-  max-width: 100%; 
+  max-width: 100%;
   margin: 0 0 0 0;
   border-color: black;
-
-
+}
+@media (max-width: 640px) {
+  .btn.btn-default {
+    width: 50%;
+  }
 }
 
-
 .btna {
-width: 20px;
+  width: 20px;
   height: 20px;
   /* /* max-height: 100%; */
-  max-width: 100%; 
+  max-width: 100%;
   margin: 0 0;
   border-color: black;
 }
-
-
 
 .btnc {
   color: black;
@@ -3269,6 +3357,8 @@ width: 20px;
   height: 45px;
   margin: 0 0;
   border-color: black;
-  
+}
+
+#select1 {
 }
 </style>
