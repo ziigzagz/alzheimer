@@ -10,6 +10,8 @@ const routes = [
     name: "Home",
     component: () => import("../views/Dashboard.vue"),
     beforeEnter(to, from, next) {
+      var db = firebase.firestore();
+
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
           window.location.href = "/login"
@@ -24,19 +26,44 @@ const routes = [
     name: "Home",
     component: () => import("../views/Dashboard.vue"),
     beforeEnter(to, from, next) {
+
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
           window.location.href = "/login"
         } else {
-          next();
+          // console.log(numrow)
+          var db = firebase.firestore();
+          var numrow;
+          var docRef = db
+            .collection("InfoPatient")
+            .where("Email", "==", user.email);
+          docRef
+            .get()
+            .then((doc) => {
+              numrow = doc.size;
+              console.log(numrow)
+              // 1 is Patient
+              // 0 is doctor
+              if (numrow == 1) {
+                window.location.href = "/patient"
+                // window.location.href = "/login"
+              }
+              else {
+                next();
+              }
+            });
+
+          // next();
         }
+
+
       });
     }
   },
   {
     path: "/about",
     name: "About",
-    component: () =>  import("../views/About.vue"),
+    component: () => import("../views/About.vue"),
     beforeEnter(to, from, next) {
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
@@ -50,7 +77,7 @@ const routes = [
   {
     path: "/Dashboard",
     name: "Dashboard",
-    component: () =>  import("../views/Dashboard.vue"),
+    component: () => import("../views/Dashboard.vue"),
     beforeEnter(to, from, next) {
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
