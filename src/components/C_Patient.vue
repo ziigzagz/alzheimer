@@ -3,7 +3,7 @@
     <div class="row justify-content-between">
       <div class="col-4 text-center">
         <button class="btn btn-info ms-2" @click="upload">เพิ่ม</button>
-        <input type="file" id="input" />
+        <input type="file" id="input" accept=".xlsx" />
       </div>
       <div class="col-4 text-rigth">
         <button class="btn btn-danger me-0" @click="clear">ลบข้อมูล</button>
@@ -18,6 +18,7 @@
           @keyup="myFunction"
           placeholder="ค้นหาหมายเลขผู้ป่วย...."
           title="Type in a name"
+          accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
         />
         <!-- <table class="table table-striped text-center" id="myTable1">
           <thead>
@@ -89,6 +90,9 @@ export default {
     return {
       datas: [],
       numrow: 0,
+      database_hospital: [],
+      ID_hospital: [],
+      ID_Error: [], //ซ้ำ
     };
   },
 
@@ -114,6 +118,7 @@ export default {
               // console.log(dataset);
               this.datas.push(dataset);
               dataset = {};
+              this.ID_hospital.push(Info.data().ID);
             })
             .catch(function (error) {
               console.log("Error getting document:", error);
@@ -123,6 +128,22 @@ export default {
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
+    var db = firebase.firestore();
+    var docRef_InfoPatient_Database = db.collection("InfoPatient_Database");
+    docRef_InfoPatient_Database.get().then((doc) => {
+      doc.forEach((Info) => {
+        console.log(Info.data());
+        dataset["UID"] = Info.id;
+        dataset["ID"] = Info.data().ID;
+        dataset["ชื่อ"] = Info.data().ชื่อ;
+        dataset["อายุ"] = Info.data().อายุ;
+        dataset["คนดูแล"] = Info.data().คนดูแล;
+        dataset["เบอร์"] = Info.data().เบอร์;
+        this.database_hospital.push(dataset);
+        this.ID_hospital.push(Info.data().ID);
+        dataset = {};
+      });
+    });
   },
   methods: {
     myFunction() {
@@ -158,8 +179,43 @@ export default {
       window.location.href = "/Patient";
     },
     calAge(x) {
-      var dob = new Date(x);
+      const array1 = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      var dob = new Date(1998, 11, 4);
       //calculate month difference from current date in time
+      var year = x.split(" ")[3];
+      var month = x.split(" ")[1];
+      var day = x.split(" ")[2];
+      var count_month = 1;
+      var i;
+      for (i = 0; i < 12; ++i) {
+        if (array1[i] == month) {
+          break;
+        }
+        count_month++;
+      }
+      year = parseInt(year);
+      day = parseInt(day);
+      // console.log("x", x);
+      // console.log("dob", dob);
+      // console.log("year", year);
+      // console.log("month", month);
+      // console.log("count_month", count_month);
+      // console.log("day", day);
+      var dob = new Date(year, count_month, day);
+      // var dob = new Date(1998, 11, 4);
       var month_diff = Date.now() - dob.getTime();
       //convert the calculated difference in date format
       var age_dt = new Date(month_diff);
@@ -168,7 +224,7 @@ export default {
       //now calculate the age of the user
       var age = Math.abs(year - 1970);
       var finalage;
-      console.log(age, x);
+      // console.log(age, x);
       // console.log(typeof(age));
       return age;
     },
@@ -206,6 +262,7 @@ export default {
     // Use it like this:
 
     async upload() {
+      var db = firebase.firestore();
       var i = 0;
       const array1 = [
         "Jan",
@@ -232,9 +289,7 @@ export default {
           } else {
             const isLargeNumber = (element1) =>
               element1 == element[4].toString().split("/")[0];
-            console.log(element[4].toString().split("/")[0], isLargeNumber, 99);
             var month = array1.findIndex(isLargeNumber) + 1;
-            // console.log(month,element[4].toString().split(" ")[2]);
             console.log(element[4].toString().split("/"), month);
             var date =
               element[4].toString().split("/")[0] +
@@ -242,8 +297,6 @@ export default {
               element[4].toString().split("/")[1] +
               "/" +
               element[4].toString().split("/")[2];
-            // console.log(element[29])
-            var db = firebase.firestore();
             firebase
               .auth()
               .createUserWithEmailAndPassword(element[8], "123456")
@@ -256,67 +309,75 @@ export default {
                 var errorMessage = error.message;
                 console.log(errorCode, errorMessage);
               });
-            db.collection("InfoPatient_Database")
-              .add({
-                Status: 0,
-                ID: element[1],
-                คำนำหน้าชื่อ: element[2],
-                ชื่อ: element[3],
-                วันเกิด: element[4],
-                อายุ: this.calAge(date),
-                // อายุ: 20,
-                น้ำหนัก: element[5],
-                ส่วนสูง: element[6],
-                คนดูแล: element[7],
-                Email: element[8],
-                ผู้ให้ข้อมูล: element[9],
-                เบอร์ผู้ให้ข้อมูล: element[10],
-                บ้านเลขที่: element[11],
-                หมู่: element[12],
-                ตรอกซอย: element[13],
-                ถนน: element[14],
-                อำเภอ: element[15],
-                จังหวัด: element[16],
-                รหัสไปรษณีย์: element[17],
-                เบอร์: element[18],
-                การศึกษา: element[19],
-                สาขาวิชา: element[20],
-                อาชีพ: element[21],
-                ประวัติการเจ็บป่วยในอดีต: element[22],
-                ประวัติการผ่าตัด: element[23],
-                โรคประจำตัว: element[24],
-                ยาที่รับประทานประจำ: element[25],
-                แพ้ยาอาหาร: element[26],
-                สูบบุหรี่: element[27],
-                การดื่มแอลกอฮอล: element[28],
-                ออกกำลังกาย: element[29],
-                การนอนหลับ: element[30],
-                เวลาเข้านอน: element[31].toString(),
-                เวลาตื่นนอน: element[32].toString(),
-                การรับประทานอาหาร: element[33],
-                งานอดิเรก: element[34],
-                มีปัญหาการมองเห็น: element[35],
-                มีปัญหาด้านการได้ยิน: element[36],
-                มีปัญหาด้านการเคลื่อนไหว: element[37],
-                มีปัญหาด้านความจำ: element[38],
-                มีปัญหาด้านสมาธิ: element[39],
-                มีปัญหาด้านการจัดการ: element[40],
-                หลงทางจำทางไม่ได้: element[41],
-                มีปัญหาด้านการอ่านเขียน: element[42],
-                หงุดหงิดโมโหง่าย: element[43],
-                การสร้างสัมพันธภาพ: element[44],
-                การรอคอยความอดทน: element[45],
-                การนึกคำพูดสื่อสาร: element[46],
-                ความเข้าใจในการสื่อสาร: element[47],
-                Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-              })
-              .then(function (docRef) {
-                console.log("Document written with ID: ", docRef.id);
-                uid = "";
-              })
-              .catch(function (error) {
-                console.error("Error adding document: ", error);
-              });
+            
+            if (this.ID_hospital.includes(element[1])) {
+              this.ID_Error.push(element[1]);
+              console.log("fail : ", element[1]);
+            } else {
+              console.log("success : ", element[1]);
+              db.collection("InfoPatient")
+                .add({
+                  Status: 0,
+                  ID: element[1],
+                  คำนำหน้าชื่อ: element[2],
+                  ชื่อ: element[3],
+                  วันเกิด: element[4],
+                  อายุ: this.calAge(date),
+                  // อายุ: 20,
+                  น้ำหนัก: element[5],
+                  ส่วนสูง: element[6],
+                  คนดูแล: element[7],
+                  Email: element[8],
+                  ผู้ให้ข้อมูล: element[9],
+                  เบอร์ผู้ให้ข้อมูล: element[10],
+                  บ้านเลขที่: element[11],
+                  หมู่: element[12],
+                  ตรอกซอย: element[13],
+                  ถนน: element[14],
+                  อำเภอ: element[15],
+                  จังหวัด: element[16],
+                  รหัสไปรษณีย์: element[17],
+                  เบอร์: element[18],
+                  การศึกษา: element[19],
+                  สาขาวิชา: element[20],
+                  อาชีพ: element[21],
+                  ประวัติการเจ็บป่วยในอดีต: element[22],
+                  ประวัติการผ่าตัด: element[23],
+                  โรคประจำตัว: element[24],
+                  ยาที่รับประทานประจำ: element[25],
+                  แพ้ยาอาหาร: element[26],
+                  สูบบุหรี่: element[27],
+                  การดื่มแอลกอฮอล: element[28],
+                  ออกกำลังกาย: element[29],
+                  การนอนหลับ: element[30],
+                  เวลาเข้านอน: element[31].toString(),
+                  เวลาตื่นนอน: element[32].toString(),
+                  การรับประทานอาหาร: element[33],
+                  งานอดิเรก: element[34],
+                  มีปัญหาการมองเห็น: element[35],
+                  มีปัญหาด้านการได้ยิน: element[36],
+                  มีปัญหาด้านการเคลื่อนไหว: element[37],
+                  มีปัญหาด้านความจำ: element[38],
+                  มีปัญหาด้านสมาธิ: element[39],
+                  มีปัญหาด้านการจัดการ: element[40],
+                  หลงทางจำทางไม่ได้: element[41],
+                  มีปัญหาด้านการอ่านเขียน: element[42],
+                  หงุดหงิดโมโหง่าย: element[43],
+                  การสร้างสัมพันธภาพ: element[44],
+                  การรอคอยความอดทน: element[45],
+                  การนึกคำพูดสื่อสาร: element[46],
+                  ความเข้าใจในการสื่อสาร: element[47],
+                  Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                })
+                .then(function (docRef) {
+                  console.log("Document written with ID: ", docRef.id);
+                  uid = "";
+                })
+                .catch(function (error) {
+                  console.error("Error adding document: ", error);
+                });
+            }
+            console.log(this.ID_hospital.includes(element[1]));
           }
         });
       });
@@ -327,6 +388,17 @@ export default {
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
+        // alert(this.ID_Error);
+        var s = "";
+        this.ID_Error.forEach((element) => {
+          s += element + "\n";
+        });
+        console.log(this.ID_Error.length);
+        Swal.fire({
+          icon: "error",
+          title: "ไม่สามารถเพิ่มผู้ป่วยที่มีหมายเลขต่อไปนี้ได้",
+          text: s,
+        });
         // location.reload();
       });
     },

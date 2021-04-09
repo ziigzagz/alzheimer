@@ -85,15 +85,25 @@ export default {
                 this.numrow = doc.size;
                 if (this.numrow == 0) {
                   localStorage.setItem("isAdmin", 1);
+                  // localStorage.setItem("email_login");
                   window.location.href = "/";
                 } else {
                   doc.forEach((element) => {
                     localStorage.setItem("uid", element.id);
+                    localStorage.setItem("email_login", element.email);
                     localStorage.setItem("isAdmin", 0);
                   });
-                  window.location.href = "/patient";
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "ลงชื่อเข้าใช้สำเร็จ",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  }).then(() => {
+                    window.location.href = "/";
+                  });
+                  // 
                 }
-                
               })
               .catch(function (error) {
                 console.log("Error getting document:", error);

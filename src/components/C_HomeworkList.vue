@@ -53,7 +53,8 @@ export default {
   mounted() {
     var db = firebase.firestore();
     var docRef = db.collection("HomeworkTemplate")
-    .where("statusdel", "==", 0);
+    .where("statusdel", "==", 0)
+    .orderBy("Homework_name", "asc");
     docRef.get().then((doc) => {
       doc.forEach((element) => {
         // console.log(element.data());

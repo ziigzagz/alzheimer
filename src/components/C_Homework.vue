@@ -69,7 +69,7 @@
               <td v-if="item.data.status != 0"><span class="badge bg-success m-2">สำเร็จ</span></td>
               <td v-else><span class="badge bg-danger m-2">ยังไม่สำเร็จ</span></td>
               <td v-if="item.data.edit == '0'">
-                <button class="btn btn-info bg-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
+                <button v-if="!isAdmin" class="btn btn-info bg-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
                   ดู
                 </button>
               </td>

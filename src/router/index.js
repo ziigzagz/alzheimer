@@ -45,17 +45,12 @@ const routes = [
               // 0 is doctor
               if (numrow == 1) {
                 window.location.href = "/patient"
-                // window.location.href = "/login"
               }
               else {
                 next();
               }
             });
-
-          // next();
         }
-
-
       });
     }
   },
@@ -82,7 +77,28 @@ const routes = [
         if (!user) {
           window.location.href = "/login"
         } else {
-          next();
+          // console.log(numrow)
+          var db = firebase.firestore();
+          var numrow;
+          var docRef = db
+            .collection("InfoPatient")
+            .where("Email", "==", user.email);
+          docRef
+            .get()
+            .then((doc) => {
+              numrow = doc.size;
+              console.log(numrow)
+              // 1 is Patient
+              // 0 is doctor
+              alert(numrow)
+              if (numrow == 1) {
+
+                window.location.href = "/Patient"
+              }
+              else {
+                next();
+              }
+            });
         }
       });
     }
@@ -110,7 +126,26 @@ const routes = [
         if (!user) {
           window.location.href = "/login"
         } else {
-          next();
+          // console.log(numrow)
+          var db = firebase.firestore();
+          var numrow;
+          var docRef = db
+            .collection("InfoPatient")
+            .where("Email", "==", user.email);
+          docRef
+            .get()
+            .then((doc) => {
+              numrow = doc.size;
+              console.log(numrow)
+              // 1 is Patient
+              // 0 is doctor
+              if (numrow == 1) {
+                window.location.href = "/Patient"
+              }
+              else {
+                next();
+              }
+            });
         }
       });
     }
@@ -261,7 +296,26 @@ const routes = [
         if (!user) {
           window.location.href = "/login"
         } else {
-          next();
+          // console.log(numrow)
+          var db = firebase.firestore();
+          var numrow;
+          var docRef = db
+            .collection("InfoPatient")
+            .where("Email", "==", user.email);
+          docRef
+            .get()
+            .then((doc) => {
+              numrow = doc.size;
+              console.log(numrow)
+              // 1 is Patient
+              // 0 is doctor
+              if (numrow == 1) {
+                window.location.href = "/Patient"
+              }
+              else {
+                next();
+              }
+            });
         }
       });
     }
@@ -275,7 +329,26 @@ const routes = [
         if (!user) {
           window.location.href = "/login"
         } else {
-          next();
+          // console.log(numrow)
+          var db = firebase.firestore();
+          var numrow;
+          var docRef = db
+            .collection("InfoPatient")
+            .where("Email", "==", user.email);
+          docRef
+            .get()
+            .then((doc) => {
+              numrow = doc.size;
+              console.log(numrow)
+              // 1 is Patient
+              // 0 is doctor
+              if (numrow == 1) {
+                window.location.href = "/Patient"
+              }
+              else {
+                next();
+              }
+            });
         }
       });
     }
