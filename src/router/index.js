@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import firebase from "firebase";
 Vue.use(VueRouter);
-
+// 51231
 const routes = [
   {
     path: "/dashboard",
@@ -26,7 +26,6 @@ const routes = [
     name: "Home",
     component: () => import("../views/Dashboard.vue"),
     beforeEnter(to, from, next) {
-
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
           window.location.href = "/login"
