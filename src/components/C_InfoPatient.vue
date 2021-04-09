@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button class="btn btn-info" @click="edit" v-if="isAdmin">แก้ไข</button>
+    <button class="btn btn-info" @click="edit" v-if="isAdmin" id="edit">แก้ไข</button>
 
     <!-- ข้อมูลส่วนตัว -->
     <div class="row">
@@ -692,6 +692,8 @@ export default {
       document.getElementById("edu").removeAttribute("readonly");
       document.getElementById("สาขา").removeAttribute("readonly");
       var x = document.getElementById("savebtn");
+      var y = document.getElementById("edit");
+      y.style.display = "none";
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {

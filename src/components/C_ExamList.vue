@@ -109,7 +109,7 @@
               </td>
               <td v-else><span class="badge bg-danger">ไม่สำเร็จ</span></td>
               <td>
-                <button class="btn btn-info bg-info mt-2" @click="viewInfo(item.ID)">
+                <button  v-if="!isAdmin" class="btn btn-info bg-info mt-2" @click="viewInfo(item.ID)">
                   ดูข้อมูล
                 </button>
               </td>
