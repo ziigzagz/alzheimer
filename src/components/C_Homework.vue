@@ -62,20 +62,18 @@
               <th scope="col">สถานะ</th>
               <th scope="col">#</th>
             </tr>
-            <tr v-for="(item, index) in homework" :key="index">
+            <tr v-for="(item, index) in homework" :key="index" >
               <td scope="row">{{ index + 1 }}</td>
               <td>{{ item.Name }}</td>
               <td>{{ item.data.date }}</td>
-              <td v-if="item.data.status != 0"><span class="badge bg-success">สำเร็จ</span></td>
-              <td v-else><span class="badge bg-danger">ยังไม่สำเร็จ</span></td>
+              <td v-if="item.data.status != 0"><span class="badge bg-success m-2">สำเร็จ</span></td>
+              <td v-else><span class="badge bg-danger m-2">ยังไม่สำเร็จ</span></td>
               <td v-if="item.data.edit == '0'">
                 <button class="btn btn-info bg-info" @click="viewInfo(item.data.homeworkTemplate,item.id)">
                   ดู
                 </button>
               </td>
-              <td v-else>
-                -
-              </td>
+
             </tr>
         
         </table>

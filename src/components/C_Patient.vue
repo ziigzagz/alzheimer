@@ -53,7 +53,7 @@
             <th scope="col">อายุ</th>
             <th scope="col">ชื่อผู้ดูแล</th>
             <th scope="col">เบอร์โทรติดต่อ</th>
-            <th scope="col">แก้ไข/ดู</th>
+            <th scope="col"></th>
           </tr>
           <tr v-for="(item, index) in datas" :key="index" class="mt-2">
             <td scope="row">{{ item.ID }}</td>
@@ -256,7 +256,7 @@ export default {
                 var errorMessage = error.message;
                 console.log(errorCode, errorMessage);
               });
-            db.collection("InfoPatient")
+            db.collection("InfoPatient_Database")
               .add({
                 Status: 0,
                 ID: element[1],
