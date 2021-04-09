@@ -1,6 +1,6 @@
 import cv2
 
-input = cv2.imread('image1.bmp')
+input = cv2.imread('wongstock-8-bit-pixel-art-yin-yang-symbol_u-l-pstqt90.jpg')
 # input = cv2.imread('image.jpg')
 
 height, width = input.shape[:2]

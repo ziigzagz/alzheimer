@@ -9,10 +9,8 @@ for x in f:
     tmp_color = tmp_color[1:-1] #ตัดวงเล็บออก
     r = tmp_color.split(",")[0]
     r = int(r)
-
     g = tmp_color.split(", ")[1]
     g = int(g)
-
     b = tmp_color.split(", ")[2]
     b = int(b)
     colorlst.append(r)
@@ -22,8 +20,8 @@ for x in f:
     tmp_labels = x.split("/")[1]
     colorlst = []
     labels.append(tmp_labels)
-print(len(feature))
-print(len(labels))
+print((feature))
+print((labels))
 classifier = tree.DecisionTreeClassifier()
 # print(classifier)
 classifier = classifier.fit(feature,labels)

@@ -7,6 +7,8 @@ import numpy
 import ast
 from sklearn import tree
 import re
+import cv2 as cv
+import numpy as np
 class NumpyArrayEncoder(JSONEncoder):
     def default(self, obj):
         if isinstance(obj, numpy.ndarray):
@@ -103,7 +105,65 @@ def rsv():
         response_object['books'] = BOOKS
     # print(tmp)
     return jsonify(new_lst)
+@app.route('/tm', methods=['GET', 'POST'])
+def tm():
+    new_lst = []
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        post_data = request.get_json()
+        # imgURL = post_data[0]
+        ans1 = post_data[0]
+        new_ans_i = []
+        new_ans_j = []
+        new_ans_all = []
+        tmp = []
+        for i in ans1:
+            for j in i:
+                # print(j ,end = " ")
+                tmp.append(hex_to_rgb(j)[0])
+                tmp.append(hex_to_rgb(j)[1])
+                tmp.append(hex_to_rgb(j)[2])
+                new_ans_j.append(tmp)
+                tmp = []
+            # print(new_ans_j)
+            new_ans_i.append(new_ans_j)
+            new_ans_j = []
+        new_all = np.array(new_ans_all)
+        ans1 = new_ans_i
+        print(ans1)
+        ans1 = np.array(ans1)
+        # print(ans1)
+        pm1 = np.pad(array=ans1, pad_width=1, mode='constant', constant_values=0)
+        # print(pm1)
+        print("---------------------------------------------------------------------")
+        ans2 = post_data[1]
+        new_ans_i = []
+        new_ans_j = []
+        new_ans_all = []
+        tmp = []
+        for i in ans2:
+            for j in i:
+                tmp.append(hex_to_rgb(j)[0])
+                tmp.append(hex_to_rgb(j)[1])
+                tmp.append(hex_to_rgb(j)[2])
+                new_ans_j.append(tmp)
 
+            print(new_ans_j)
+            tmp = []
+
+        new_all = np.array(new_ans_all)
+        ans2 = new_ans_i
+        ans2 = np.array(ans2)
+        print(ans2)
+        # result = cv.matchTemplate(
+        #     ans1.astype(np.uint8),
+        #     ans2.astype(np.uint8),
+        #     cv.TM_SQDIFF)
+        # print(result)
+        # positions = np.argwhere(result == 0.0)
+        # print(positions)
+        # print(type(int(post_data[1])))
+    return jsonify(new_lst)
 @app.route('/save', methods=['GET', 'POST'])
 def test():
     txt = {'status': 'success'}
