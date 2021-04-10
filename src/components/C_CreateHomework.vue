@@ -12,7 +12,6 @@
             id="homeworkName"
             placeholder=""
             v-model="Hw_name"
-            
           />
         </div>
         <div class="col mx-auto">
@@ -43,7 +42,6 @@
             <option value="3">14x14</option>
             <option value="4">18x18</option>
             <option value="5">20x20</option>
-            <option value="6">t</option>
           </select>
         </div>
       </div>

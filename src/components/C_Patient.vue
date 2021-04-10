@@ -309,11 +309,8 @@ export default {
                 var errorMessage = error.message;
                 console.log(errorCode, errorMessage);
               });
-            
+
             if (this.ID_hospital.includes(element[1])) {
-              this.ID_Error.push(element[1]);
-              console.log("fail : ", element[1]);
-            } else {
               console.log("success : ", element[1]);
               db.collection("InfoPatient")
                 .add({
@@ -376,6 +373,9 @@ export default {
                 .catch(function (error) {
                   console.error("Error adding document: ", error);
                 });
+            } else {
+              this.ID_Error.push(element[1]);
+              console.log("fail : ", element[1]);
             }
             console.log(this.ID_hospital.includes(element[1]));
           }
@@ -389,17 +389,27 @@ export default {
         timer: 1500,
       }).then(() => {
         // alert(this.ID_Error);
-        var s = "";
-        this.ID_Error.forEach((element) => {
-          s += element + "\n";
-        });
-        console.log(this.ID_Error.length);
-        Swal.fire({
-          icon: "error",
-          title: "ไม่สามารถเพิ่มผู้ป่วยที่มีหมายเลขต่อไปนี้ได้",
-          text: s,
-        });
-        // location.reload();
+        if (this.ID_Error.length > 0) {
+          var s = "";
+          this.ID_Error.forEach((element) => {
+            s += element + "\n";
+          });
+          console.log(this.ID_Error.length);
+          Swal.fire({
+            title: "ไม่สามารถเพิ่มผู้ป่วยที่มีหมายเลขต่อไปนี้ได้",
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: `ปิด`,
+            text: s,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            location.reload();
+
+          });
+    
+        }
+
+     
       });
     },
   },

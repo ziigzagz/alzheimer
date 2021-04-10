@@ -2,9 +2,28 @@
   <div>
     <div class="container-fluid">
       <div class="row">
+        <div class="col-12 text-center">
+          <h3>ผลการตรวจ</h3>
+          <!-- <h4>ความถูกต้องของช่อง : 100%</h4> -->
+          <h4>
+            ความถูกต้อง : {{ this.accuracy }}%
+           
+          </h4>
+          <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
+          <!-- <h3>x</h3> -->
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-success" @click="next">ถัดไป</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <!-- คำตอบ -->
+        
         <!-- โจทย์ -->
         <div class="col-12 bg-info offset-2 mt-5" id="eight">
-          <div v-for="i in 8" v-bind:key="i">
+          <div v-for="i in 8" v-bind:key="i" class="text-center">
             <button
               type="button"
               :id="'btnprop8' + i + '/' + j"
@@ -14,8 +33,8 @@
             ></button>
           </div>
         </div>
-        <div class="col-6 offset-2 mt-5" id="ten">
-          <div v-for="i in 10" v-bind:key="i">
+        <div class="col-12 offset-2 mt-5" id="ten">
+          <div v-for="i in 10" v-bind:key="i" class="text-center">
             <button
               type="button"
               :id="'btnprop10' + i + '/' + j"
@@ -25,8 +44,8 @@
             ></button>
           </div>
         </div>
-        <div class="col-6 offset-2 mt-5" id="fourteen">
-          <div v-for="i in 14" v-bind:key="i">
+        <div class="col-12 offset-5 mt-5 mx-auto" id="fourteen">
+          <div v-for="i in 14" v-bind:key="i" class="text-center">
             <button
               type="button"
               :id="'btnprop14' + i + '/' + j"
@@ -36,8 +55,8 @@
             ></button>
           </div>
         </div>
-        <div class="col-6 offset-2 mt-5" id="eightteen">
-          <div v-for="i in 18" v-bind:key="i">
+        <div class="col-12 offset-2 mt-5" id="eightteen">
+          <div v-for="i in 18" v-bind:key="i" class="text-center">
             <button
               type="button"
               :id="'btnprop18' + i + '/' + j"
@@ -47,8 +66,8 @@
             ></button>
           </div>
         </div>
-        <div class="col-6 offset-2 mt-5" id="twenty">
-          <div v-for="i in 20" v-bind:key="i">
+        <div class="col-12 offset-2 mt-5" id="twenty">
+          <div v-for="i in 20" v-bind:key="i" class="text-center">
             <button
               type="button"
               :id="'btnprop20' + i + '/' + j"
