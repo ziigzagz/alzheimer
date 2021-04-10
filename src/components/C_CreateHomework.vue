@@ -12,6 +12,7 @@
             id="homeworkName"
             placeholder=""
             v-model="Hw_name"
+            
           />
         </div>
         <div class="col mx-auto">
@@ -20,7 +21,7 @@
           >
           <div class="row">
             <div class="col">
-              <input type="file" id="files" />
+              <input type="file" id="files" accept="image/*,.jpg"/>
             </div>
             <div class="col">
               <button class="btn btn-info" @click="upload">อัปโหลด</button>

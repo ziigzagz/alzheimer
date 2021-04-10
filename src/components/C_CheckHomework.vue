@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- โจทย์ -->
-        <div class="col-6 offset-2 mt-5" id="eight">
+        <div class="col-12 bg-info offset-2 mt-5" id="eight">
           <div v-for="i in 8" v-bind:key="i">
             <button
               type="button"
@@ -58,22 +58,7 @@
             ></button>
           </div>
         </div>
-        <!-- คำตอบ -->
-        <div class="col-3 text-center">
-          <h3>ผลการตรวจ</h3>
-          <!-- <h4>ความถูกต้องของช่อง : 100%</h4> -->
-          <h4>
-            ความถูกต้อง : {{ this.accuracy }}%
-           
-          </h4>
-          <h4>เวลาที่ใช้ : {{ timer_m }}:{{ timer_s }} {{ unit }}</h4>
-          <!-- <h3>x</h3> -->
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-success" @click="next">ถัดไป</button>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   </div>
@@ -497,7 +482,7 @@ export default {
           "#ffffff",
         ],
       ],
-      foueteen: [
+      fourteen: [
         [
           "#ffffff",
           "#ffffff",
@@ -723,7 +708,7 @@ export default {
           "#ffffff",
         ],
       ],
-      foueteen_ans: [
+      fourteen_ans: [
         [
           "#ffffff",
           "#ffffff",
