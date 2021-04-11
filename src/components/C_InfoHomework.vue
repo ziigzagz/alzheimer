@@ -39,7 +39,7 @@
             :id="'btncolorplt' + j"
             class="btnc btn-default mx-auto"
             @click="setStateColor(j)"
-            v-for="j in 17"
+            v-for="j in 19"
             v-bind:key="j"
           ></button>
           <div class="row mt-5">
@@ -2675,23 +2675,42 @@ export default {
         ],
       ],
       colorlist: [
-        "#79661e", //น้ำตาล
-        "#ffec1f", //เหลืองเข้ม
-        "#f6ff78", //เหลืองอ่อน
-        "#21e83f", //เขียวอ่อน
-        "#148f27", //เขียวเข้ม
-        "#1f26ff", //น้ำเงิน
-        "#a12dcf", //ม่วง
-        "#f00800", //แดง
-        "#ff892e", //ส้ม
-        "#f007ff", //ชมพู
-        "#ef9090", //เนื้อ
-        "#6eddff", //ฟ้า
-        "#b0fff4", //ฟ้าอ่อน
+        "#ff0000",
+        "#ff6600",
+        "#ffc000",
+        "#e6ff00",
+        "#89ff00",
+        "#33ff00",
+        "#00ff2b",
+        "#00ff80",
+        "#00ffde",
+        "#00cdff",
+        "#006fff",
+        "#001aff",
+        "#4400ff",
+        "#9a00ff",
+        "#f300ff",
+        "#ff00b3",
+        "#ff0055",
         "#ffffff", //ขาว
-        "#c2c2c2", //เทาอ่อน
-        "#878787", //เทาเข้ม
         "#000000", //ดำ
+        // "#79661e", //น้ำตาล
+        // "#ffec1f", //เหลืองเข้ม
+        // "#f6ff78", //เหลืองอ่อน
+        // "#21e83f", //เขียวอ่อน
+        // "#148f27", //เขียวเข้ม
+        // "#1f26ff", //น้ำเงิน
+        // "#a12dcf", //ม่วง
+        // "#f00800", //แดง
+        // "#ff892e", //ส้ม
+        // "#f007ff", //ชมพู
+        // "#ef9090", //เนื้อ
+        // "#6eddff", //ฟ้า
+        // "#b0fff4", //ฟ้าอ่อน B0FFF4
+        // "#ffffff", //ขาว
+        // "#c2c2c2", //เทาอ่อน
+        // "#878787", //เทาเข้ม
+        // "#000000", //ดำ
       ],
       homeworktemplatelist: [],
       homeworkName: "",
@@ -2704,7 +2723,7 @@ export default {
     this.timer();
     var i, j, txtid;
     var lst = [];
-    for (i = 0; i < 17; i++) {
+    for (i = 0; i < 19; i++) {
       txtid = "btncolorplt" + (i + 1);
       // console.log(txtid);
       document.getElementById(txtid).style.backgroundColor = this.colorlist[i];
