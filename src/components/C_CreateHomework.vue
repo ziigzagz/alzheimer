@@ -1693,9 +1693,9 @@ export default {
                   i++;
                   //row
                   row.forEach((col) => {
-                    r = col[2];
+                    r = col[0];
                     g = col[1];
-                    b = col[0];
+                    b = col[2];
                     var hw_size = localStorage.getItem("Hw_size");
                     if (hw_size == "8") {
                       var txt = "btn8" + i + "/" + j;

@@ -323,7 +323,7 @@ const routes = [
   {
     path: "/CreateHomework",
     name: "CreateHomework",
-    component: () => import("../views/CreateHomework2.vue"),
+    component: () => import("../views/CreateHomework.vue"),
     beforeEnter(to, from, next) {
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
