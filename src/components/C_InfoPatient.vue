@@ -592,6 +592,7 @@ export default {
       this.ID = snapshot.data().ID;
       this.คำนำหน้าชื่อ = snapshot.data().คำนำหน้าชื่อ;
       this.ชื่อ = snapshot.data().ชื่อ;
+      localStorage.setItem("login_name", snapshot.data().ชื่อ);
       this.วันเกิด = birthday;
       // this.วันเกิด = 99;
       this.อายุ = snapshot.data().อายุ;

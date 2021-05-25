@@ -75,7 +75,6 @@ export default {
             //   .catch(function (error) {
             //     console.log("Error getting document:", error);
             //   });
-
             var docRef = db
               .collection("InfoPatient")
               .where("Email", "==", user.user.email);
@@ -89,8 +88,11 @@ export default {
                   window.location.href = "/";
                 } else {
                   doc.forEach((element) => {
+                    console.log(user.user.ชื่อ)
+                    console.log(456456)
                     localStorage.setItem("uid", element.id);
                     localStorage.setItem("email_login", element.email);
+                    localStorage.setItem("login_name", user.user.ชื่อ);
                     localStorage.setItem("isAdmin", 0);
                   });
                   Swal.fire({
@@ -117,47 +119,7 @@ export default {
         );
       e.preventDefault();
     },
-    loginWithProvider(e) {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(
-          (user) => {
-            var user = firebase.auth().currentUser;
-            if (user != null) {
-              user.providerData.forEach((profile) => {
-                console.log(profile);
-                console.log(user.uid);
-                localStorage.setItem("uid", user.uid);
-                localStorage.setItem("User", profile.email);
-                localStorage.setItem("StatusLogin", 1);
-                // console.log("Sign-in provider: " + profile.providerId);
-                // console.log("  Provider-specific UID: " + profile.uid);
-                // console.log("  Name: " + profile.displayName);
-                // console.log("  Email: " + profile.email);
-                // console.log("  Photo URL: " + profile.photoURL);
-                if (profile.email == "zigzagzaczax@gmail.com") {
-                  localStorage.setItem("isAdmin", 1);
-                }
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "ลงชื่อเข้าใช้สำเร็จ",
-                  showConfirmButton: false,
-                  timer: 1500,
-                }).then(() => {
-                  this.$router.replace("/");
-                });
-              });
-            }
-          },
-          (err) => {
-            alert(err.message);
-          }
-        )
-        .then(() => {});
-    },
+    
   },
 };
 </script>

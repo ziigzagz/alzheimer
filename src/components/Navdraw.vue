@@ -3,15 +3,10 @@
     <v-app-bar color="indigo darken-2" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title class="tz" v-if="isAdmin">Staff</v-toolbar-title>
-      <v-toolbar-title class="tz" v-else>Patient</v-toolbar-title>
+      <v-toolbar-title class="tz" v-else>{{ this.name }}</v-toolbar-title>
     </v-app-bar>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-      class="bg-dark text-dark"
-    >
+    <v-navigation-drawer v-model="drawer" absolute temporary class="bg-dark text-dark">
       <v-list nav dense>
         <v-list-item-group
           v-model="group"
@@ -24,16 +19,13 @@
             :src="this.imageprofile"
           ></v-img>
           <div class="row">
-            <div class="col text-white text-center mx-auto">
-             
-            </div>
+            <div class="col text-white text-center mx-auto"></div>
           </div>
           <div class="row">
             <div class="col text-center text-white">
-              <h4 class="mx-auto ">
+              <h4 class="mx-auto">
                 {{ this.users }}
               </h4>
-
               <button class="btn btn-danger" @click="logout">Logout</button>
             </div>
           </div>
@@ -50,7 +42,6 @@
               <a class="text-white ml-5" href="/"> หน้าแรก</a>
             </v-list-item-title>
           </v-list-item>
-
           <v-list-item class="mt-3 m-h" v-if="isAdmin">
             <v-list-item-title color="deep-orange darken-2">
               <img
@@ -82,7 +73,7 @@
   </div>
 </template>
 
-<script >
+<script>
 import firebase from "firebase";
 export default {
   data() {
@@ -93,6 +84,7 @@ export default {
       imageprofile: "",
       status: "",
       isAdmin: Boolean(parseInt(localStorage.getItem("isAdmin"))),
+      name:localStorage.getItem("login_name")
     };
   },
 
